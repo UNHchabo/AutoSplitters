@@ -119,7 +119,7 @@ startup
 	settings.SetToolTip("ridley", "Split on defeating Ridley");
 	settings.Add("mb1", false, "Mother Brain 1", "bosses");
 	settings.SetToolTip("mb1", "Split on finishing Mother Brain's first phase");
-	settings.Add("mb2", false, "Mother Brain 2", "bosses");
+	settings.Add("mb2", true, "Mother Brain 2", "bosses");
 	settings.SetToolTip("mb2", "Split on finishing Mother Brain's second phase");
 	settings.Add("mb3", false, "Mother Brain 3", "bosses");
 	settings.SetToolTip("mb3", "Split on finishing Mother Brain's third phase");

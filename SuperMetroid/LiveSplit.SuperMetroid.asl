@@ -153,7 +153,7 @@ startup
 		{ "phase1", 0xBB8 },
 		{ "phase2", 0x4650 },
 		{ "phase3", 0x8CA0 }
-	}
+	};
 
 	Action<string> DebugOutput = (text) => {
 		print("[Super Metroid Autosplitter] "+text);

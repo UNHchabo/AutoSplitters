@@ -132,11 +132,20 @@ startup
 
 
 	vars.roomIDEnum = new Dictionary<string, int> {
-		{ "singleChamber", 0xAD5E }, // Exit room from Lower Norfair, also on the path to Wave
-		{ "lowerNorfairElevator", 0xAF3F },
-		{ "mainHall", 0xB236 }, // First room in Lower Norfair
-		{ "threeMusketeers", 0xB656 },
-		{ "motherBrain", 0xDD58}
+		{ "singleChamber", 		0xAD5E }, // Exit room from Lower Norfair, also on the path to Wave
+		{ "lowerNorfairElevator", 	0xAF3F },
+		{ "mainHall", 			0xB236 }, // First room in Lower Norfair
+		{ "threeMusketeers", 		0xB656 },
+	};
+
+	vars.mapInUseEnum = new Dictionary<string, int>{
+		{ "crateria",	0x0 },
+		{ "brinstar",	0x1 },
+		{ "norfair",	0x2 },
+		{ "wreckedShip",0x3 },
+		{ "maridia",	0x4 },
+		{ "tourian",	0x5 },
+		{ "ceres",	0x6 }
 	};
 
 

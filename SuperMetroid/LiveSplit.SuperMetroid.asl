@@ -149,7 +149,7 @@ startup
 		{ "ceres",	0x6 }
 	};
 
-	vars.motherBrainMaxHP = new Dictionary<string, int>{
+	vars.motherBrainMaxHPEnum = new Dictionary<string, int>{
 		{ "phase1", 0xBB8 },
 		{ "phase2", 0x4650 },
 		{ "phase3", 0x8CA0 }

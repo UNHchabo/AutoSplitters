@@ -136,6 +136,7 @@ startup
 		{ "lowerNorfairElevator", 	0xAF3F },
 		{ "mainHall", 			0xB236 }, // First room in Lower Norfair
 		{ "threeMusketeers", 		0xB656 },
+		{ "motherBrain",		0xDD58 }
 	};
 
 	vars.mapInUseEnum = new Dictionary<string, int>{
@@ -148,6 +149,11 @@ startup
 		{ "ceres",	0x6 }
 	};
 
+	vars.motherBrainMaxHP = new Dictionary<string, int>{
+		{ "phase1", 0xBB8 },
+		{ "phase2", 0x4650 },
+		{ "phase3", 0x8CA0 }
+	}
 
 	Action<string> DebugOutput = (text) => {
 		print("[Super Metroid Autosplitter] "+text);

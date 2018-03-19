@@ -131,7 +131,7 @@ startup
 
 
 
-	vars.roomIDs = new Dictionary<string, int> {
+	vars.roomIDEnum = new Dictionary<string, int> {
 		{ "singleChamber", 0xAD5E }, // Exit room from Lower Norfair, also on the path to Wave
 		{ "lowerNorfairElevator", 0xAF3F },
 		{ "mainHall", 0xB236 }, // First room in Lower Norfair
@@ -256,7 +256,7 @@ split
 	var allPowerBombs = settings["allPowerBombs"] && (vars.watchers["maxPowerBombs"].Old + 5) == (vars.watchers["maxPowerBombs"].Current);
 	var pickup = firstMissile || allMissiles || firstSuper || allSupers || firstPowerBomb || allPowerBombs;
 
-	var inMotherBrainRoom = vars.watchers["roomID"].Current == vars.roomIDs["motherBrain"];
+	var inMotherBrainRoom = vars.watchers["roomID"].Current == vars.roomIDEnum["motherBrain"];
 
 	var escape = settings["rtaFinish"] && vars.watchers["tourianBosses"].Current == 2 && vars.watchers["samusPose"].Old != 0x9B && vars.watchers["samusPose"].Current == 0x9B && vars.watchers["poseDirection"].Old != 0 && vars.watchers["poseDirection"].Current == 0;
 

@@ -118,11 +118,11 @@ startup
 	settings.Add("ridley", true, "Ridley", "bosses");
 	settings.SetToolTip("ridley", "Split on defeating Ridley");
 	settings.Add("mb1", false, "Mother Brain 1", "bosses");
-	settings.SetToolTip("mb1", "Split on finishing Mother Brain's first phase");
+	settings.SetToolTip("mb1", "Split on Mother Brain's head hitting the ground at the end of the first phase");
 	settings.Add("mb2", true, "Mother Brain 2", "bosses");
-	settings.SetToolTip("mb2", "Split on finishing Mother Brain's second phase");
+	settings.SetToolTip("mb2", "Split on the Baby Metroid detaching from Mother Brain's head");
 	settings.Add("mb3", false, "Mother Brain 3", "bosses");
-	settings.SetToolTip("mb3", "Split on finishing Mother Brain's third phase");
+	settings.SetToolTip("mb3", "Split on the start of the Zebes Escape");
 
 	settings.Add("rtaFinish", true, "RTA Finish");
 	settings.SetToolTip("rtaFinish", "Split on facing forward at the end of Zebes Escape");
@@ -228,6 +228,7 @@ init
 		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x0A1C) { Name = "samusPose" },
 		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x0A1E) { Name = "poseDirection" },
 		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x0A28) { Name = "playerState" },
+		new MemoryWatcher<ushort>((IntPtr)memoryOffset + 0x0A76) { Name = "hyperBeam" },
 		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x0E17) { Name = "elevatorTransition" },
 		new MemoryWatcher<ushort>((IntPtr)memoryOffset + 0x0F8C) { Name = "enemyHP" },
 		new MemoryWatcher<ushort>((IntPtr)memoryOffset + 0x0FCC) { Name = "motherBrainHP" },
@@ -273,9 +274,15 @@ split
 
 	var inMotherBrainRoom = vars.watchers["roomID"].Current == vars.roomIDEnum["motherBrain"];
 
+	var mb1 = settings["mb1"] && inMotherBrainRoom && vars.watchers["motherBrainHP"].Old == 0 && vars.watchers["motherBrainHP"].Current == (vars.motherBrainMaxHPEnum["phase2"]);
+	var mb2 = settings["mb2"] && inMotherBrainRoom && vars.watchers["motherBrainHP"].Old == 0 && vars.watchers["motherBrainHP"].Current == (vars.motherBrainMaxHPEnum["phase3"]);
+	var mb3 = settings["mb3"] && (vars.watchers["tourianBosses"].Old & 0x2) == 0 && (vars.watchers["tourianBosses"].Current & 0x2) > 0;
+
+	var bossDefeat = mb1 || mb2 || mb3;
+
 	var escape = settings["rtaFinish"] && vars.watchers["tourianBosses"].Current == 2 && vars.watchers["samusPose"].Old != 0x9B && vars.watchers["samusPose"].Current == 0x9B && vars.watchers["poseDirection"].Old != 0 && vars.watchers["poseDirection"].Current == 0;
 
-	return pickup || escape;
+	return pickup || bossDefeat || escape;
 }
 
 gameTime

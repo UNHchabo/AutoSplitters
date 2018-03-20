@@ -161,6 +161,10 @@ startup
 		{ "phase3", 0x8CA0 }
 	};
 
+	vars.bossFlagEnum = new Dictionary<string, int>{
+		{ "motherBrain", 0x2 }
+	};
+
 	Action<string> DebugOutput = (text) => {
 		print("[Super Metroid Autosplitter] "+text);
 	};
@@ -283,7 +287,7 @@ split
 	var inMotherBrainRoom = vars.watchers["roomID"].Current == vars.roomIDEnum["motherBrain"];
 	var mb1 = settings["mb1"] && inMotherBrainRoom && vars.watchers["motherBrainHP"].Old == 0 && vars.watchers["motherBrainHP"].Current == (vars.motherBrainMaxHPEnum["phase2"]);
 	var mb2 = settings["mb2"] && inMotherBrainRoom && vars.watchers["motherBrainHP"].Old == 0 && vars.watchers["motherBrainHP"].Current == (vars.motherBrainMaxHPEnum["phase3"]);
-	var mb3 = settings["mb3"] && (vars.watchers["tourianBosses"].Old & 0x2) == 0 && (vars.watchers["tourianBosses"].Current & 0x2) > 0;
+	var mb3 = settings["mb3"] && (vars.watchers["tourianBosses"].Old & vars.bossFlagEnum["motherBrain"]) == 0 && (vars.watchers["tourianBosses"].Current & vars.bossFlagEnum["motherBrain"]) > 0;
 
 	var bossDefeat = mb1 || mb2 || mb3;
 

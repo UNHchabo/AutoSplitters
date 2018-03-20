@@ -255,8 +255,8 @@ update
 
 start
 {
-	// Allow for a cutscene start, even though it's not normally used for speedrunning
 	var normalStart   = vars.watchers["gameState"].Old == 2    && vars.watchers["gameState"].Current == 0x1F;
+	// Allow for a cutscene start, even though it's not normally used for speedrunning
 	var cutsceneEnded = vars.watchers["gameState"].Old == 0x1E && vars.watchers["gameState"].Current == 0x1F;
 	// Some categories start from Zebes, such as Spore Spawn RTA
 	var zebesStart    = vars.watchers["gameState"].Old == 5    && vars.watchers["gameState"].Current == 6;
@@ -270,6 +270,7 @@ reset
 
 split
 {
+	// Ammo pickup section
 	var firstMissile = settings["firstMissile"] && vars.watchers["maxMissiles"].Old == 0 && vars.watchers["maxMissiles"].Current == 5;
 	var allMissiles = settings["allMissiles"] && (vars.watchers["maxMissiles"].Old + 5) == (vars.watchers["maxMissiles"].Current);
 	var firstSuper = settings["firstSuper"] && vars.watchers["maxSupers"].Old == 0 && vars.watchers["maxSupers"].Current == 5;
@@ -278,8 +279,8 @@ split
 	var allPowerBombs = settings["allPowerBombs"] && (vars.watchers["maxPowerBombs"].Old + 5) == (vars.watchers["maxPowerBombs"].Current);
 	var pickup = firstMissile || allMissiles || firstSuper || allSupers || firstPowerBomb || allPowerBombs;
 
+	// Mother Brain phases
 	var inMotherBrainRoom = vars.watchers["roomID"].Current == vars.roomIDEnum["motherBrain"];
-
 	var mb1 = settings["mb1"] && inMotherBrainRoom && vars.watchers["motherBrainHP"].Old == 0 && vars.watchers["motherBrainHP"].Current == (vars.motherBrainMaxHPEnum["phase2"]);
 	var mb2 = settings["mb2"] && inMotherBrainRoom && vars.watchers["motherBrainHP"].Old == 0 && vars.watchers["motherBrainHP"].Current == (vars.motherBrainMaxHPEnum["phase3"]);
 	var mb3 = settings["mb3"] && (vars.watchers["tourianBosses"].Old & 0x2) == 0 && (vars.watchers["tourianBosses"].Current & 0x2) > 0;

@@ -130,8 +130,14 @@ startup
 	settings.SetToolTip("igtFinish", "Split on In-Game Time finalizing, when the end cutscene starts");
 
 
+	vars.gameStateEnum = new Dictionary<string, int> {
+		{ "normalGameplay",		0x8 },
+		{ "preEndCutscene",		0x26 }, // briefly at this value during the black screen transition after the ship fades out
+		{ "endCutscene",		0x27 }
+	};
 
 	vars.roomIDEnum = new Dictionary<string, int> {
+		{ "landingSite",		0x91F8 },
 		{ "singleChamber", 		0xAD5E }, // Exit room from Lower Norfair, also on the path to Wave
 		{ "lowerNorfairElevator", 	0xAF3F },
 		{ "mainHall", 			0xB236 }, // First room in Lower Norfair
@@ -282,7 +288,9 @@ split
 
 	var escape = settings["rtaFinish"] && vars.watchers["tourianBosses"].Current == 2 && vars.watchers["samusPose"].Old != 0x9B && vars.watchers["samusPose"].Current == 0x9B && vars.watchers["poseDirection"].Old != 0 && vars.watchers["poseDirection"].Current == 0;
 
-	return pickup || bossDefeat || escape;
+	var takeoff = settings["igtFinish"] && vars.watchers["roomID"].Current == vars.roomIDEnum["landingSite"] && vars.watchers["gameState"].Old == vars.gameStateEnum["preEndCutscene"] && vars.watchers["gameState"].Current == vars.gameStateEnum["endCutscene"];
+
+	return pickup || bossDefeat || escape || takeoff;
 }
 
 gameTime

@@ -130,12 +130,6 @@ startup
 	settings.SetToolTip("igtFinish", "Split on In-Game Time finalizing, when the end cutscene starts");
 
 
-	vars.gameStateEnum = new Dictionary<string, int> {
-		{ "normalGameplay",		0x8 },
-		{ "preEndCutscene",		0x26 }, // briefly at this value during the black screen transition after the ship fades out
-		{ "endCutscene",		0x27 }
-	};
-
 	vars.roomIDEnum = new Dictionary<string, int> {
 		{ "landingSite",		0x91F8 },
 		{ "singleChamber", 		0xAD5E }, // Exit room from Lower Norfair, also on the path to Wave
@@ -153,6 +147,12 @@ startup
 		{ "maridia",	0x4 },
 		{ "tourian",	0x5 },
 		{ "ceres",	0x6 }
+	};
+
+	vars.gameStateEnum = new Dictionary<string, int> {
+		{ "normalGameplay",		0x8 },
+		{ "preEndCutscene",		0x26 }, // briefly at this value during the black screen transition after the ship fades out
+		{ "endCutscene",		0x27 }
 	};
 
 	vars.motherBrainMaxHPEnum = new Dictionary<string, int>{

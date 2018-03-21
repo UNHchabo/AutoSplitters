@@ -155,6 +155,29 @@ startup
 		{ "endCutscene",		0x27 }
 	};
 
+	vars.unlockFlagEnum = new Dictionary<string, int>{
+		// First item byte
+		{ "variaSuit",		0x1 },
+		{ "springBall",		0x2 },
+		{ "morphBall",		0x4 },
+		{ "screwAttack",	0x8 },
+		{ "gravSuit",		0x20},
+		// Second item byte
+		{ "hiJump",		0x1 },
+		{ "spaceJump",		0x2 },
+		{ "bomb",		0x10},
+		{ "speedBooster",	0x20},
+		{ "grapple",		0x40},
+		{ "xray",		0x80},
+		// Beams
+		{ "wave",		0x1 },
+		{ "ice",		0x2 },
+		{ "spazer",		0x4 },
+		{ "plasma",		0x8 },
+		// Charge
+		{ "chargeBeam",		0x10}
+	};
+
 	vars.motherBrainMaxHPEnum = new Dictionary<string, int>{
 		{ "phase1", 0xBB8 },
 		{ "phase2", 0x4650 },

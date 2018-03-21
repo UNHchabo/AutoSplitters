@@ -308,8 +308,9 @@ split
 
 	// Item unlock section
 	var varia = settings["variaSuit"] && (vars.watchers["unlockedEquips2"].Old & vars.unlockFlagEnum["variaSuit"]) == 0 && (vars.watchers["unlockedEquips2"].Current & vars.unlockFlagEnum["variaSuit"]) > 0;
-	var unlock = varia;
-
+	var springBall = settings["springBall"] && (vars.watchers["unlockedEquips2"].Old & vars.unlockFlagEnum["springBall"]) == 0 && (vars.watchers["unlockedEquips2"].Current & vars.unlockFlagEnum["springBall"]) > 0;
+	var unlock = varia || springBall;
+	
 	// Mother Brain phases
 	var inMotherBrainRoom = vars.watchers["roomID"].Current == vars.roomIDEnum["motherBrain"];
 	var mb1 = settings["mb1"] && inMotherBrainRoom && vars.watchers["motherBrainHP"].Old == 0 && vars.watchers["motherBrainHP"].Current == (vars.motherBrainMaxHPEnum["phase2"]);
@@ -322,7 +323,7 @@ split
 
 	var takeoff = settings["igtFinish"] && vars.watchers["roomID"].Current == vars.roomIDEnum["landingSite"] && vars.watchers["gameState"].Old == vars.gameStateEnum["preEndCutscene"] && vars.watchers["gameState"].Current == vars.gameStateEnum["endCutscene"];
 
-	return pickup || varia || bossDefeat || escape || takeoff;
+	return pickup || unlock || bossDefeat || escape || takeoff;
 }
 
 gameTime

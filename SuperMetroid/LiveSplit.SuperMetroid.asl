@@ -202,7 +202,7 @@ startup
 		// Tourian
 		{ "motherBrain",	0x2 },
 		// Ceres
-		{ "ceresRidley"		0x1 }
+		{ "ceresRidley",	0x1 }
 	};
 
 	Action<string> DebugOutput = (text) => {

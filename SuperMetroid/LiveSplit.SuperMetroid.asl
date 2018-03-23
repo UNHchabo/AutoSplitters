@@ -95,7 +95,7 @@ startup
 	settings.Add("miniBosses", false, "Minibosses");
 	settings.SetToolTip("miniBosses", "Split on defeating minibosses");
 	settings.Add("ceresRidley", false, "Ceres Ridley", "miniBosses");
-	settings.SetToolTip("ceresRidley", "Split on finishing the Ceres Ridley fight");
+	settings.SetToolTip("ceresRidley", "Split on starting the Ceres Escape");
 	settings.Add("bombTorizo", false, "Bomb Torizo", "miniBosses");
 	settings.SetToolTip("bombTorizo", "Split on defeating Bomb Torizo");
 	settings.Add("sporeSpawn", false, "Spore Spawn", "miniBosses");
@@ -350,6 +350,10 @@ split
 	var allETanks = settings["allETanks"] && (vars.watchers["maxEnergy"].Old + 100) == (vars.watchers["maxEnergy"].Current);
 	var reserveTanks = settings["reserveTanks"] && (vars.watchers["maxReserve"].Old + 100) == (vars.watchers["maxReserve"].Current);
 	var energyUpgrade = firstETank || allETanks || reserveTanks;
+
+	// Minibosses
+	var ceresRidley = settings["ceresRidley"] && (vars.watchers["ceresBosses"].Old & vars.bossFlagEnum["ceresRidley"]) == 0 && (vars.watchers["ceresBosses"].Current & vars.bossFlagEnum["ceresRidley"]) > 0;
+	var minibossDefeat = ceresRidley;
 	
 	// Mother Brain phases
 	var inMotherBrainRoom = vars.watchers["roomID"].Current == vars.roomIDEnum["motherBrain"];
@@ -363,7 +367,7 @@ split
 
 	var takeoff = settings["igtFinish"] && vars.watchers["roomID"].Current == vars.roomIDEnum["landingSite"] && vars.watchers["gameState"].Old == vars.gameStateEnum["preEndCutscene"] && vars.watchers["gameState"].Current == vars.gameStateEnum["endCutscene"];
 
-	return pickup || unlock || beam || energyUpgrade || bossDefeat || escape || takeoff;
+	return pickup || unlock || beam || energyUpgrade || minibossDefeat || bossDefeat || escape || takeoff;
 }
 
 gameTime

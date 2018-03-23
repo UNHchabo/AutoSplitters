@@ -185,7 +185,24 @@ startup
 	};
 
 	vars.bossFlagEnum = new Dictionary<string, int>{
-		{ "motherBrain", 0x2 }
+		// Crateria
+		{ "bombTorizo",		0x4 },
+		// Brinstar
+		{ "sporeSpawn",		0x2 },
+		{ "kraid",		0x1 },
+		// Norfair
+		{ "ridley",		0x1 },
+		{ "crocomire",		0x2 },
+		{ "goldenTorizo",	0x4 },
+		// Wrecked Ship
+		{ "phantoon",		0x1 },
+		// Maridia
+		{ "draygon",		0x1 },
+		{ "botwoon",		0x2 },
+		// Tourian
+		{ "motherBrain",	0x2 },
+		// Ceres
+		{ "ceresRidley"		0x1 }
 	};
 
 	Action<string> DebugOutput = (text) => {

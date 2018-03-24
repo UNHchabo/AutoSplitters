@@ -103,7 +103,7 @@ startup
 	settings.Add("bombTorizo", false, "Bomb Torizo", "miniBosses");
 	settings.SetToolTip("bombTorizo", "Split on Bomb Torizo's drops appearing");
 	settings.Add("sporeSpawn", false, "Spore Spawn", "miniBosses");
-	settings.SetToolTip("sporeSpawn", "Split on defeating Spore Spawn");
+	settings.SetToolTip("sporeSpawn", "Split on the last hit to Spore Spawn");
 	settings.Add("crocomire", false, "Crocomire", "miniBosses");
 	settings.SetToolTip("crocomire", "Split on defeating Crocomire");
 	settings.Add("botwoon", false, "Botwoon", "miniBosses");
@@ -360,7 +360,8 @@ split
 	// Minibosses
 	var ceresRidley = settings["ceresRidley"] && (vars.watchers["ceresBosses"].Old & vars.bossFlagEnum["ceresRidley"]) == 0 && (vars.watchers["ceresBosses"].Current & vars.bossFlagEnum["ceresRidley"]) > 0;
 	var bombTorizo = settings["bombTorizo"] && (vars.watchers["crateriaBosses"].Old & vars.bossFlagEnum["bombTorizo"]) == 0 && (vars.watchers["crateriaBosses"].Current & vars.bossFlagEnum["bombTorizo"]) > 0;
-	var minibossDefeat = ceresRidley || bombTorizo;
+	var sporeSpawn = settings["sporeSpawn"] && (vars.watchers["brinstarBosses"].Old & vars.bossFlagEnum["sporeSpawn"]) == 0 && (vars.watchers["brinstarBosses"].Current & vars.bossFlagEnum["sporeSpawn"]) > 0;
+	var minibossDefeat = ceresRidley || bombTorizo || sporeSpawn;
 	
 	// Mother Brain phases
 	var inMotherBrainRoom = vars.watchers["roomID"].Current == vars.roomIDEnum["motherBrain"];

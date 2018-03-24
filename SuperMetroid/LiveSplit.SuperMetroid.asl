@@ -138,6 +138,7 @@ startup
 
 	vars.roomIDEnum = new Dictionary<string, int> {
 		{ "landingSite",		0x91F8 },
+		{ "sporeSpawnSuperRoom",	0x9B5B },
 		{ "singleChamber", 		0xAD5E }, // Exit room from Lower Norfair, also on the path to Wave
 		{ "lowerNorfairElevator", 	0xAF3F },
 		{ "mainHall", 			0xB236 }, // First room in Lower Norfair
@@ -210,6 +211,8 @@ startup
 		// Ceres
 		{ "ceresRidley",	0x1 }
 	};
+
+	vars.pickedUpSporeSpawnSuper = false;
 
 	Action<string> DebugOutput = (text) => {
 		print("[Super Metroid Autosplitter] "+text);
@@ -376,14 +379,26 @@ split
 	var mb1 = settings["mb1"] && inMotherBrainRoom && vars.watchers["motherBrainHP"].Old == 0 && vars.watchers["motherBrainHP"].Current == (vars.motherBrainMaxHPEnum["phase2"]);
 	var mb2 = settings["mb2"] && inMotherBrainRoom && vars.watchers["motherBrainHP"].Old == 0 && vars.watchers["motherBrainHP"].Current == (vars.motherBrainMaxHPEnum["phase3"]);
 	var mb3 = settings["mb3"] && (vars.watchers["tourianBosses"].Old & vars.bossFlagEnum["motherBrain"]) == 0 && (vars.watchers["tourianBosses"].Current & vars.bossFlagEnum["motherBrain"]) > 0;
-
 	var bossDefeat = kraid || phantoon || draygon || ridley || mb1 || mb2 || mb3;
 
 	var escape = settings["rtaFinish"] && vars.watchers["tourianBosses"].Current == 2 && vars.watchers["samusPose"].Old != 0x9B && vars.watchers["samusPose"].Current == 0x9B && vars.watchers["poseDirection"].Old != 0 && vars.watchers["poseDirection"].Current == 0;
 
 	var takeoff = settings["igtFinish"] && vars.watchers["roomID"].Current == vars.roomIDEnum["landingSite"] && vars.watchers["gameState"].Old == vars.gameStateEnum["preEndCutscene"] && vars.watchers["gameState"].Current == vars.gameStateEnum["endCutscene"];
 
-	return pickup || unlock || beam || energyUpgrade || minibossDefeat || bossDefeat || escape || takeoff;
+	var sporeSpawnRTAFinish = false;
+	if(settings["sporeSpawnRTAFinish"]){
+		if(vars.pickedUpSporeSpawnSuper){
+			sporeSpawnRTAFinish = vars.watchers["igtFrames"].Old != vars.watchers["igtFrames"].Current;
+			if(sporeSpawnRTAFinish){
+				vars.pickedUpSporeSpawnSuper = false;
+			}
+		}
+		else {
+			vars.pickedUpSporeSpawnSuper = vars.watchers["roomID"].Current == vars.roomIDEnum["sporeSpawnSuperRoom"] && (vars.watchers["maxSupers"].Old + 5) == (vars.watchers["maxSupers"].Current);
+		}
+	}
+
+	return pickup || unlock || beam || energyUpgrade || minibossDefeat || bossDefeat || escape || takeoff || sporeSpawnRTAFinish;
 }
 
 gameTime

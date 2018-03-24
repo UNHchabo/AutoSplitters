@@ -120,7 +120,7 @@ startup
 	settings.Add("draygon", false, "Draygon", "bosses");
 	settings.SetToolTip("draygon", "Split on Draygon's drops appearing");
 	settings.Add("ridley", true, "Ridley", "bosses");
-	settings.SetToolTip("ridley", "Split on defeating Ridley");
+	settings.SetToolTip("ridley", "Split on Ridley's drops appearing");
 	settings.Add("mb1", false, "Mother Brain 1", "bosses");
 	settings.SetToolTip("mb1", "Split on Mother Brain's head hitting the ground at the end of the first phase");
 	settings.Add("mb2", true, "Mother Brain 2", "bosses");
@@ -370,13 +370,14 @@ split
 	var kraid = settings["kraid"] && (vars.watchers["brinstarBosses"].Old & vars.bossFlagEnum["kraid"]) == 0 && (vars.watchers["brinstarBosses"].Current & vars.bossFlagEnum["kraid"]) > 0;
 	var phantoon = settings["phantoon"] && (vars.watchers["wreckedShipBosses"].Old & vars.bossFlagEnum["phantoon"]) == 0 && (vars.watchers["wreckedShipBosses"].Current & vars.bossFlagEnum["phantoon"]) > 0;
 	var draygon = settings["draygon"] && (vars.watchers["maridiaBosses"].Old & vars.bossFlagEnum["draygon"]) == 0 && (vars.watchers["maridiaBosses"].Current & vars.bossFlagEnum["draygon"]) > 0;
+	var ridley = settings["ridley"] && (vars.watchers["norfairBosses"].Old & vars.bossFlagEnum["ridley"]) == 0 && (vars.watchers["norfairBosses"].Current & vars.bossFlagEnum["ridley"]) > 0;
 	// Mother Brain phases
 	var inMotherBrainRoom = vars.watchers["roomID"].Current == vars.roomIDEnum["motherBrain"];
 	var mb1 = settings["mb1"] && inMotherBrainRoom && vars.watchers["motherBrainHP"].Old == 0 && vars.watchers["motherBrainHP"].Current == (vars.motherBrainMaxHPEnum["phase2"]);
 	var mb2 = settings["mb2"] && inMotherBrainRoom && vars.watchers["motherBrainHP"].Old == 0 && vars.watchers["motherBrainHP"].Current == (vars.motherBrainMaxHPEnum["phase3"]);
 	var mb3 = settings["mb3"] && (vars.watchers["tourianBosses"].Old & vars.bossFlagEnum["motherBrain"]) == 0 && (vars.watchers["tourianBosses"].Current & vars.bossFlagEnum["motherBrain"]) > 0;
 
-	var bossDefeat = kraid || phantoon || draygon || mb1 || mb2 || mb3;
+	var bossDefeat = kraid || phantoon || draygon || ridley || mb1 || mb2 || mb3;
 
 	var escape = settings["rtaFinish"] && vars.watchers["tourianBosses"].Current == 2 && vars.watchers["samusPose"].Old != 0x9B && vars.watchers["samusPose"].Current == 0x9B && vars.watchers["poseDirection"].Old != 0 && vars.watchers["poseDirection"].Current == 0;
 

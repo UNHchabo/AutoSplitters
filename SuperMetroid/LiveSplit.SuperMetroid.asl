@@ -388,7 +388,7 @@ split
 	var sporeSpawnRTAFinish = false;
 	if(settings["sporeSpawnRTAFinish"]){
 		if(vars.pickedUpSporeSpawnSuper){
-			if(vars.watchers["igtFrames"].Old != vars.watchers["igtFrames"].Current)
+			if(vars.watchers["igtFrames"].Old != vars.watchers["igtFrames"].Current){
 				sporeSpawnRTAFinish = true;
 				vars.pickedUpSporeSpawnSuper = false;
 			}

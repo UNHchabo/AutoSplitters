@@ -87,10 +87,14 @@ startup
 	settings.SetToolTip("ceresEscape", "Split on leaving Ceres Station");
 	settings.Add("elevatorTransitions", false, "Elevator transitions", "areaTransitions");
 	settings.SetToolTip("elevatorTransitions", "Split on elevator transitions between areas");
+	settings.Add("wreckedShipEntrance", false, "Wrecked Ship Entrance", "areaTransitions");
+	settings.SetToolTip("wreckedShipEntrance", "Split on entering the Wrecked Ship Entrance from the lower door of West Ocean");
 	settings.Add("lowerNorfairEntrance", false, "Lower Norfair Entrance", "areaTransitions");
 	settings.SetToolTip("lowerNorfairEntrance", "Split on the elevator down to Lower Norfair");
 	settings.Add("lowerNorfairExit", false, "Lower Norfair Exit", "areaTransitions");
 	settings.SetToolTip("lowerNorfairExit", "Split on moving from the Three Musketeers' Room to the Single Chamber");
+	settings.Add("goldenFour", true, "Golden Four", "areaTransitions");
+	settings.SetToolTip("goldenFour", "Split on entering the Statues Room with all four major bosses defeated");
 
 	settings.Add("miniBosses", false, "Minibosses");
 	settings.SetToolTip("miniBosses", "Split on defeating minibosses");
@@ -128,6 +132,8 @@ startup
 	settings.SetToolTip("rtaFinish", "Split on facing forward at the end of Zebes Escape");
 	settings.Add("igtFinish", false, "IGT Finish");
 	settings.SetToolTip("igtFinish", "Split on In-Game Time finalizing, when the end cutscene starts");
+	settings.Add("sporeSpawnRTAFinish", false, "Spore Spawn RTA Finish");
+	settings.SetToolTip("sporeSpawnRTAFinish", "Split on the end of a Spore Spawn RTA run, when the text box clears after collecting the Super Missiles");
 
 
 	vars.roomIDEnum = new Dictionary<string, int> {

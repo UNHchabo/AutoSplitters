@@ -143,7 +143,8 @@ startup
 		{ "lowerNorfairElevator", 	0xAF3F },
 		{ "mainHall", 			0xB236 }, // First room in Lower Norfair
 		{ "threeMusketeers", 		0xB656 },
-		{ "motherBrain",		0xDD58 }
+		{ "motherBrain",		0xDD58 },
+		{ "ceresElevator",		0xDF45 }
 	};
 
 	vars.mapInUseEnum = new Dictionary<string, int>{
@@ -158,6 +159,7 @@ startup
 
 	vars.gameStateEnum = new Dictionary<string, int> {
 		{ "normalGameplay",		0x8 },
+		{ "startOfCeresCutscene",	0x20 },
 		{ "preEndCutscene",		0x26 }, // briefly at this value during the black screen transition after the ship fades out
 		{ "endCutscene",		0x27 }
 	};
@@ -381,6 +383,7 @@ split
 	var mb3 = settings["mb3"] && (vars.watchers["tourianBosses"].Old & vars.bossFlagEnum["motherBrain"]) == 0 && (vars.watchers["tourianBosses"].Current & vars.bossFlagEnum["motherBrain"]) > 0;
 	var bossDefeat = kraid || phantoon || draygon || ridley || mb1 || mb2 || mb3;
 
+	// Run-ending splits
 	var escape = settings["rtaFinish"] && vars.watchers["tourianBosses"].Current == 2 && vars.watchers["samusPose"].Old != 0x9B && vars.watchers["samusPose"].Current == 0x9B && vars.watchers["poseDirection"].Old != 0 && vars.watchers["poseDirection"].Current == 0;
 
 	var takeoff = settings["igtFinish"] && vars.watchers["roomID"].Current == vars.roomIDEnum["landingSite"] && vars.watchers["gameState"].Old == vars.gameStateEnum["preEndCutscene"] && vars.watchers["gameState"].Current == vars.gameStateEnum["endCutscene"];
@@ -398,7 +401,11 @@ split
 		}
 	}
 
-	return pickup || unlock || beam || energyUpgrade || minibossDefeat || bossDefeat || escape || takeoff || sporeSpawnRTAFinish;
+	// Room transitions
+	var ceresEscape = settings["ceresEscape"] && vars.watchers["roomID"].Current == vars.roomIDEnum["ceresElevator"] && vars.watchers["gameState"].Old == vars.gameStateEnum["normalGameplay"] && vars.watchers["gameState"].Current == vars.gameStateEnum["startOfCeresCutscene"];
+	var roomTransitions = ceresEscape;
+
+	return pickup || unlock || beam || energyUpgrade || minibossDefeat || bossDefeat || escape || takeoff || sporeSpawnRTAFinish || roomTransitions;
 }
 
 gameTime

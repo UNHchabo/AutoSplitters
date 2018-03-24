@@ -388,8 +388,8 @@ split
 	var sporeSpawnRTAFinish = false;
 	if(settings["sporeSpawnRTAFinish"]){
 		if(vars.pickedUpSporeSpawnSuper){
-			sporeSpawnRTAFinish = vars.watchers["igtFrames"].Old != vars.watchers["igtFrames"].Current;
-			if(sporeSpawnRTAFinish){
+			if(vars.watchers["igtFrames"].Old != vars.watchers["igtFrames"].Current)
+				sporeSpawnRTAFinish = true;
 				vars.pickedUpSporeSpawnSuper = false;
 			}
 		}

@@ -107,9 +107,9 @@ startup
 	settings.Add("crocomire", false, "Crocomire", "miniBosses");
 	settings.SetToolTip("crocomire", "Split on Crocomire's drops appearing");
 	settings.Add("botwoon", false, "Botwoon", "miniBosses");
-	settings.SetToolTip("botwoon", "Split on defeating Botwoon");
+	settings.SetToolTip("botwoon", "Split on Botwoon's vertical column being fully destroyed");
 	settings.Add("goldenTorizo", false, "Golden Torizo", "miniBosses");
-	settings.SetToolTip("goldenTorizo", "Split on defeating Golden Torizo");
+	settings.SetToolTip("goldenTorizo", "Split on Golden Torizo's drops appearing");
 
 	settings.Add("bosses", false, "Bosses");
 	settings.SetToolTip("bosses", "Split on defeating major bosses");
@@ -362,7 +362,9 @@ split
 	var bombTorizo = settings["bombTorizo"] && (vars.watchers["crateriaBosses"].Old & vars.bossFlagEnum["bombTorizo"]) == 0 && (vars.watchers["crateriaBosses"].Current & vars.bossFlagEnum["bombTorizo"]) > 0;
 	var sporeSpawn = settings["sporeSpawn"] && (vars.watchers["brinstarBosses"].Old & vars.bossFlagEnum["sporeSpawn"]) == 0 && (vars.watchers["brinstarBosses"].Current & vars.bossFlagEnum["sporeSpawn"]) > 0;
 	var crocomire = settings["crocomire"] && (vars.watchers["norfairBosses"].Old & vars.bossFlagEnum["crocomire"]) == 0 && (vars.watchers["norfairBosses"].Current & vars.bossFlagEnum["crocomire"]) > 0;
-	var minibossDefeat = ceresRidley || bombTorizo || sporeSpawn || crocomire;
+	var botwoon = settings["botwoon"] && (vars.watchers["maridiaBosses"].Old & vars.bossFlagEnum["botwoon"]) == 0 && (vars.watchers["maridiaBosses"].Current & vars.bossFlagEnum["botwoon"]) > 0;
+	var goldenTorizo = settings["goldenTorizo"] && (vars.watchers["norfairBosses"].Old & vars.bossFlagEnum["goldenTorizo"]) == 0 && (vars.watchers["norfairBosses"].Current & vars.bossFlagEnum["goldenTorizo"]) > 0;
+	var minibossDefeat = ceresRidley || bombTorizo || sporeSpawn || crocomire || botwoon || goldenTorizo;
 	
 	// Mother Brain phases
 	var inMotherBrainRoom = vars.watchers["roomID"].Current == vars.roomIDEnum["motherBrain"];

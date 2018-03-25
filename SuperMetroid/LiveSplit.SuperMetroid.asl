@@ -83,8 +83,10 @@ startup
 
 	settings.Add("areaTransitions", false, "Area Transitions");
 	settings.SetToolTip("areaTransitions", "Split on transitions between areas");
+	settings.Add("miniBossRooms", false, "Miniboss Rooms", "areaTransitions");
+	settings.SetToolTip("miniBossRooms", "Split on entering miniboss rooms (except Bomb Torizo)");
 	settings.Add("bossRooms", false, "Boss Rooms", "areaTransitions");
-	settings.SetToolTip("bossRooms", "Split on entering boss rooms");
+	settings.SetToolTip("bossRooms", "Split on entering major boss rooms");
 	settings.Add("elevatorTransitions", false, "Elevator transitions", "areaTransitions");
 	settings.SetToolTip("elevatorTransitions", "Split on elevator transitions between areas");
 	settings.Add("ceresEscape", false, "Ceres Escape", "areaTransitions");

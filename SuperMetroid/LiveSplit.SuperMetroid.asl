@@ -138,7 +138,7 @@ startup
 
 	vars.roomIDEnum = new Dictionary<string, int> {
 		{ "landingSite",		0x91F8 },
-		{ "sporeSpawnSuperRoom",	0x9B5B },
+		{ "sporeSpawnSuper",		0x9B5B },
 		{ "singleChamber", 		0xAD5E }, // Exit room from Lower Norfair, also on the path to Wave
 		{ "lowerNorfairElevator", 	0xAF3F },
 		{ "mainHall", 			0xB236 }, // First room in Lower Norfair
@@ -397,7 +397,7 @@ split
 			}
 		}
 		else {
-			vars.pickedUpSporeSpawnSuper = vars.watchers["roomID"].Current == vars.roomIDEnum["sporeSpawnSuperRoom"] && (vars.watchers["maxSupers"].Old + 5) == (vars.watchers["maxSupers"].Current);
+			vars.pickedUpSporeSpawnSuper = vars.watchers["roomID"].Current == vars.roomIDEnum["sporeSpawnSuper"] && (vars.watchers["maxSupers"].Old + 5) == (vars.watchers["maxSupers"].Current);
 		}
 	}
 

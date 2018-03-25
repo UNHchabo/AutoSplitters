@@ -83,10 +83,12 @@ startup
 
 	settings.Add("areaTransitions", false, "Area Transitions");
 	settings.SetToolTip("areaTransitions", "Split on transitions between areas");
-	settings.Add("ceresEscape", false, "Ceres Escape", "areaTransitions");
-	settings.SetToolTip("ceresEscape", "Split on leaving Ceres Station");
+	settings.Add("bossRooms", false, "Boss Rooms", "areaTransitions");
+	settings.SetToolTip("bossRooms", "Split on entering boss rooms");
 	settings.Add("elevatorTransitions", false, "Elevator transitions", "areaTransitions");
 	settings.SetToolTip("elevatorTransitions", "Split on elevator transitions between areas");
+	settings.Add("ceresEscape", false, "Ceres Escape", "areaTransitions");
+	settings.SetToolTip("ceresEscape", "Split on leaving Ceres Station");
 	settings.Add("wreckedShipEntrance", false, "Wrecked Ship Entrance", "areaTransitions");
 	settings.SetToolTip("wreckedShipEntrance", "Split on entering the Wrecked Ship Entrance from the lower door of West Ocean");
 	settings.Add("lowerNorfairEntrance", false, "Lower Norfair Entrance", "areaTransitions");

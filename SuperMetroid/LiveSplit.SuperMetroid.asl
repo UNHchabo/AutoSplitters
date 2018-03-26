@@ -169,7 +169,9 @@ startup
 		{ "basement",			0xCC6F }, // Basement of Wrecked Ship
 		{ "phantoon",			0xCD13 },
 		{ "botwoonHallway",		0xD617 },
+		{ "precious",			0xD78F },
 		{ "botwoon",			0xD95E },
+		{ "draygon",			0xDA60 },
 		{ "dustTorizo",			0xDC65 },
 		{ "bigBoy",			0xDCB1 },
 		{ "motherBrain",		0xDD58 },
@@ -411,7 +413,8 @@ split
 	if(settings["bossRooms"]){
 		var kraidRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["kraidEyeDoor"] && vars.watchers["roomID"].Current == vars.roomIDEnum["kraid"];
 		var phantoonRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["basement"] && vars.watchers["roomID"].Current == vars.roomIDEnum["phantoon"];
-		bossRooms = kraidRoom || phantoonRoom;
+		var draygonRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["precious"] && vars.watchers["roomID"].Current == vars.roomIDEnum["draygon"];
+		bossRooms = kraidRoom || phantoonRoom || draygonRoom;
 	}
 
 	// Room transitions

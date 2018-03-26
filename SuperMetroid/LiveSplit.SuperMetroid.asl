@@ -143,7 +143,8 @@ startup
 	settings.Add("sporeSpawnRTAFinish", false, "Spore Spawn RTA Finish");
 	settings.SetToolTip("sporeSpawnRTAFinish", "Split on the end of a Spore Spawn RTA run, when the text box clears after collecting the Super Missiles");
 
-
+	// RoomIDs compiled here:
+	// https://wiki.supermetroid.run/List_of_RoomIDs
 	vars.roomIDEnum = new Dictionary<string, int> {
 		{ "landingSite",		0x91F8 },
 		{ "westOcean",			0x93FE },

@@ -161,6 +161,8 @@ startup
 		{ "mainHall", 			0xB236 }, // First room in Lower Norfair
 		{ "threeMusketeers", 		0xB656 },
 		{ "wreckedShipEntrance",	0xCA08 },
+		{ "botwoonHallway",		0xD617 },
+		{ "botwoon",			0xD95E },
 		{ "dustTorizo",			0xDC65 },
 		{ "bigBoy",			0xDCB1 },
 		{ "motherBrain",		0xDD58 },
@@ -391,7 +393,8 @@ split
 		var ceresRidleyRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["flatRoom"] && vars.watchers["roomID"].Current == vars.roomIDEnum["ceresRidley"];
 		var sporeSpawnRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["sporeSpawnKeyhunter"] && vars.watchers["roomID"].Current == vars.roomIDEnum["sporeSpawn"];
 		var crocomireRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["crocomireSpeedway"] && vars.watchers["roomID"].Current == vars.roomIDEnum["crocomire"];
-		miniBossRooms = ceresRidleyRoom || sporeSpawnRoom || crocomireRoom;
+		var botwoonRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["botwoonHallway"] && vars.watchers["roomID"].Current == vars.roomIDEnum["botwoon"];
+		miniBossRooms = ceresRidleyRoom || sporeSpawnRoom || crocomireRoom || botwoonRoom;
 	}
 
 	// Room transitions

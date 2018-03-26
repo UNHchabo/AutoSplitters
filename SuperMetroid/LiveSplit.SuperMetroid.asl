@@ -148,6 +148,7 @@ startup
 	vars.roomIDEnum = new Dictionary<string, int> {
 		{ "landingSite",		0x91F8 },
 		{ "westOcean",			0x93FE },
+		{ "climb",			0x96BA },
 		{ "sporeSpawnSuper",		0x9B5B },
 		{ "statuesHallway",		0xA5ED },
 		{ "statues",			0xA66A },
@@ -159,6 +160,7 @@ startup
 		{ "dustTorizo",			0xDC65 },
 		{ "bigBoy",			0xDCB1 },
 		{ "motherBrain",		0xDD58 },
+		{ "tourianEscape4",		0xDEDE },
 		{ "ceresElevator",		0xDF45 }
 	};
 
@@ -385,7 +387,8 @@ split
 	var allBossesFinished = (vars.watchers["brinstarBosses"].Current & vars.bossFlagEnum["kraid"]) > 0 && (vars.watchers["wreckedShipBosses"].Current & vars.bossFlagEnum["phantoon"]) > 0 && (vars.watchers["maridiaBosses"].Current & vars.bossFlagEnum["draygon"]) > 0 && (vars.watchers["norfairBosses"].Current & vars.bossFlagEnum["ridley"]) > 0;
 	var goldenFour = settings["goldenFour"] && vars.watchers["roomID"].Old == vars.roomIDEnum["statuesHallway"] && vars.watchers["roomID"].Current == vars.roomIDEnum["statues"] && allBossesFinished;
 	var babyMetroidRoom = settings["babyMetroidRoom"] && vars.watchers["roomID"].Old == vars.roomIDEnum["dustTorizo"] && vars.watchers["roomID"].Current == vars.roomIDEnum["bigBoy"];
-	var roomTransitions = ceresEscape || wreckedShipEntrance || lowerNorfairEntrance || lowerNorfairExit || goldenFour || babyMetroidRoom;
+	var escapeClimb = settings["escapeClimb"] && vars.watchers["roomID"].Old == vars.roomIDEnum["tourianEscape4"] && vars.watchers["roomID"].Current == vars.roomIDEnum["climb"];
+	var roomTransitions = ceresEscape || wreckedShipEntrance || lowerNorfairEntrance || lowerNorfairExit || goldenFour || babyMetroidRoom || escapeClimb;
 
 	// Minibosses
 	var ceresRidley = settings["ceresRidley"] && (vars.watchers["ceresBosses"].Old & vars.bossFlagEnum["ceresRidley"]) == 0 && (vars.watchers["ceresBosses"].Current & vars.bossFlagEnum["ceresRidley"]) > 0;

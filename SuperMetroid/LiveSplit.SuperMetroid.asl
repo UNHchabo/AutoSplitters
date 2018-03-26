@@ -88,7 +88,7 @@ startup
 	settings.Add("bossRooms", false, "Boss Rooms", "areaTransitions");
 	settings.SetToolTip("bossRooms", "Split on entering major boss rooms");
 	settings.Add("elevatorTransitions", false, "Elevator transitions", "areaTransitions");
-	settings.SetToolTip("elevatorTransitions", "Split on elevator transitions between areas");
+	settings.SetToolTip("elevatorTransitions", "Split on elevator transitions between areas (except Statue Room to Tourian)");
 	settings.Add("ceresEscape", false, "Ceres Escape", "areaTransitions");
 	settings.SetToolTip("ceresEscape", "Split on leaving Ceres Station");
 	settings.Add("wreckedShipEntrance", false, "Wrecked Ship Entrance", "areaTransitions");

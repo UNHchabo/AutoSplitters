@@ -158,8 +158,11 @@ startup
 		{ "crocomire",			0xA98D },
 		{ "singleChamber", 		0xAD5E }, // Exit room from Lower Norfair, also on the path to Wave
 		{ "lowerNorfairElevator", 	0xAF3F },
+		{ "acidStatue",			0xB1E5 },
 		{ "mainHall", 			0xB236 }, // First room in Lower Norfair
+		{ "goldenTorizo",		0xB283 },
 		{ "threeMusketeers", 		0xB656 },
+		{ "screwAttack",		0xB6C1 },
 		{ "wreckedShipEntrance",	0xCA08 },
 		{ "botwoonHallway",		0xD617 },
 		{ "botwoon",			0xD95E },
@@ -394,7 +397,9 @@ split
 		var sporeSpawnRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["sporeSpawnKeyhunter"] && vars.watchers["roomID"].Current == vars.roomIDEnum["sporeSpawn"];
 		var crocomireRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["crocomireSpeedway"] && vars.watchers["roomID"].Current == vars.roomIDEnum["crocomire"];
 		var botwoonRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["botwoonHallway"] && vars.watchers["roomID"].Current == vars.roomIDEnum["botwoon"];
-		miniBossRooms = ceresRidleyRoom || sporeSpawnRoom || crocomireRoom || botwoonRoom;
+		// Allow either vanilla or GGG entry
+		var goldenTorizoRoom = (vars.watchers["roomID"].Old == vars.roomIDEnum["acidStatue"] || vars.watchers["roomID"].Old == vars.roomIDEnum["screwAttack"]) && vars.watchers["roomID"].Current == vars.roomIDEnum["goldenTorizo"];
+		miniBossRooms = ceresRidleyRoom || sporeSpawnRoom || crocomireRoom || botwoonRoom || goldenTorizoRoom;
 	}
 
 	// Room transitions

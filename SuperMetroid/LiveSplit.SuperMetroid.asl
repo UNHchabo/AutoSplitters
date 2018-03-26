@@ -148,6 +148,7 @@ startup
 	vars.roomIDEnum = new Dictionary<string, int> {
 		{ "landingSite",		0x91F8 },
 		{ "westOcean",			0x93FE },
+		{ "elevatorToMaridia",		0x94CC },
 		{ "elevatorToCaterpillar",	0x962A },
 		{ "climb",			0x96BA },
 		{ "elevatorToMorphBall",	0x97B5 },
@@ -178,6 +179,7 @@ startup
 		{ "wreckedShipEntrance",	0xCA08 },
 		{ "basement",			0xCC6F }, // Basement of Wrecked Ship
 		{ "phantoon",			0xCD13 },
+		{ "maridiaElevator",		0xD30B },
 		{ "botwoonHallway",		0xD617 },
 		{ "precious",			0xD78F },
 		{ "botwoon",			0xD95E },
@@ -437,7 +439,8 @@ split
 		var greenBrinstar = (vars.watchers["roomID"].Old == vars.roomIDEnum["elevatorToGreenBrinstar"] && vars.watchers["roomID"].Current == vars.roomIDEnum["greenBrinstarMainShaft"]) || (vars.watchers["roomID"].Old == vars.roomIDEnum["greenBrinstarMainShaft"] && vars.watchers["roomID"].Current == vars.roomIDEnum["elevatorToGreenBrinstar"]);
 		var businessCenter = (vars.watchers["roomID"].Old == vars.roomIDEnum["warehouseEntrance"] && vars.watchers["roomID"].Current == vars.roomIDEnum["businessCenter"]) || (vars.watchers["roomID"].Old == vars.roomIDEnum["businessCenter"] && vars.watchers["roomID"].Current == vars.roomIDEnum["warehouseEntrance"]);
 		var caterpillar = (vars.watchers["roomID"].Old == vars.roomIDEnum["elevatorToCaterpillar"] && vars.watchers["roomID"].Current == vars.roomIDEnum["caterpillar"]) || (vars.watchers["roomID"].Old == vars.roomIDEnum["caterpillar"] && vars.watchers["roomID"].Current == vars.roomIDEnum["elevatorToCaterpillar"]);
-		elevatorTransitions = blueBrinstar || greenBrinstar || businessCenter || caterpillar;
+		var maridiaElevator = (vars.watchers["roomID"].Old == vars.roomIDEnum["elevatorToMaridia"] && vars.watchers["roomID"].Current == vars.roomIDEnum["maridiaElevator"]) || (vars.watchers["roomID"].Old == vars.roomIDEnum["maridiaElevator"] && vars.watchers["roomID"].Current == vars.roomIDEnum["elevatorToMaridia"]);
+		elevatorTransitions = blueBrinstar || greenBrinstar || businessCenter || caterpillar || maridiaElevator;
 	}
 
 	// Room transitions

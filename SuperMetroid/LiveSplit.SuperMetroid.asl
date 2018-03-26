@@ -150,6 +150,8 @@ startup
 		{ "westOcean",			0x93FE },
 		{ "climb",			0x96BA },
 		{ "sporeSpawnSuper",		0x9B5B },
+		{ "sporeSpawnKeyhunter",	0x9D9C },
+		{ "sporeSpawn",			0x9DC7 },
 		{ "statuesHallway",		0xA5ED },
 		{ "statues",			0xA66A },
 		{ "singleChamber", 		0xAD5E }, // Exit room from Lower Norfair, also on the path to Wave
@@ -385,7 +387,8 @@ split
 	var miniBossRooms = false;
 	if(settings["miniBossRooms"]){
 		var ceresRidleyRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["flatRoom"] && vars.watchers["roomID"].Current == vars.roomIDEnum["ceresRidley"];
-		miniBossRooms = ceresRidleyRoom;
+		var sporeSpawnRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["sporeSpawnKeyhunter"] && vars.watchers["roomID"].Current == vars.roomIDEnum["sporeSpawn"];
+		miniBossRooms = ceresRidleyRoom || sporeSpawnRoom;
 	}
 
 	// Room transitions

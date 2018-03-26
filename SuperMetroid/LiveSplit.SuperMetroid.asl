@@ -161,7 +161,9 @@ startup
 		{ "bigBoy",			0xDCB1 },
 		{ "motherBrain",		0xDD58 },
 		{ "tourianEscape4",		0xDEDE },
-		{ "ceresElevator",		0xDF45 }
+		{ "ceresElevator",		0xDF45 },
+		{ "flatRoom",			0xE06B }, // Placeholder name for the flat room in Ceres Station
+		{ "ceresRidley",		0xE0B5 }
 	};
 
 	vars.mapInUseEnum = new Dictionary<string, int>{
@@ -379,6 +381,13 @@ split
 	var reserveTanks = settings["reserveTanks"] && (vars.watchers["maxReserve"].Old + 100) == (vars.watchers["maxReserve"].Current);
 	var energyUpgrade = firstETank || allETanks || reserveTanks;
 	
+	// Miniboss room transitions
+	var miniBossRooms = false;
+	if(settings["miniBossRooms"]){
+		var ceresRidleyRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["flatRoom"] && vars.watchers["roomID"].Current == vars.roomIDEnum["ceresRidley"];
+		miniBossRooms = ceresRidleyRoom;
+	}
+
 	// Room transitions
 	var ceresEscape = settings["ceresEscape"] && vars.watchers["roomID"].Current == vars.roomIDEnum["ceresElevator"] && vars.watchers["gameState"].Old == vars.gameStateEnum["normalGameplay"] && vars.watchers["gameState"].Current == vars.gameStateEnum["startOfCeresCutscene"];
 	var wreckedShipEntrance = settings["wreckedShipEntrance"] && vars.watchers["roomID"].Old == vars.roomIDEnum["westOcean"] && vars.watchers["roomID"].Current == vars.roomIDEnum["wreckedShipEntrance"];
@@ -388,7 +397,7 @@ split
 	var goldenFour = settings["goldenFour"] && vars.watchers["roomID"].Old == vars.roomIDEnum["statuesHallway"] && vars.watchers["roomID"].Current == vars.roomIDEnum["statues"] && allBossesFinished;
 	var babyMetroidRoom = settings["babyMetroidRoom"] && vars.watchers["roomID"].Old == vars.roomIDEnum["dustTorizo"] && vars.watchers["roomID"].Current == vars.roomIDEnum["bigBoy"];
 	var escapeClimb = settings["escapeClimb"] && vars.watchers["roomID"].Old == vars.roomIDEnum["tourianEscape4"] && vars.watchers["roomID"].Current == vars.roomIDEnum["climb"];
-	var roomTransitions = ceresEscape || wreckedShipEntrance || lowerNorfairEntrance || lowerNorfairExit || goldenFour || babyMetroidRoom || escapeClimb;
+	var roomTransitions = miniBossRooms || ceresEscape || wreckedShipEntrance || lowerNorfairEntrance || lowerNorfairExit || goldenFour || babyMetroidRoom || escapeClimb;
 
 	// Minibosses
 	var ceresRidley = settings["ceresRidley"] && (vars.watchers["ceresBosses"].Old & vars.bossFlagEnum["ceresRidley"]) == 0 && (vars.watchers["ceresBosses"].Current & vars.bossFlagEnum["ceresRidley"]) > 0;

@@ -154,6 +154,8 @@ startup
 		{ "sporeSpawn",			0x9DC7 },
 		{ "statuesHallway",		0xA5ED },
 		{ "statues",			0xA66A },
+		{ "crocomireSpeedway",		0xA923 },
+		{ "crocomire",			0xA98D },
 		{ "singleChamber", 		0xAD5E }, // Exit room from Lower Norfair, also on the path to Wave
 		{ "lowerNorfairElevator", 	0xAF3F },
 		{ "mainHall", 			0xB236 }, // First room in Lower Norfair
@@ -388,7 +390,8 @@ split
 	if(settings["miniBossRooms"]){
 		var ceresRidleyRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["flatRoom"] && vars.watchers["roomID"].Current == vars.roomIDEnum["ceresRidley"];
 		var sporeSpawnRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["sporeSpawnKeyhunter"] && vars.watchers["roomID"].Current == vars.roomIDEnum["sporeSpawn"];
-		miniBossRooms = ceresRidleyRoom || sporeSpawnRoom;
+		var crocomireRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["crocomireSpeedway"] && vars.watchers["roomID"].Current == vars.roomIDEnum["crocomire"];
+		miniBossRooms = ceresRidleyRoom || sporeSpawnRoom || crocomireRoom;
 	}
 
 	// Room transitions

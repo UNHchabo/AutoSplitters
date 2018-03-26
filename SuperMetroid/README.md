@@ -6,6 +6,9 @@ This script can be used with [LiveSplit](http://livesplit.github.io) for speedru
 - higan v102+
 - Snes9x 1.53+
 
+## Setup
+After you select your splits, add a start time of 0.26 seconds, because the autostart event happens as the screen fades to black, rather than the typical RTA start point of the cursor disappearing.
+
 ## Split events
 This script supports splitting on a wide range of events, so it basically splits as often as you'd like. By default the following events will cause a split:
 - First Power Bomb pickup

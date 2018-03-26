@@ -166,6 +166,8 @@ startup
 		{ "threeMusketeers", 		0xB656 },
 		{ "screwAttack",		0xB6C1 },
 		{ "wreckedShipEntrance",	0xCA08 },
+		{ "basement",			0xCC6F }, // Basement of Wrecked Ship
+		{ "phantoon",			0xCD13 },
 		{ "botwoonHallway",		0xD617 },
 		{ "botwoon",			0xD95E },
 		{ "dustTorizo",			0xDC65 },
@@ -408,7 +410,8 @@ split
 	var bossRooms = false;
 	if(settings["bossRooms"]){
 		var kraidRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["kraidEyeDoor"] && vars.watchers["roomID"].Current == vars.roomIDEnum["kraid"];
-		bossRooms = kraidRoom;
+		var phantoonRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["basement"] && vars.watchers["roomID"].Current == vars.roomIDEnum["phantoon"];
+		bossRooms = kraidRoom || phantoonRoom;
 	}
 
 	// Room transitions

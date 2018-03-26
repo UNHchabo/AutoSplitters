@@ -150,6 +150,8 @@ startup
 		{ "westOcean",			0x93FE },
 		{ "climb",			0x96BA },
 		{ "elevatorToMorphBall",	0x97B5 },
+		{ "elevatorToGreenBrinstar",	0x9938 },
+		{ "greenBrinstarMainShaft",	0x9AD9 },
 		{ "sporeSpawnSuper",		0x9B5B },
 		{ "sporeSpawnKeyhunter",	0x9D9C },
 		{ "sporeSpawn",			0x9DC7 },
@@ -428,7 +430,8 @@ split
 	var elevatorTransitions = false;
 	if(settings["elevatorTransitions"]){
 		var blueBrinstar = (vars.watchers["roomID"].Old == vars.roomIDEnum["elevatorToMorphBall"] && vars.watchers["roomID"].Current == vars.roomIDEnum["morphBall"]) || (vars.watchers["roomID"].Old == vars.roomIDEnum["morphBall"] && vars.watchers["roomID"].Current == vars.roomIDEnum["elevatorToMorphBall"]);
-		elevatorTransitions = blueBrinstar;
+		var greenBrinstar = (vars.watchers["roomID"].Old == vars.roomIDEnum["elevatorToGreenBrinstar"] && vars.watchers["roomID"].Current == vars.roomIDEnum["greenBrinstarMainShaft"]) || (vars.watchers["roomID"].Old == vars.roomIDEnum["greenBrinstarMainShaft"] && vars.watchers["roomID"].Current == vars.roomIDEnum["elevatorToGreenBrinstar"]);
+		elevatorTransitions = blueBrinstar || greenBrinstar;
 	}
 
 	// Room transitions

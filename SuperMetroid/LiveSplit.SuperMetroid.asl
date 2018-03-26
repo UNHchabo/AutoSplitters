@@ -99,6 +99,8 @@ startup
 	settings.SetToolTip("lowerNorfairExit", "Split on moving from the Three Musketeers' Room to the Single Chamber");
 	settings.Add("goldenFour", true, "Golden Four", "areaTransitions");
 	settings.SetToolTip("goldenFour", "Split on entering the Statues Room with all four major bosses defeated");
+	settings.Add("babyMetroidRoom", false, "Baby Metroid Room", "areaTransitions");
+	settings.SetToolTip("babyMetroidRoom", "Split on moving from the Dust Torizo Room to the Big Boy Room");
 	settings.Add("escapeClimb", false, "Tourian Exit", "areaTransitions");
 	settings.SetToolTip("escapeClimb", "Split on moving from Tourian Escape Room 4 to The Climb");
 

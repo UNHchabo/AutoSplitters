@@ -156,6 +156,8 @@ startup
 		{ "mainHall", 			0xB236 }, // First room in Lower Norfair
 		{ "threeMusketeers", 		0xB656 },
 		{ "wreckedShipEntrance",	0xCA08 },
+		{ "dustTorizo",			0xDC65 },
+		{ "bigBoy",			0xDCB1 },
 		{ "motherBrain",		0xDD58 },
 		{ "ceresElevator",		0xDF45 }
 	};
@@ -382,7 +384,8 @@ split
 	var lowerNorfairExit = settings["lowerNorfairExit"] && vars.watchers["roomID"].Old == vars.roomIDEnum["threeMusketeers"] && vars.watchers["roomID"].Current == vars.roomIDEnum["singleChamber"];
 	var allBossesFinished = (vars.watchers["brinstarBosses"].Current & vars.bossFlagEnum["kraid"]) > 0 && (vars.watchers["wreckedShipBosses"].Current & vars.bossFlagEnum["phantoon"]) > 0 && (vars.watchers["maridiaBosses"].Current & vars.bossFlagEnum["draygon"]) > 0 && (vars.watchers["norfairBosses"].Current & vars.bossFlagEnum["ridley"]) > 0;
 	var goldenFour = settings["goldenFour"] && vars.watchers["roomID"].Old == vars.roomIDEnum["statuesHallway"] && vars.watchers["roomID"].Current == vars.roomIDEnum["statues"] && allBossesFinished;
-	var roomTransitions = ceresEscape || wreckedShipEntrance || lowerNorfairEntrance || lowerNorfairExit || goldenFour;
+	var babyMetroidRoom = settings["babyMetroidRoom"] && vars.watchers["roomID"].Old == vars.roomIDEnum["dustTorizo"] && vars.watchers["roomID"].Current == vars.roomIDEnum["bigBoy"];
+	var roomTransitions = ceresEscape || wreckedShipEntrance || lowerNorfairEntrance || lowerNorfairExit || goldenFour || babyMetroidRoom;
 
 	// Minibosses
 	var ceresRidley = settings["ceresRidley"] && (vars.watchers["ceresBosses"].Old & vars.bossFlagEnum["ceresRidley"]) == 0 && (vars.watchers["ceresBosses"].Current & vars.bossFlagEnum["ceresRidley"]) > 0;

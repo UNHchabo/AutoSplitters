@@ -163,6 +163,8 @@ startup
 		{ "acidStatue",			0xB1E5 },
 		{ "mainHall", 			0xB236 }, // First room in Lower Norfair
 		{ "goldenTorizo",		0xB283 },
+		{ "ridley",			0xB32E },
+		{ "lowerNorfairFarming",	0xB37A },
 		{ "threeMusketeers", 		0xB656 },
 		{ "screwAttack",		0xB6C1 },
 		{ "wreckedShipEntrance",	0xCA08 },
@@ -175,6 +177,7 @@ startup
 		{ "dustTorizo",			0xDC65 },
 		{ "bigBoy",			0xDCB1 },
 		{ "motherBrain",		0xDD58 },
+		{ "rinkaShaft",			0xDDF3 },
 		{ "tourianEscape4",		0xDEDE },
 		{ "ceresElevator",		0xDF45 },
 		{ "flatRoom",			0xE06B }, // Placeholder name for the flat room in Ceres Station
@@ -414,7 +417,9 @@ split
 		var kraidRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["kraidEyeDoor"] && vars.watchers["roomID"].Current == vars.roomIDEnum["kraid"];
 		var phantoonRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["basement"] && vars.watchers["roomID"].Current == vars.roomIDEnum["phantoon"];
 		var draygonRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["precious"] && vars.watchers["roomID"].Current == vars.roomIDEnum["draygon"];
-		bossRooms = kraidRoom || phantoonRoom || draygonRoom;
+		var ridleyRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["lowerNorfairFarming"] && vars.watchers["roomID"].Current == vars.roomIDEnum["ridley"];
+		var motherBrainRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["rinkaShaft"] && vars.watchers["roomID"].Current == vars.roomIDEnum["motherBrain"];
+		bossRooms = kraidRoom || phantoonRoom || draygonRoom || ridleyRoom || motherBrainRoom;
 	}
 
 	// Room transitions

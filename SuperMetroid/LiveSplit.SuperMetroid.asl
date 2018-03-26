@@ -148,6 +148,7 @@ startup
 	vars.roomIDEnum = new Dictionary<string, int> {
 		{ "landingSite",		0x91F8 },
 		{ "westOcean",			0x93FE },
+		{ "elevatorToCaterpillar",	0x962A },
 		{ "climb",			0x96BA },
 		{ "elevatorToMorphBall",	0x97B5 },
 		{ "elevatorToGreenBrinstar",	0x9938 },
@@ -156,10 +157,13 @@ startup
 		{ "sporeSpawnKeyhunter",	0x9D9C },
 		{ "sporeSpawn",			0x9DC7 },
 		{ "morphBall",			0x9E9F },
+		{ "caterpillar",		0xA322 },
 		{ "kraidEyeDoor",		0xA56B },
 		{ "kraid",			0xA59F },
 		{ "statuesHallway",		0xA5ED },
 		{ "statues",			0xA66A },
+		{ "warehouseEntrance",		0xA6A1 },
+		{ "businessCenter",		0xA7DE },
 		{ "crocomireSpeedway",		0xA923 },
 		{ "crocomire",			0xA98D },
 		{ "singleChamber", 		0xAD5E }, // Exit room from Lower Norfair, also on the path to Wave
@@ -431,7 +435,9 @@ split
 	if(settings["elevatorTransitions"]){
 		var blueBrinstar = (vars.watchers["roomID"].Old == vars.roomIDEnum["elevatorToMorphBall"] && vars.watchers["roomID"].Current == vars.roomIDEnum["morphBall"]) || (vars.watchers["roomID"].Old == vars.roomIDEnum["morphBall"] && vars.watchers["roomID"].Current == vars.roomIDEnum["elevatorToMorphBall"]);
 		var greenBrinstar = (vars.watchers["roomID"].Old == vars.roomIDEnum["elevatorToGreenBrinstar"] && vars.watchers["roomID"].Current == vars.roomIDEnum["greenBrinstarMainShaft"]) || (vars.watchers["roomID"].Old == vars.roomIDEnum["greenBrinstarMainShaft"] && vars.watchers["roomID"].Current == vars.roomIDEnum["elevatorToGreenBrinstar"]);
-		elevatorTransitions = blueBrinstar || greenBrinstar;
+		var businessCenter = (vars.watchers["roomID"].Old == vars.roomIDEnum["warehouseEntrance"] && vars.watchers["roomID"].Current == vars.roomIDEnum["businessCenter"]) || (vars.watchers["roomID"].Old == vars.roomIDEnum["businessCenter"] && vars.watchers["roomID"].Current == vars.roomIDEnum["warehouseEntrance"]);
+		var caterpillar = (vars.watchers["roomID"].Old == vars.roomIDEnum["elevatorToCaterpillar"] && vars.watchers["roomID"].Current == vars.roomIDEnum["caterpillar"]) || (vars.watchers["roomID"].Old == vars.roomIDEnum["caterpillar"] && vars.watchers["roomID"].Current == vars.roomIDEnum["elevatorToCaterpillar"]);
+		elevatorTransitions = blueBrinstar || greenBrinstar || businessCenter || caterpillar;
 	}
 
 	// Room transitions

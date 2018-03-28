@@ -9,6 +9,8 @@ This script can be used with [LiveSplit](http://livesplit.github.io) for speedru
 ## Setup
 After you select your splits, add a start time of 0.26 seconds, because the autostart event happens as the screen fades to black, rather than the typical RTA start point of the cursor disappearing.
 
+If you're playing a category that might reset to a save, you'll likely want to disable the "reset" option.
+
 ## Split events
 This script supports splitting on a wide range of events, so it basically splits as often as you'd like. By default the following events will cause a split:
 - First Power Bomb pickup
@@ -33,8 +35,6 @@ However, in the settings you can also select the script to split on many other t
 - The end of a Spore Spawn RTA run
 
 If all of these options are selected, then a typical KPDR Any% route would have more than 50 splits!
-
-If you're playing a category that might reset to a save, you'll likely want to disable the "reset" option.
 
 ## Contact
 For bugs or feature requests, GitHub has a [built-in tracker for that](https://github.com/UNHchabo/AutoSplitters/issues).

@@ -336,8 +336,6 @@ init
 		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x0A1C) { Name = "samusPose" },
 		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x0A1E) { Name = "poseDirection" },
 		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x0A28) { Name = "playerState" },
-		new MemoryWatcher<ushort>((IntPtr)memoryOffset + 0x0A76) { Name = "hyperBeam" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x0E17) { Name = "elevatorTransition" },
 		new MemoryWatcher<ushort>((IntPtr)memoryOffset + 0x0F8C) { Name = "enemyHP" },
 		new MemoryWatcher<ushort>((IntPtr)memoryOffset + 0x0FCC) { Name = "motherBrainHP" },
 		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0xD828) { Name = "crateriaBosses" },

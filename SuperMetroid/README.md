@@ -7,7 +7,7 @@ This script can be used with [LiveSplit](http://livesplit.github.io) for speedru
 - Snes9x 1.53+
 
 ## Setup
-After you select your splits, add a start time of 0.26 seconds, because the autostart event happens as the screen fades to black, rather than the typical RTA start point of the cursor disappearing.
+After you select your splits, add a start time of 0.29 seconds, because the autostart event happens as the screen fades to black, rather than the typical RTA start point of the cursor disappearing.
 
 If you're playing a category that might reset to a save, you'll likely want to disable the "reset" option.
 

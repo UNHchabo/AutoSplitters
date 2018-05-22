@@ -9,6 +9,8 @@ This script can be used with [LiveSplit](http://livesplit.github.io) for speedru
 ## Setup
 After you select your splits, add a start time of 0.29 seconds, because the autostart event happens as the screen fades to black, rather than the typical RTA start point of the cursor disappearing.
 
+Due to the way that the autosplitters work in LiveSplit, any setting that's chosen in the Settings menu must also have its parent selected. So to split on Morphing Ball, you must also have Misc Upgrades selected.
+
 If you're playing a category that might reset to a save, you'll likely want to disable the "reset" option.
 
 ## Split events

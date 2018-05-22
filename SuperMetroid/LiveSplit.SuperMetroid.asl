@@ -13,7 +13,7 @@ state("snes9x-x64"){}
 
 startup
 {
-	settings.Add("ammoPickups", false, "Ammo Pickups");
+	settings.Add("ammoPickups", true, "Ammo Pickups");
 	settings.SetToolTip("ammoPickups", "Split on Missiles, Super Missiles, and Power Bombs");
 	settings.Add("firstMissile", false, "First Missiles", "ammoPickups");
 	settings.SetToolTip("firstMissile", "Split on the first Missile pickup");
@@ -35,7 +35,7 @@ startup
 	settings.Add("gravSuit", true, "Gravity Suit", "suitUpgrades");
 	settings.SetToolTip("gravSuit", "Split on picking up the Gravity Suit");
 
-	settings.Add("beamUpgrades", false, "Beam Upgrades");
+	settings.Add("beamUpgrades", true, "Beam Upgrades");
 	settings.SetToolTip("beamUpgrades", "Split on beam upgrades");
 	settings.Add("chargeBeam", false, "Charge Beam", "beamUpgrades");
 	settings.SetToolTip("chargeBeam", "Split on picking up the Charge Beam");
@@ -81,7 +81,7 @@ startup
 	settings.Add("xray", false, "X-Ray Scope", "miscUpgrades");
 	settings.SetToolTip("xray", "Split on picking up the X-Ray Scope");
 
-	settings.Add("areaTransitions", false, "Area Transitions");
+	settings.Add("areaTransitions", true, "Area Transitions");
 	settings.SetToolTip("areaTransitions", "Split on transitions between areas");
 	settings.Add("miniBossRooms", false, "Miniboss Rooms", "areaTransitions");
 	settings.SetToolTip("miniBossRooms", "Split on entering miniboss rooms (except Bomb Torizo)");
@@ -119,7 +119,7 @@ startup
 	settings.Add("goldenTorizo", false, "Golden Torizo", "miniBosses");
 	settings.SetToolTip("goldenTorizo", "Split on Golden Torizo's drops appearing");
 
-	settings.Add("bosses", false, "Bosses");
+	settings.Add("bosses", true, "Bosses");
 	settings.SetToolTip("bosses", "Split on defeating major bosses");
 	settings.Add("kraid", false, "Kraid", "bosses");
 	settings.SetToolTip("kraid", "Split shortly after Kraid's drops appear");

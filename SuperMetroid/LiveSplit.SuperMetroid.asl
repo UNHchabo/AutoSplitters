@@ -142,6 +142,8 @@ startup
 	settings.SetToolTip("igtFinish", "Split on In-Game Time finalizing, when the end cutscene starts");
 	settings.Add("sporeSpawnRTAFinish", false, "Spore Spawn RTA Finish");
 	settings.SetToolTip("sporeSpawnRTAFinish", "Split on the end of a Spore Spawn RTA run, when the text box clears after collecting the Super Missiles");
+	settings.Add("hundredMissileRTAFinish", false, "100 Missile RTA Finish");
+	settings.SetToolTip("hundredMissileRTAFinish", "Split on the end of a 100 Missile RTA run, when the text box clears after collecting the hundredth missile");
 
 	// RoomIDs compiled here:
 	// https://wiki.supermetroid.run/List_of_RoomIDs
@@ -262,6 +264,7 @@ startup
 	};
 
 	vars.pickedUpSporeSpawnSuper = false;
+	vars.pickedUpHundredthMissile = false;
 
 	Action<string> DebugOutput = (text) => {
 		print("[Super Metroid Autosplitter] "+text);
@@ -491,7 +494,22 @@ split
 		}
 	}
 
-	return pickup || unlock || beam || energyUpgrade || roomTransitions || minibossDefeat || bossDefeat || escape || takeoff || sporeSpawnRTAFinish;
+	var hundredMissileRTAFinish = false;
+	if(settings["hundredMissileRTAFinish"]){
+		if(vars.pickedUpHundredthMissile){
+			if(vars.watchers["igtFrames"].Old != vars.watchers["igtFrames"].Current){
+				hundredMissileRTAFinish = true;
+				vars.pickedUpHundredthMissile = false;
+			}
+		}
+		else{
+			vars.pickedUpHundredthMissile = vars.watchers["maxMissiles"].Old == 95 && vars.watchers["maxMissiles"].Current == 100;
+		}
+	}
+
+	var nonStandardCategoryFinish = sporeSpawnRTAFinish || hundredMissileRTAFinish;
+
+	return pickup || unlock || beam || energyUpgrade || roomTransitions || minibossDefeat || bossDefeat || escape || takeoff || nonStandardCategoryFinish;
 }
 
 gameTime

@@ -35,6 +35,7 @@ However, in the settings you can also select the script to split on many other t
 - Major door transitions
 - The end of In-Game Time, when used in conjunction with the [Alternate Timing Method](https://github.com/Dalet/LiveSplit.AlternateTimingMethod/releases) component
 - The end of a Spore Spawn RTA run
+- The end of a 100 Missile RTA run
 
 If all of these options are selected, then a typical KPDR Any% route would have more than 50 splits!
 

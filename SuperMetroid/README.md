@@ -7,7 +7,12 @@ This script can be used with [LiveSplit](http://livesplit.github.io) for speedru
 - Snes9x 1.53+
 
 ## Setup
-After you select your splits, add a start time of 0.29 seconds, because the autostart event happens as the screen fades to black, rather than the typical RTA start point of the cursor disappearing.
+After you select your splits, add a start time from the list below, because the autostart event happens as the screen is finished fading to black, rather than the typical RTA start point when the screen starts fading.
+
+Standard NTSC: 0.29 seconds
+Standard PAL: 0.35 seconds
+Zebes start NTSC: 0.70 seconds
+Zebes start PAL: 0.84 seconds
 
 Due to the way that the autosplitters work in LiveSplit, any setting that's chosen in the Settings menu must also have its parent selected. So to split on Morphing Ball, you must also have Misc Upgrades selected.
 

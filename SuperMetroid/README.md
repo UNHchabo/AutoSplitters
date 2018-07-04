@@ -3,8 +3,8 @@
 This script can be used with [LiveSplit](http://livesplit.github.io) for speedrunning Super Metroid.
 
 ## Supported emulators:
-- higan v102+
-- Snes9x 1.53+
+- higan v102 through v106
+- Snes9x 1.53 through 1.55
 
 ## Setup
 After you select your splits, add a start time from the list below, because the autostart event happens as the screen is finished fading to black, rather than the typical RTA start point when the screen starts fading.

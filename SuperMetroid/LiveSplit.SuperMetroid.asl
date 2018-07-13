@@ -274,47 +274,31 @@ startup
 
 init
 {
-	int memoryOffset = 0;
-	while (memoryOffset == 0)
-	{
-		switch (modules.First().ModuleMemorySize)
-		{
-			case 5914624: //snes9x (1.53)
-				memoryOffset = memory.ReadValue<int>((IntPtr)0x6EFBA4);
-				break;
-			case 6909952: //snes9x (1.53-x64)
-				memoryOffset = memory.ReadValue<int>((IntPtr)0x140405EC8);
-				break;
-			case 6447104: //snes9x (1.54.1)
-				memoryOffset = memory.ReadValue<int>((IntPtr)0x7410D4);
-				break;
-			case 7946240: //snes9x (1.54.1-x64)
-				memoryOffset = memory.ReadValue<int>((IntPtr)0x1404DAF18);
-				break;
-			case 6602752: //snes9x (1.55)
-				memoryOffset = memory.ReadValue<int>((IntPtr)0x762874);
-				break;
-			case 8355840: //snes9x (1.55-x64)
-				memoryOffset = memory.ReadValue<int>((IntPtr)0x1405BFDB8);
-				break;
-			case 12509184: //higan (v102)
-				memoryOffset = 0x915304;
-				break;
-			case 13062144: //higan (v103)
-				memoryOffset = 0x937324;
-				break;
-			case 15859712: //higan (v104)
-				memoryOffset = 0x952144;
-				break;
-			case 16756736: //higan (v105tr1)
-				memoryOffset = 0x94F144;
-				break;
-			case 16019456: //higan (v106)
-				memoryOffset = 0x94D144;
-				break;
-			default:
-				memoryOffset = 1;
-				break;
+	var states = new Dictionary<int, long>{
+		{ 10330112, 0x789414 },   //snes9x 1.52-rr
+		{ 7729152, 0x890EE4 },    //snes9x 1.54-rr
+		{ 5914624, 0x6EFBA4 },    //snes9x 1.53
+		{ 6909952, 0x140405EC8 }, //snes9x 1.53 (x64)
+		{ 6447104, 0x7410D4 },    //snes9x 1.54/1.54.1
+		{ 7946240, 0x1404DAF18 }, //snes9x 1.54/1.54.1 (x64)
+		{ 6602752, 0x762874 },    //snes9x 1.55
+		{ 8355840, 0x1405BFDB8 }, //snes9x 1.55 (x64)
+		{ 9003008, 0x1405D8C68 }, //snes9x 1.56 (x64)
+		{ 6848512, 0x7811B4 },    //snes9x 1.56.1
+		{ 8945664, 0x1405C80A8 }, //snes9x 1.56.1 (x64)
+		{ 6856704, 0x78528C },    //snes9x 1.56/1.56.2
+		{ 9015296, 0x1405D9298 }, //snes9x 1.56.2 (x64)
+		{ 12509184, 0x915304 },   //higan v102
+		{ 13062144, 0x937324 },   //higan v103
+		{ 15859712, 0x952144 },   //higan v104
+		{ 16756736, 0x94F144 },   //higan v105tr1
+		{ 16019456, 0x94D144 },   //higan v106
+	};
+
+	long memoryOffset;
+	if (states.TryGetValue(modules.First().ModuleMemorySize, out memoryOffset)){
+		if (memory.ProcessName.ToLower().Contains("snes9x")){
+			memoryOffset = memory.ReadValue<int>((IntPtr)memoryOffset);
 		}
 	}
 

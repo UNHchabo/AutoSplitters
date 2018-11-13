@@ -208,6 +208,7 @@ startup
 
 	vars.gameStateEnum = new Dictionary<string, int> {
 		{ "normalGameplay",		0x8 },
+		{ "doorTransition",		0xB },
 		{ "startOfCeresCutscene",	0x20 },
 		{ "preEndCutscene",		0x26 }, // briefly at this value during the black screen transition after the ship fades out
 		{ "endCutscene",		0x27 }
@@ -237,9 +238,9 @@ startup
 	};
 
 	vars.motherBrainMaxHPEnum = new Dictionary<string, int>{
-		{ "phase1", 0xBB8 },
-		{ "phase2", 0x4650 },
-		{ "phase3", 0x8CA0 }
+		{ "phase1", 0xBB8 },	// 3000
+		{ "phase2", 0x4650 },	// 18000
+		{ "phase3", 0x8CA0 }	// 36000
 	};
 
 	vars.bossFlagEnum = new Dictionary<string, int>{
@@ -347,6 +348,9 @@ start
 	var cutsceneEnded = vars.watchers["gameState"].Old == 0x1E && vars.watchers["gameState"].Current == 0x1F;
 	// Some categories start from Zebes, such as Spore Spawn RTA
 	var zebesStart    = vars.watchers["gameState"].Old == 5    && vars.watchers["gameState"].Current == 6;
+	if (normalStart || cutsceneEnded || zebesStart) {
+		vars.DebugOutput("Timer started");
+	}
 	return normalStart || cutsceneEnded || zebesStart;
 }
 
@@ -450,14 +454,35 @@ split
 
 	// Bosses
 	var kraid = settings["kraid"] && (vars.watchers["brinstarBosses"].Old & vars.bossFlagEnum["kraid"]) == 0 && (vars.watchers["brinstarBosses"].Current & vars.bossFlagEnum["kraid"]) > 0;
+	if(kraid){
+		vars.DebugOutput("Split due to kraid defeat");
+	}
 	var phantoon = settings["phantoon"] && (vars.watchers["wreckedShipBosses"].Old & vars.bossFlagEnum["phantoon"]) == 0 && (vars.watchers["wreckedShipBosses"].Current & vars.bossFlagEnum["phantoon"]) > 0;
+	if(phantoon){
+		vars.DebugOutput("Split due to phantoon defeat");
+	}
 	var draygon = settings["draygon"] && (vars.watchers["maridiaBosses"].Old & vars.bossFlagEnum["draygon"]) == 0 && (vars.watchers["maridiaBosses"].Current & vars.bossFlagEnum["draygon"]) > 0;
+	if(draygon){
+		vars.DebugOutput("Split due to draygon defeat");
+	}
 	var ridley = settings["ridley"] && (vars.watchers["norfairBosses"].Old & vars.bossFlagEnum["ridley"]) == 0 && (vars.watchers["norfairBosses"].Current & vars.bossFlagEnum["ridley"]) > 0;
+	if(ridley){
+		vars.DebugOutput("Split due to ridley defeat");
+	}
 	// Mother Brain phases
 	var inMotherBrainRoom = vars.watchers["roomID"].Current == vars.roomIDEnum["motherBrain"];
-	var mb1 = settings["mb1"] && inMotherBrainRoom && vars.watchers["motherBrainHP"].Old == 0 && vars.watchers["motherBrainHP"].Current == (vars.motherBrainMaxHPEnum["phase2"]);
-	var mb2 = settings["mb2"] && inMotherBrainRoom && vars.watchers["motherBrainHP"].Old == 0 && vars.watchers["motherBrainHP"].Current == (vars.motherBrainMaxHPEnum["phase3"]);
+	var mb1 = settings["mb1"] && inMotherBrainRoom && vars.watchers["gameState"].Current == vars.gameStateEnum["normalGameplay"] && vars.watchers["motherBrainHP"].Old == 0 && vars.watchers["motherBrainHP"].Current == (vars.motherBrainMaxHPEnum["phase2"]);
+	if(mb1){
+		vars.DebugOutput("Split due to mb1 defeat");
+	}
+	var mb2 = settings["mb2"] && inMotherBrainRoom && vars.watchers["gameState"].Current == vars.gameStateEnum["normalGameplay"] && vars.watchers["motherBrainHP"].Old == 0 && vars.watchers["motherBrainHP"].Current == (vars.motherBrainMaxHPEnum["phase3"]);
+	if(mb2){
+		vars.DebugOutput("Split due to mb2 defeat");
+	}
 	var mb3 = settings["mb3"] && (vars.watchers["tourianBosses"].Old & vars.bossFlagEnum["motherBrain"]) == 0 && (vars.watchers["tourianBosses"].Current & vars.bossFlagEnum["motherBrain"]) > 0;
+	if(mb3){
+		vars.DebugOutput("Split due to mb3 defeat");
+	}
 	var bossDefeat = kraid || phantoon || draygon || ridley || mb1 || mb2 || mb3;
 
 	// Run-ending splits
@@ -492,6 +517,35 @@ split
 	}
 
 	var nonStandardCategoryFinish = sporeSpawnRTAFinish || hundredMissileRTAFinish;
+
+	if(pickup){
+		vars.DebugOutput("Split due to pickup");
+	}
+	if(unlock){
+		vars.DebugOutput("Split due to unlock");
+	}
+	if(beam){
+		vars.DebugOutput("Split due to beam upgrade");
+	}
+	if(energyUpgrade){
+		vars.DebugOutput("Split due to energy upgrade");
+	}
+	if(roomTransitions){
+		vars.DebugOutput("Split due to room transition");
+	}
+	if(minibossDefeat){
+		vars.DebugOutput("Split due to miniboss defeat");
+	}
+	// individual boss defeat conditions already covered above
+	if(escape){
+		vars.DebugOutput("Split due to escape");
+	}
+	if(takeoff){
+		vars.DebugOutput("Split due to takeoff");
+	}
+	if(nonStandardCategoryFinish){
+		vars.DebugOutput("Split due to non standard category finish");
+	}
 
 	return pickup || unlock || beam || energyUpgrade || roomTransitions || minibossDefeat || bossDefeat || escape || takeoff || nonStandardCategoryFinish;
 }

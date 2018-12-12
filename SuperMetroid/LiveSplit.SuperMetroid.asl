@@ -10,6 +10,7 @@
 state("higan"){}
 state("snes9x"){}
 state("snes9x-x64"){}
+state("retroarch"){}
 
 startup
 {
@@ -275,64 +276,123 @@ startup
 
 init
 {
-	var states = new Dictionary<int, long>{
-		{ 10330112, 0x789414 },   //snes9x 1.52-rr
-		{ 7729152, 0x890EE4 },    //snes9x 1.54-rr
-		{ 5914624, 0x6EFBA4 },    //snes9x 1.53
-		{ 6909952, 0x140405EC8 }, //snes9x 1.53 (x64)
-		{ 6447104, 0x7410D4 },    //snes9x 1.54/1.54.1
-		{ 7946240, 0x1404DAF18 }, //snes9x 1.54/1.54.1 (x64)
-		{ 6602752, 0x762874 },    //snes9x 1.55
-		{ 8355840, 0x1405BFDB8 }, //snes9x 1.55 (x64)
-		{ 9003008, 0x1405D8C68 }, //snes9x 1.56 (x64)
-		{ 6848512, 0x7811B4 },    //snes9x 1.56.1
-		{ 8945664, 0x1405C80A8 }, //snes9x 1.56.1 (x64)
-		{ 6856704, 0x78528C },    //snes9x 1.56/1.56.2
-		{ 9015296, 0x1405D9298 }, //snes9x 1.56.2 (x64)
-		{ 12509184, 0x915304 },   //higan v102
-		{ 13062144, 0x937324 },   //higan v103
-		{ 15859712, 0x952144 },   //higan v104
-		{ 16756736, 0x94F144 },   //higan v105tr1
-		{ 16019456, 0x94D144 },   //higan v106
-	};
+	IntPtr memoryOffset = IntPtr.Zero;
 
-	long memoryOffset;
-	if (states.TryGetValue(modules.First().ModuleMemorySize, out memoryOffset)){
-		if (memory.ProcessName.ToLower().Contains("snes9x")){
-			memoryOffset = memory.ReadValue<int>((IntPtr)memoryOffset);
+	if (memory.ProcessName.ToLower().Contains("snes9x")) {
+		// TODO: These should probably be module-relative offsets too. Then
+		// some of this codepath can be unified with the RA stuff below.
+		var versions = new Dictionary<int, long>{
+			{ 10330112, 0x789414 },   // snes9x 1.52-rr
+			{ 7729152, 0x890EE4 },    // snes9x 1.54-rr
+			{ 5914624, 0x6EFBA4 },    // snes9x 1.53
+			{ 6909952, 0x140405EC8 }, // snes9x 1.53 (x64)
+			{ 6447104, 0x7410D4 },    // snes9x 1.54/1.54.1
+			{ 7946240, 0x1404DAF18 }, // snes9x 1.54/1.54.1 (x64)
+			{ 6602752, 0x762874 },    // snes9x 1.55
+			{ 8355840, 0x1405BFDB8 }, // snes9x 1.55 (x64)
+			{ 9003008, 0x1405D8C68 }, // snes9x 1.56 (x64)
+			{ 6848512, 0x7811B4 },    // snes9x 1.56.1
+			{ 8945664, 0x1405C80A8 }, // snes9x 1.56.1 (x64)
+			{ 6856704, 0x78528C },    // snes9x 1.56/1.56.2
+			{ 9015296, 0x1405D9298 }, // snes9x 1.56.2 (x64)
+		};
+
+		long pointerAddr;
+		if (versions.TryGetValue(modules.First().ModuleMemorySize, out pointerAddr)) {
+			memoryOffset = memory.ReadPointer((IntPtr)pointerAddr);
+		}
+	} else if (memory.ProcessName.ToLower().Contains("higan")) {
+		var versions = new Dictionary<int, long>{
+			{ 12509184, 0x915304 }, // higan v102
+			{ 13062144, 0x937324 }, // higan v103
+			{ 15859712, 0x952144 }, // higan v104
+			{ 16756736, 0x94F144 }, // higan v105tr1
+			{ 16019456, 0x94D144 }, // higan v106
+		};
+
+		long wramAddr;
+		if (versions.TryGetValue(modules.First().ModuleMemorySize, out wramAddr)) {
+			memoryOffset = (IntPtr)wramAddr;
+		}
+	} else if (memory.ProcessName.ToLower().Contains("retroarch")) {
+		// RetroArch stores a pointer to the emulated WRAM inside itself (it
+		// can get this pointer via the Core API). This happily lets this work
+		// on any variant of Snes9x cores, depending only on the RA version.
+
+		var retroarchVersions = new Dictionary<int, int>{
+			{ 18649088, 0x608EF0 }, // Retroarch 1.7.5 (x64)
+		};
+		IntPtr wramPointer = IntPtr.Zero;
+		int ptrOffset;
+		if (retroarchVersions.TryGetValue(modules.First().ModuleMemorySize, out ptrOffset)) {
+			wramPointer = memory.ReadPointer(modules.First().BaseAddress + ptrOffset);
+		}
+
+		if (wramPointer != IntPtr.Zero) {
+			memoryOffset = wramPointer;
+		} else {
+			// Unfortunately, Higan doesn't support that API. So if the address
+			// is missing, try to grab the memory from the higan core directly.
+
+			var higanModule = modules.FirstOrDefault(m => m.ModuleName.ToLower() == "higan_sfc_libretro.dll");
+			if (higanModule != null) {
+				var versions = new Dictionary<int, int>{
+					{ 4980736, 0x1F3AC4 }, // higan 106 (x64)
+				};
+				int wramOffset;
+				if (versions.TryGetValue(higanModule.ModuleMemorySize, out wramOffset)) {
+					memoryOffset = higanModule.BaseAddress + wramOffset;
+				}
+			}
 		}
 	}
 
+	if (memoryOffset == IntPtr.Zero) {
+		vars.DebugOutput("Unsupported emulator version");
+		var interestingModules = modules.Where(m =>
+			m.ModuleName.ToLower().EndsWith(".exe") ||
+			m.ModuleName.ToLower().EndsWith("_libretro.dll"));
+		foreach (var module in interestingModules) {
+			vars.DebugOutput("Module '" + module.ModuleName + "' sized " + module.ModuleMemorySize.ToString());
+		}
+		vars.watchers = new MemoryWatcherList{};
+		// Throwing prevents initialization from completing. LiveSplit will
+		// retry it until it eventually works. (Which lets you load a core in
+		// RA for example.)
+		throw new InvalidOperationException("Unsupported emulator version");
+	}
+
+	vars.DebugOutput("Found WRAM address: 0x" + memoryOffset.ToString("X8"));
 	vars.watchers = new MemoryWatcherList
 	{
-		new MemoryWatcher<ushort>((IntPtr)memoryOffset + 0x079B) { Name = "roomID" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x079F) { Name = "mapInUse" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x0998) { Name = "gameState" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x09A4) { Name = "unlockedEquips2" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x09A5) { Name = "unlockedEquips" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x09A8) { Name = "unlockedBeams" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x09A9) { Name = "unlockedCharge" },
-		new MemoryWatcher<ushort>((IntPtr)memoryOffset + 0x09C4) { Name = "maxEnergy" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x09C8) { Name = "maxMissiles" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x09CC) { Name = "maxSupers" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x09D0) { Name = "maxPowerBombs" },
-		new MemoryWatcher<ushort>((IntPtr)memoryOffset + 0x09D4) { Name = "maxReserve" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x09DA) { Name = "igtFrames" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x09DC) { Name = "igtSeconds" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x09DE) { Name = "igtMinutes" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x09E0) { Name = "igtHours" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x0A1C) { Name = "samusPose" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x0A1E) { Name = "poseDirection" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0x0A28) { Name = "playerState" },
-		new MemoryWatcher<ushort>((IntPtr)memoryOffset + 0x0F8C) { Name = "enemyHP" },
-		new MemoryWatcher<ushort>((IntPtr)memoryOffset + 0x0FCC) { Name = "motherBrainHP" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0xD828) { Name = "crateriaBosses" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0xD829) { Name = "brinstarBosses" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0xD82A) { Name = "norfairBosses" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0xD82B) { Name = "wreckedShipBosses" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0xD82C) { Name = "maridiaBosses" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0xD82D) { Name = "tourianBosses" },
-		new MemoryWatcher<byte>((IntPtr)memoryOffset + 0xD82E) { Name = "ceresBosses" },
+		new MemoryWatcher<ushort>(memoryOffset + 0x079B) { Name = "roomID" },
+		new MemoryWatcher<byte>(memoryOffset + 0x079F) { Name = "mapInUse" },
+		new MemoryWatcher<byte>(memoryOffset + 0x0998) { Name = "gameState" },
+		new MemoryWatcher<byte>(memoryOffset + 0x09A4) { Name = "unlockedEquips2" },
+		new MemoryWatcher<byte>(memoryOffset + 0x09A5) { Name = "unlockedEquips" },
+		new MemoryWatcher<byte>(memoryOffset + 0x09A8) { Name = "unlockedBeams" },
+		new MemoryWatcher<byte>(memoryOffset + 0x09A9) { Name = "unlockedCharge" },
+		new MemoryWatcher<ushort>(memoryOffset + 0x09C4) { Name = "maxEnergy" },
+		new MemoryWatcher<byte>(memoryOffset + 0x09C8) { Name = "maxMissiles" },
+		new MemoryWatcher<byte>(memoryOffset + 0x09CC) { Name = "maxSupers" },
+		new MemoryWatcher<byte>(memoryOffset + 0x09D0) { Name = "maxPowerBombs" },
+		new MemoryWatcher<ushort>(memoryOffset + 0x09D4) { Name = "maxReserve" },
+		new MemoryWatcher<byte>(memoryOffset + 0x09DA) { Name = "igtFrames" },
+		new MemoryWatcher<byte>(memoryOffset + 0x09DC) { Name = "igtSeconds" },
+		new MemoryWatcher<byte>(memoryOffset + 0x09DE) { Name = "igtMinutes" },
+		new MemoryWatcher<byte>(memoryOffset + 0x09E0) { Name = "igtHours" },
+		new MemoryWatcher<byte>(memoryOffset + 0x0A1C) { Name = "samusPose" },
+		new MemoryWatcher<byte>(memoryOffset + 0x0A1E) { Name = "poseDirection" },
+		new MemoryWatcher<byte>(memoryOffset + 0x0A28) { Name = "playerState" },
+		new MemoryWatcher<ushort>(memoryOffset + 0x0F8C) { Name = "enemyHP" },
+		new MemoryWatcher<ushort>(memoryOffset + 0x0FCC) { Name = "motherBrainHP" },
+		new MemoryWatcher<byte>(memoryOffset + 0xD828) { Name = "crateriaBosses" },
+		new MemoryWatcher<byte>(memoryOffset + 0xD829) { Name = "brinstarBosses" },
+		new MemoryWatcher<byte>(memoryOffset + 0xD82A) { Name = "norfairBosses" },
+		new MemoryWatcher<byte>(memoryOffset + 0xD82B) { Name = "wreckedShipBosses" },
+		new MemoryWatcher<byte>(memoryOffset + 0xD82C) { Name = "maridiaBosses" },
+		new MemoryWatcher<byte>(memoryOffset + 0xD82D) { Name = "tourianBosses" },
+		new MemoryWatcher<byte>(memoryOffset + 0xD82E) { Name = "ceresBosses" },
 	};
 }
 

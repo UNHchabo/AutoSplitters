@@ -267,6 +267,7 @@ startup
 
 	vars.pickedUpSporeSpawnSuper = false;
 	vars.pickedUpHundredthMissile = false;
+	vars.frameRate = 60.0;
 
 	Action<string> DebugOutput = (text) => {
 		print("[Super Metroid Autosplitter] "+text);
@@ -616,7 +617,12 @@ gameTime
 	var seconds = vars.watchers["igtSeconds"].Current;
 	var minutes = vars.watchers["igtMinutes"].Current;
 	var hours   = vars.watchers["igtHours"].Current;
-	current.totalTime = (frames / 60.0) + seconds + (60 * minutes) + (60 * 60 * hours);
+
+	if(frames == 0 && vars.watchers["igtFrames"].Old == 49){
+		vars.frameRate = 50.0;
+	}
+
+	current.totalTime = (frames / vars.frameRate) + seconds + (60 * minutes) + (60 * 60 * hours);
 	return TimeSpan.FromSeconds(current.totalTime);
 }
 

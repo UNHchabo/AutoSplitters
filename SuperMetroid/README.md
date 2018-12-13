@@ -5,6 +5,7 @@ This script can be used with [LiveSplit](http://livesplit.github.io) for speedru
 ## Supported emulators:
 - higan v102 through v106
 - Snes9x 1.53 through 1.56.2 (win32 or win32-x64)
+- RetroArch 1.7.5 (x86-64) (with Snes9x or higan cores)
 
 ## Setup
 After you select your splits, add a start time from the list below, because the autostart event happens as the screen is finished fading to black, rather than the typical RTA start point when the screen starts fading.

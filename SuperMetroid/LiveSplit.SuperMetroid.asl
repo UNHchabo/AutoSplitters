@@ -244,6 +244,10 @@ startup
 		{ "phase3", 0x8CA0 }	// 36000
 	};
 
+	vars.eventFlagEnum = new Dictionary<string, int>{
+		{ "zebesAblaze", 0x40 }
+	};
+
 	vars.bossFlagEnum = new Dictionary<string, int>{
 		// Crateria
 		{ "bombTorizo",		0x4 },
@@ -387,6 +391,7 @@ init
 		new MemoryWatcher<byte>(memoryOffset + 0x0A28) { Name = "playerState" },
 		new MemoryWatcher<ushort>(memoryOffset + 0x0F8C) { Name = "enemyHP" },
 		new MemoryWatcher<ushort>(memoryOffset + 0x0FCC) { Name = "motherBrainHP" },
+		new MemoryWatcher<byte>(memoryOffset + 0xD821) { Name = "eventFlags" },
 		new MemoryWatcher<byte>(memoryOffset + 0xD828) { Name = "crateriaBosses" },
 		new MemoryWatcher<byte>(memoryOffset + 0xD829) { Name = "brinstarBosses" },
 		new MemoryWatcher<byte>(memoryOffset + 0xD82A) { Name = "norfairBosses" },
@@ -547,7 +552,7 @@ split
 	var bossDefeat = kraid || phantoon || draygon || ridley || mb1 || mb2 || mb3;
 
 	// Run-ending splits
-	var escape = settings["rtaFinish"] && vars.watchers["tourianBosses"].Current == 2 && vars.watchers["samusPose"].Old != 0x9B && vars.watchers["samusPose"].Current == 0x9B && vars.watchers["poseDirection"].Old != 0 && vars.watchers["poseDirection"].Current == 0;
+	var escape = settings["rtaFinish"] && (vars.watchers["eventFlags"].Current & vars.eventFlagEnum["zebesAblaze"]) > 0 && vars.watchers["samusPose"].Old != 0x9B && vars.watchers["samusPose"].Current == 0x9B && vars.watchers["poseDirection"].Old != 0 && vars.watchers["poseDirection"].Current == 0;
 
 	var takeoff = settings["igtFinish"] && vars.watchers["roomID"].Current == vars.roomIDEnum["landingSite"] && vars.watchers["gameState"].Old == vars.gameStateEnum["preEndCutscene"] && vars.watchers["gameState"].Current == vars.gameStateEnum["endCutscene"];
 

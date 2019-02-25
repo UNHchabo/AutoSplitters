@@ -10,6 +10,7 @@
 state("higan"){}
 state("snes9x"){}
 state("snes9x-x64"){}
+state("emuhawk"){}
 state("retroarch"){}
 
 startup
@@ -311,13 +312,15 @@ init
 		if (versions.TryGetValue(modules.First().ModuleMemorySize, out pointerAddr)) {
 			memoryOffset = memory.ReadPointer((IntPtr)pointerAddr);
 		}
-	} else if (memory.ProcessName.ToLower().Contains("higan")) {
+	} else if (memory.ProcessName.ToLower().Contains("higan") || memory.ProcessName.ToLower().Contains("emuhawk")) {
 		var versions = new Dictionary<int, long>{
-			{ 12509184, 0x915304 }, // higan v102
-			{ 13062144, 0x937324 }, // higan v103
-			{ 15859712, 0x952144 }, // higan v104
-			{ 16756736, 0x94F144 }, // higan v105tr1
-			{ 16019456, 0x94D144 }, // higan v106
+			{ 12509184, 0x915304 },	     // higan v102
+			{ 13062144, 0x937324 },      // higan v103
+			{ 15859712, 0x952144 },      // higan v104
+			{ 16756736, 0x94F144 },      // higan v105tr1
+			{ 16019456, 0x94D144 },      // higan v106
+			{ 7061504,  0x36F11500240 }, // BizHawk 2.3
+			{ 7249920,  0x36F11500240 }, // BizHawk 2.3.1
 		};
 
 		long wramAddr;

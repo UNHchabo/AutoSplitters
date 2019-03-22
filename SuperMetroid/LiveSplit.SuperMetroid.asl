@@ -218,7 +218,6 @@ startup
 		{ "statuesHallway",		0xA5ED },
 		{ "statues",			0xA66A },
 		{ "tourianElevator",			0xDAAE },
-		{ "warehouseEntrance",		0xA6A1 },
 		{ "businessCenter",			0xA7DE },
 		{ "crocomireSpeedway",		0xA923 },
 		{ "crocomire",				0xA98D },

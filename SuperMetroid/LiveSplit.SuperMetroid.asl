@@ -67,6 +67,36 @@ startup
 	settings.SetToolTip("allETanks", "Split on picking up each Energy Tank");
 	settings.Add("reserveTanks", false, "All Reserve Tanks", "energyUpgrades");
 	settings.SetToolTip("reserveTanks", "Split on picking up each Reserve Tank");
+	settings.Add("specificETanks", false, "Specific Energy Tanks", "energyUpgrades");
+	settings.SetToolTip("energyUpgrades", "Split on specific Energy Tank locations");
+	settings.Add("gauntletETank", false, "Gauntlet Energy Tank", "specificETanks");
+	settings.SetToolTip("gauntletETank", "Split on picking up the Gauntlet Energy Tank");
+	settings.Add("terminatorETank", false, "Terminator Energy Tank", "specificETanks");
+	settings.SetToolTip("terminatorETank", "Split on picking up the terminator Energy Tank");
+	settings.Add("ceilingETank", false, "Brinstar Ceiling Energy Tank", "specificETanks");
+	settings.SetToolTip("ceilingETank", "Split on picking up the Brinstar ceiling Energy Tank");
+	settings.Add("etecoonsETank", false, "Etecoons Energy Tank", "specificETanks");
+	settings.SetToolTip("etecoonsETank", "Split on picking up the troll etecoons Energy Tank");
+	settings.Add("waterwayETank", false, "Waterway Energy Tank", "specificETanks");
+	settings.SetToolTip("waterwayETank", "Split on picking up the waterway Energy Tank");
+	settings.Add("waveGateETank", false, "Brinstar Gate Energy Tank", "specificETanks");
+	settings.SetToolTip("waveGateETank", "Split on picking up the Brinstar wave gate Energy Tank");
+	settings.Add("kraidETank", false, "Kraid Energy Tank", "specificETanks");
+	settings.SetToolTip("kraidETank", "Split on picking up the Kraid Energy Tank");
+	settings.Add("crocomireETank", false, "Crocomire Energy Tank", "specificETanks");
+	settings.SetToolTip("crocomireETank", "Split on picking up the Crocomire Energy Tank");
+	settings.Add("hiJumpETank", false, "Hi-Jump Boots Energy Tank", "specificETanks");
+	settings.SetToolTip("hiJumpETank", "Split on picking up the Hi-Jump Energy Tank");
+	settings.Add("ridleyETank", false, "Ridley Energy Tank", "specificETanks");
+	settings.SetToolTip("ridleyETank", "Split on picking up the post-Ridley Energy Tank");
+	settings.Add("firefleaETank", false, "Firefleas Energy Tank", "specificETanks");
+	settings.SetToolTip("firefleaETank", "Split on picking up the fireflea Energy Tank");
+	settings.Add("wreckedShipETank", false, "Wrecked Ship Energy Tank", "specificETanks");
+	settings.SetToolTip("wreckedShipETank", "Split on picking up the Wrecked Ship Energy Tank");
+	settings.Add("tatoriETank", false, "Mama Turtle Energy Tank", "specificETanks");
+	settings.SetToolTip("tatoriETank", "Split on picking up the Mama Turtle Energy Tank");
+	settings.Add("botwoonETank", false, "Botwoon Energy Tank", "specificETanks");
+	settings.SetToolTip("botwoonETank", "Split on picking up the Botwoon Energy Tank");
 
 	settings.Add("miscUpgrades", false, "Misc Upgrades");
 	settings.SetToolTip("miscUpgrades", "Split on the miscellaneous upgrades");
@@ -290,6 +320,40 @@ startup
 		{ "chargeBeam",		0x10}
 	};
 
+	vars.etankWatchKeys = new Dictionary<string, string> {
+	    { "gauntletETank", "crateriaItems" },
+	    { "terminatorETank", "brinteriaItems" },
+	    { "ceilingETank", "brinstarItems3" },
+	    { "etecoonsETank", "brinstarItems3" },
+	    { "waterwayETank", "brinstarItems4" },
+	    { "waveGateETank", "brinstarItems4" },
+	    { "kraidETank", "brinstarItems5" },
+	    { "crocomireETank", "norfairItems1" },
+	    { "hiJumpETank", "norfairItems2" },
+	    { "ridleyETank", "norfairItems4" },
+	    { "firefleaETank", "norfairItems5" },
+	    { "wreckedShipETank", "wreckedShipItems" },
+	    { "tatoriETank", "maridiaItems1" },
+	    { "botwoonETank", "maridiaItems3" },
+	};
+
+	vars.etankMasks = new Dictionary<string, int> {
+	    { "gauntletETank", 0x20 },
+	    { "terminatorETank", 0x01 },
+	    { "ceilingETank", 0x20 },
+	    { "etecoonsETank", 0x40 },
+	    { "waterwayETank", 0x02 },
+	    { "waveGateETank", 0x08 },
+	    { "kraidETank", 0x08 },
+	    { "crocomireETank", 0x10 },
+	    { "hiJumpETank", 0x01 },
+	    { "ridleyETank", 0x40 },
+	    { "firefleaETank", 0x01 },
+	    { "wreckedShipETank", 0x10 },
+	    { "tatoriETank", 0x04 },
+	    { "botwoonETank", 0x01 },
+	};
+
 	vars.motherBrainMaxHPEnum = new Dictionary<string, int>{
 		{ "phase1", 0xBB8 },	// 3000
 		{ "phase2", 0x4650 },	// 18000
@@ -458,6 +522,21 @@ init
 		new MemoryWatcher<byte>(memoryOffset + 0xD82C) { Name = "maridiaBosses" },
 		new MemoryWatcher<byte>(memoryOffset + 0xD82D) { Name = "tourianBosses" },
 		new MemoryWatcher<byte>(memoryOffset + 0xD82E) { Name = "ceresBosses" },
+		new MemoryWatcher<byte>(memoryOffset + 0xD870) { Name = "crateriaItems" },
+		new MemoryWatcher<byte>(memoryOffset + 0xD871) { Name = "brinteriaItems" },
+		new MemoryWatcher<byte>(memoryOffset + 0xD872) { Name = "brinstarItems2" },
+		new MemoryWatcher<byte>(memoryOffset + 0xD873) { Name = "brinstarItems3" },
+		new MemoryWatcher<byte>(memoryOffset + 0xD874) { Name = "brinstarItems4" },
+		new MemoryWatcher<byte>(memoryOffset + 0xD875) { Name = "brinstarItems5" },
+		new MemoryWatcher<byte>(memoryOffset + 0xD876) { Name = "norfairItems1" },
+		new MemoryWatcher<byte>(memoryOffset + 0xD877) { Name = "norfairItems2" },
+		new MemoryWatcher<byte>(memoryOffset + 0xD878) { Name = "norfairItems3" },
+		new MemoryWatcher<byte>(memoryOffset + 0xD879) { Name = "norfairItems4" },
+		new MemoryWatcher<byte>(memoryOffset + 0xD87A) { Name = "norfairItems5" },
+		new MemoryWatcher<byte>(memoryOffset + 0xD880) { Name = "wreckedShipItems" },
+		new MemoryWatcher<byte>(memoryOffset + 0xD881) { Name = "maridiaItems1" },
+		new MemoryWatcher<byte>(memoryOffset + 0xD882) { Name = "maridiaItems2" },
+		new MemoryWatcher<byte>(memoryOffset + 0xD883) { Name = "maridiaItems3" },
 	};
 }
 
@@ -521,7 +600,13 @@ split
 	var firstETank = settings["firstETank"] && vars.watchers["maxEnergy"].Old == 99 && vars.watchers["maxEnergy"].Current == 199;
 	var allETanks = settings["allETanks"] && (vars.watchers["maxEnergy"].Old + 100) == (vars.watchers["maxEnergy"].Current);
 	var reserveTanks = settings["reserveTanks"] && (vars.watchers["maxReserve"].Old + 100) == (vars.watchers["maxReserve"].Current);
-	var energyUpgrade = firstETank || allETanks || reserveTanks;
+	var specificTank = false;
+	foreach (string etank in vars.etankMasks.Keys) {
+			specificTank |= settings[etank]
+					&& ((vars.watchers[vars.etankWatchKeys[etank]].Current & vars.etankMasks[etank]) != 0)
+					&& ((vars.watchers[vars.etankWatchKeys[etank]].Old & vars.etankMasks[etank]) == 0);
+	}
+	var energyUpgrade = firstETank || allETanks || reserveTanks || specificTank;
 	
 	// Miniboss room transitions
 	var miniBossRooms = false;

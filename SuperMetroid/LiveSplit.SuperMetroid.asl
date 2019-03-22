@@ -95,14 +95,36 @@ startup
 	settings.SetToolTip("ceresEscape", "Split on leaving Ceres Station");
 	settings.Add("wreckedShipEntrance", false, "Wrecked Ship Entrance", "areaTransitions");
 	settings.SetToolTip("wreckedShipEntrance", "Split on entering the Wrecked Ship Entrance from the lower door of West Ocean");
+	settings.Add("redTowerBottomEntrance", false, "Red Tower Bottom Entrance", "areaTransitions");
+	settings.SetToolTip("redTowerBottomEntrance", "Split on entering Red Tower from Skree Boost room");
+	settings.Add("kraidsLair", false, "Kraid's Lair", "areaTransitions");
+	settings.SetToolTip("kraidsLair", "Split on entering Kraid's Lair");
+	settings.Add("atticExit", false, "Attic Exit", "areaTransitions");
+	settings.SetToolTip("atticExit", "Split on exiting Attic");
+	settings.Add("tubeBroken", false, "Tube Broken", "areaTransitions");
+	settings.SetToolTip("tubeBroken", "Split on blowing up the tube to enter Maridia");
+	settings.Add("cacExit", false, "Cacatack Alley Exit", "areaTransitions");
+	settings.SetToolTip("cacExit", "Split on exiting West Cacattack Alley");
+	settings.Add("kronicBoost", false, "Kronic Boost Room", "areaTransitions");
+	settings.SetToolTip("kronicBoost", "Split on entering Kronic Boost room");
 	settings.Add("lowerNorfairEntrance", false, "Lower Norfair Entrance", "areaTransitions");
 	settings.SetToolTip("lowerNorfairEntrance", "Split on the elevator down to Lower Norfair");
+	settings.Add("writg", false, "Worst Room in the Game", "areaTransitions");
+	settings.SetToolTip("writg", "Split on entering Worst Room in the Game");
+	settings.Add("redKiShaft", false, "Red Kihunter Shaft", "areaTransitions");
+	settings.SetToolTip("redKiShaft", "Split on entering Red Kihunter Shaft from either Amphitheatre or Wastelands (NOTE: will split twice)");
+	settings.Add("metalPirates", false, "Metal Pirates Room", "areaTransitions");
+	settings.SetToolTip("metalPirates", "Split on entering Metal Pirates Room");
+	settings.Add("lnSpringMaze", false, "Lower Norfair Springball Maze Room", "areaTransitions");
+	settings.SetToolTip("lnSpringMaze", "Split on entering Lower Norfair Springball Maze Room");
 	settings.Add("lowerNorfairExit", false, "Lower Norfair Exit", "areaTransitions");
 	settings.SetToolTip("lowerNorfairExit", "Split on moving from the Three Musketeers' Room to the Single Chamber");
 	settings.Add("goldenFour", true, "Golden Four", "areaTransitions");
 	settings.SetToolTip("goldenFour", "Split on entering the Statues Room with all four major bosses defeated");
 	settings.Add("tourianEntrance", false, "Tourian Entrance", "areaTransitions");
 	settings.SetToolTip("tourianEntrance", "Split on the elevator down to Tourian");
+	settings.Add("metroids", true, "Tourian Metroid Rooms", "areaTransitions");
+	settings.SetToolTip("metroids", "Split on exiting each of the Metroid rooms in Tourian");
 	settings.Add("babyMetroidRoom", false, "Baby Metroid Room", "areaTransitions");
 	settings.SetToolTip("babyMetroidRoom", "Split on moving from the Dust Torizo Room to the Big Boy Room");
 	settings.Add("escapeClimb", false, "Tourian Exit", "areaTransitions");
@@ -152,14 +174,39 @@ startup
 	// RoomIDs compiled here:
 	// https://wiki.supermetroid.run/List_of_RoomIDs
 	vars.roomIDEnum = new Dictionary<string, int> {
-		{ "landingSite",		0x91F8 },
-		{ "westOcean",			0x93FE },
+		{ "landingSite",			0x91F8 },
+		{ "attic",					0xCA52 },
+		{ "metroidOne",				0xDAE1 },
+		{ "metroidTwo",				0xDB31 },
+		{ "metroidThree",			0xDB7D },
+		{ "metroidFour",			0xDBCD },
+		{ "tourianHopper",			0xDC19 },
+		{ "tourianGadora",			0xDDC4 },
+		{ "lnSpringMaze",			0xB510 },
+		{ "lnFireflea",				0xB6EE },
+		{ "redKiShaft",				0xB585 },
+		{ "amphitheatre",			0xB4E5 },
+		{ "wasteland",				0xB5D5 },
+		{ "pillarsRoom",			0xB457 },
+		{ "writg",					0xB4AD },
+		{ "metalPirates",			0xB62B },
+		{ "volcanoRoom",			0xAE32 },
+		{ "kronicBoost",			0xAE74 },
+		{ "magloditeTunnel",		0xAEB4 },
+		{ "spikyAcidSnakes",		0xAFFB },
+		{ "wCacAlley",				0xD9FE },
+		{ "butterflyRoom",			0xD5EC },
+		{ "whseEntrance",			0xA6A1 },
+		{ "whseZeela",				0xA471 },
+		{ "redTower",				0xA253 },
+		{ "redBrinSkree",			0xA3DD },
+		{ "westOcean",				0x93FE },
 		{ "elevatorToMaridia",		0x94CC },
 		{ "elevatorToCaterpillar",	0x962A },
-		{ "climb",			0x96BA },
+		{ "climb",					0x96BA },
 		{ "elevatorToMorphBall",	0x97B5 },
-		{ "bombTorizo",			0x9804 },
-		{ "elevatorToGreenBrinstar",	0x9938 },
+		{ "bombTorizo",				0x9804 },
+		{ "elevatorToGreenBrinstar",0x9938 },
 		{ "greenBrinstarMainShaft",	0x9AD9 },
 		{ "sporeSpawnSuper",		0x9B5B },
 		{ "sporeSpawnKeyhunter",	0x9D9C },
@@ -172,34 +219,34 @@ startup
 		{ "statues",			0xA66A },
 		{ "tourianElevator",			0xDAAE },
 		{ "warehouseEntrance",		0xA6A1 },
-		{ "businessCenter",		0xA7DE },
+		{ "businessCenter",			0xA7DE },
 		{ "crocomireSpeedway",		0xA923 },
-		{ "crocomire",			0xA98D },
-		{ "singleChamber", 		0xAD5E }, // Exit room from Lower Norfair, also on the path to Wave
+		{ "crocomire",				0xA98D },
+		{ "singleChamber", 			0xAD5E }, // Exit room from Lower Norfair, also on the path to Wave
 		{ "lowerNorfairElevator", 	0xAF3F },
-		{ "acidStatue",			0xB1E5 },
-		{ "mainHall", 			0xB236 }, // First room in Lower Norfair
-		{ "goldenTorizo",		0xB283 },
-		{ "ridley",			0xB32E },
+		{ "acidStatue",				0xB1E5 },
+		{ "mainHall", 				0xB236 }, // First room in Lower Norfair
+		{ "goldenTorizo",			0xB283 },
+		{ "ridley",					0xB32E },
 		{ "lowerNorfairFarming",	0xB37A },
 		{ "threeMusketeers", 		0xB656 },
-		{ "screwAttack",		0xB6C1 },
+		{ "screwAttack",			0xB6C1 },
 		{ "wreckedShipEntrance",	0xCA08 },
-		{ "basement",			0xCC6F }, // Basement of Wrecked Ship
-		{ "phantoon",			0xCD13 },
+		{ "basement",				0xCC6F }, // Basement of Wrecked Ship
+		{ "phantoon",				0xCD13 },
 		{ "maridiaElevator",		0xD30B },
-		{ "botwoonHallway",		0xD617 },
-		{ "precious",			0xD78F },
-		{ "botwoon",			0xD95E },
-		{ "draygon",			0xDA60 },
-		{ "dustTorizo",			0xDC65 },
-		{ "bigBoy",			0xDCB1 },
-		{ "motherBrain",		0xDD58 },
-		{ "rinkaShaft",			0xDDF3 },
-		{ "tourianEscape4",		0xDEDE },
-		{ "ceresElevator",		0xDF45 },
-		{ "flatRoom",			0xE06B }, // Placeholder name for the flat room in Ceres Station
-		{ "ceresRidley",		0xE0B5 }
+		{ "botwoonHallway",			0xD617 },
+		{ "precious",				0xD78F },
+		{ "botwoon",				0xD95E },
+		{ "draygon",				0xDA60 },
+		{ "dustTorizo",				0xDC65 },
+		{ "bigBoy",					0xDCB1 },
+		{ "motherBrain",			0xDD58 },
+		{ "rinkaShaft",				0xDDF3 },
+		{ "tourianEscape4",			0xDEDE },
+		{ "ceresElevator",			0xDF45 },
+		{ "flatRoom",				0xE06B }, // Placeholder name for the flat room in Ceres Station
+		{ "ceresRidley",			0xE0B5 }
 	};
 
 	vars.mapInUseEnum = new Dictionary<string, int>{
@@ -250,7 +297,8 @@ startup
 	};
 
 	vars.eventFlagEnum = new Dictionary<string, int>{
-		{ "zebesAblaze", 0x40 }
+		{ "zebesAblaze", 0x40 },
+		{ "tubeBroken", 0x8 }
 	};
 
 	vars.bossFlagEnum = new Dictionary<string, int>{
@@ -512,14 +560,25 @@ split
 	// Room transitions
 	var ceresEscape = settings["ceresEscape"] && vars.watchers["roomID"].Current == vars.roomIDEnum["ceresElevator"] && vars.watchers["gameState"].Old == vars.gameStateEnum["normalGameplay"] && vars.watchers["gameState"].Current == vars.gameStateEnum["startOfCeresCutscene"];
 	var wreckedShipEntrance = settings["wreckedShipEntrance"] && vars.watchers["roomID"].Old == vars.roomIDEnum["westOcean"] && vars.watchers["roomID"].Current == vars.roomIDEnum["wreckedShipEntrance"];
+	var redTowerBottomEntrance = settings["redTowerBottomEntrance"] && vars.watchers["roomID"].Old == vars.roomIDEnum["redBrinSkree"] && vars.watchers["roomID"].Current == vars.roomIDEnum["redTower"];
+	var kraidsLair = settings["kraidsLair"] && vars.watchers["roomID"].Old == vars.roomIDEnum["whseEntrance"] && vars.watchers["roomID"].Current == vars.roomIDEnum["whseZeela"];
+	var atticExit = settings["atticExit"] && vars.watchers["roomID"].Old == vars.roomIDEnum["attic"] && vars.watchers["roomID"].Current == vars.roomIDEnum["westOcean"];
+	var tubeBroken = settings["tubeBroken"] && (vars.watchers["eventFlags"].Old & vars.eventFlagEnum["tubeBroken"]) == 0 && (vars.watchers["eventFlags"].Current & vars.eventFlagEnum["tubeBroken"]) > 0;
+	var cacExit = settings["cacExit"] && vars.watchers["roomID"].Old == vars.roomIDEnum["wCacAlley"] && vars.watchers["roomID"].Current == vars.roomIDEnum["butterflyRoom"];
+	var kronicBoost = settings["kronicBoost"] && vars.watchers["roomID"].Old == vars.roomIDEnum["magloditeTunnel"] && vars.watchers["roomID"].Current == vars.roomIDEnum["kronicBoost"] || vars.watchers["roomID"].Old == vars.roomIDEnum["spikyAcidSnakes"] && vars.watchers["roomID"].Current == vars.roomIDEnum["kronicBoost"] || vars.watchers["roomID"].Old == vars.roomIDEnum["volcanoRoom"] && vars.watchers["roomID"].Current == vars.roomIDEnum["kronicBoost"];
 	var lowerNorfairEntrance = settings["lowerNorfairEntrance"] && vars.watchers["roomID"].Old == vars.roomIDEnum["lowerNorfairElevator"] && vars.watchers["roomID"].Current == vars.roomIDEnum["mainHall"];
+	var writg = settings["writg"] && vars.watchers["roomID"].Old == vars.roomIDEnum["pillarsRoom"] && vars.watchers["roomID"].Current == vars.roomIDEnum["writg"];
+	var redKiShaft = settings["redKiShaft"] && vars.watchers["roomID"].Old == vars.roomIDEnum["amphitheatre"] && vars.watchers["roomID"].Current == vars.roomIDEnum["redKiShaft"] || vars.watchers["roomID"].Old == vars.roomIDEnum["wasteland"] && vars.watchers["roomID"].Current == vars.roomIDEnum["redKiShaft"];
+	var metalPirates = settings["metalPirates"] && vars.watchers["roomID"].Old == vars.roomIDEnum["wasteland"] && vars.watchers["roomID"].Current == vars.roomIDEnum["metalPirates"];
+	var lnSpringMaze = settings["lnSpringMaze"] && vars.watchers["roomID"].Old == vars.roomIDEnum["lnFireflea"] && vars.watchers["roomID"].Current == vars.roomIDEnum["lnSpringMaze"];
 	var lowerNorfairExit = settings["lowerNorfairExit"] && vars.watchers["roomID"].Old == vars.roomIDEnum["threeMusketeers"] && vars.watchers["roomID"].Current == vars.roomIDEnum["singleChamber"];
 	var allBossesFinished = (vars.watchers["brinstarBosses"].Current & vars.bossFlagEnum["kraid"]) > 0 && (vars.watchers["wreckedShipBosses"].Current & vars.bossFlagEnum["phantoon"]) > 0 && (vars.watchers["maridiaBosses"].Current & vars.bossFlagEnum["draygon"]) > 0 && (vars.watchers["norfairBosses"].Current & vars.bossFlagEnum["ridley"]) > 0;
 	var goldenFour = settings["goldenFour"] && vars.watchers["roomID"].Old == vars.roomIDEnum["statuesHallway"] && vars.watchers["roomID"].Current == vars.roomIDEnum["statues"] && allBossesFinished;
 	var tourianEntrance = settings["tourianEntrance"] && vars.watchers["roomID"].Old == vars.roomIDEnum["statues"] && vars.watchers["roomID"].Current == vars.roomIDEnum["tourianElevator"];
+	var metroids = settings["metroids"] && vars.watchers["roomID"].Old == vars.roomIDEnum["metroidOne"] && vars.watchers["roomID"].Current == vars.roomIDEnum["metroidTwo"] || vars.watchers["roomID"].Old == vars.roomIDEnum["metroidTwo"] && vars.watchers["roomID"].Current == vars.roomIDEnum["metroidThree"] || vars.watchers["roomID"].Old == vars.roomIDEnum["metroidThree"] && vars.watchers["roomID"].Current == vars.roomIDEnum["metroidFour"] || vars.watchers["roomID"].Old == vars.roomIDEnum["metroidFour"] && vars.watchers["roomID"].Current == vars.roomIDEnum["tourianHopper"];
 	var babyMetroidRoom = settings["babyMetroidRoom"] && vars.watchers["roomID"].Old == vars.roomIDEnum["dustTorizo"] && vars.watchers["roomID"].Current == vars.roomIDEnum["bigBoy"];
 	var escapeClimb = settings["escapeClimb"] && vars.watchers["roomID"].Old == vars.roomIDEnum["tourianEscape4"] && vars.watchers["roomID"].Current == vars.roomIDEnum["climb"];
-	var roomTransitions = miniBossRooms || bossRooms || elevatorTransitions || ceresEscape || wreckedShipEntrance || lowerNorfairEntrance || lowerNorfairExit || goldenFour || tourianEntrance || babyMetroidRoom || escapeClimb;
+	var roomTransitions = miniBossRooms || bossRooms || elevatorTransitions || ceresEscape || wreckedShipEntrance|| redTowerBottomEntrance || kraidsLair || atticExit || tubeBroken || cacExit || kronicBoost || lowerNorfairEntrance || writg || redKiShaft || metalPirates || lnSpringMaze || lowerNorfairExit || tourianEntrance || goldenFour || metroids || babyMetroidRoom || escapeClimb;
 
 	// Minibosses
 	var ceresRidley = settings["ceresRidley"] && (vars.watchers["ceresBosses"].Old & vars.bossFlagEnum["ceresRidley"]) == 0 && (vars.watchers["ceresBosses"].Current & vars.bossFlagEnum["ceresRidley"]) > 0 && vars.watchers["roomID"].Current == vars.roomIDEnum["ceresRidley"];

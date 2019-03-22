@@ -123,7 +123,7 @@ startup
 	settings.SetToolTip("goldenFour", "Split on entering the Statues Room with all four major bosses defeated");
 	settings.Add("tourianEntrance", false, "Tourian Entrance", "areaTransitions");
 	settings.SetToolTip("tourianEntrance", "Split on the elevator down to Tourian");
-	settings.Add("metroids", true, "Tourian Metroid Rooms", "areaTransitions");
+	settings.Add("metroids", false, "Tourian Metroid Rooms", "areaTransitions");
 	settings.SetToolTip("metroids", "Split on exiting each of the Metroid rooms in Tourian");
 	settings.Add("babyMetroidRoom", false, "Baby Metroid Room", "areaTransitions");
 	settings.SetToolTip("babyMetroidRoom", "Split on moving from the Dust Torizo Room to the Big Boy Room");

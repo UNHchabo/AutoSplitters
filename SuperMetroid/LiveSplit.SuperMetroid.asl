@@ -121,6 +121,8 @@ startup
 	settings.SetToolTip("lowerNorfairExit", "Split on moving from the Three Musketeers' Room to the Single Chamber");
 	settings.Add("goldenFour", true, "Golden Four", "areaTransitions");
 	settings.SetToolTip("goldenFour", "Split on entering the Statues Room with all four major bosses defeated");
+	settings.Add("tourianEntrance", false, "Tourian Entrance", "areaTransitions");
+	settings.SetToolTip("tourianEntrance", "Split on the elevator down to Tourian");
 	settings.Add("metroids", true, "Tourian Metroid Rooms", "areaTransitions");
 	settings.SetToolTip("metroids", "Split on exiting each of the Metroid rooms in Tourian");
 	settings.Add("babyMetroidRoom", false, "Baby Metroid Room", "areaTransitions");
@@ -208,13 +210,14 @@ startup
 		{ "greenBrinstarMainShaft",	0x9AD9 },
 		{ "sporeSpawnSuper",		0x9B5B },
 		{ "sporeSpawnKeyhunter",	0x9D9C },
-		{ "sporeSpawn",				0x9DC7 },
-		{ "morphBall",				0x9E9F },
-		{ "caterpillar",			0xA322 },
-		{ "kraidEyeDoor",			0xA56B },
-		{ "kraid",					0xA59F },
-		{ "statuesHallway",			0xA5ED },
-		{ "statues",				0xA66A },
+		{ "sporeSpawn",			0x9DC7 },
+		{ "morphBall",			0x9E9F },
+		{ "caterpillar",		0xA322 },
+		{ "kraidEyeDoor",		0xA56B },
+		{ "kraid",			0xA59F },
+		{ "statuesHallway",		0xA5ED },
+		{ "statues",			0xA66A },
+		{ "tourianElevator",			0xDAAE },
 		{ "warehouseEntrance",		0xA6A1 },
 		{ "businessCenter",			0xA7DE },
 		{ "crocomireSpeedway",		0xA923 },
@@ -571,10 +574,11 @@ split
 	var lowerNorfairExit = settings["lowerNorfairExit"] && vars.watchers["roomID"].Old == vars.roomIDEnum["threeMusketeers"] && vars.watchers["roomID"].Current == vars.roomIDEnum["singleChamber"];
 	var allBossesFinished = (vars.watchers["brinstarBosses"].Current & vars.bossFlagEnum["kraid"]) > 0 && (vars.watchers["wreckedShipBosses"].Current & vars.bossFlagEnum["phantoon"]) > 0 && (vars.watchers["maridiaBosses"].Current & vars.bossFlagEnum["draygon"]) > 0 && (vars.watchers["norfairBosses"].Current & vars.bossFlagEnum["ridley"]) > 0;
 	var goldenFour = settings["goldenFour"] && vars.watchers["roomID"].Old == vars.roomIDEnum["statuesHallway"] && vars.watchers["roomID"].Current == vars.roomIDEnum["statues"] && allBossesFinished;
+	var tourianEntrance = settings["tourianEntrance"] && vars.watchers["roomID"].Old == vars.roomIDEnum["statues"] && vars.watchers["roomID"].Current == vars.roomIDEnum["tourianElevator"];
 	var metroids = settings["metroids"] && vars.watchers["roomID"].Old == vars.roomIDEnum["metroidOne"] && vars.watchers["roomID"].Current == vars.roomIDEnum["metroidTwo"] || vars.watchers["roomID"].Old == vars.roomIDEnum["metroidTwo"] && vars.watchers["roomID"].Current == vars.roomIDEnum["metroidThree"] || vars.watchers["roomID"].Old == vars.roomIDEnum["metroidThree"] && vars.watchers["roomID"].Current == vars.roomIDEnum["metroidFour"] || vars.watchers["roomID"].Old == vars.roomIDEnum["metroidFour"] && vars.watchers["roomID"].Current == vars.roomIDEnum["tourianHopper"];
 	var babyMetroidRoom = settings["babyMetroidRoom"] && vars.watchers["roomID"].Old == vars.roomIDEnum["dustTorizo"] && vars.watchers["roomID"].Current == vars.roomIDEnum["bigBoy"];
 	var escapeClimb = settings["escapeClimb"] && vars.watchers["roomID"].Old == vars.roomIDEnum["tourianEscape4"] && vars.watchers["roomID"].Current == vars.roomIDEnum["climb"];
-	var roomTransitions = miniBossRooms || bossRooms || elevatorTransitions || ceresEscape || wreckedShipEntrance|| redTowerBottomEntrance || kraidsLair || atticExit || tubeBroken || cacExit || kronicBoost || lowerNorfairEntrance || writg || redKiShaft || metalPirates || lnSpringMaze || lowerNorfairExit || goldenFour || metroids || babyMetroidRoom || escapeClimb;
+	var roomTransitions = miniBossRooms || bossRooms || elevatorTransitions || ceresEscape || wreckedShipEntrance|| redTowerBottomEntrance || kraidsLair || atticExit || tubeBroken || cacExit || kronicBoost || lowerNorfairEntrance || writg || redKiShaft || metalPirates || lnSpringMaze || lowerNorfairExit || tourianEntrance || goldenFour || metroids || babyMetroidRoom || escapeClimb;
 
 	// Minibosses
 	var ceresRidley = settings["ceresRidley"] && (vars.watchers["ceresBosses"].Old & vars.bossFlagEnum["ceresRidley"]) == 0 && (vars.watchers["ceresBosses"].Current & vars.bossFlagEnum["ceresRidley"]) > 0 && vars.watchers["roomID"].Current == vars.roomIDEnum["ceresRidley"];

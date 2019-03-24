@@ -21,6 +21,16 @@ startup
 	settings.SetToolTip("firstMissile", "Split on the first Missile pickup");
 	settings.Add("allMissiles", false, "All Missiles", "ammoPickups");
 	settings.SetToolTip("allMissiles", "Split on each Missile upgrade");
+	settings.Add("specificMissiles", false, "Specific Missile Packs", "ammoPickups");
+	settings.SetToolTip("ammoPickups", "Split on specific Missile Pack locations");
+	settings.Add("alphaMissiles", false, "Alpha Missile Pack", "specificMissiles");
+	settings.SetToolTip("alphaMissiles", "Split on picking up the Alpha Missile Pack");
+	settings.Add("chargeMissiles", false, "Charge Missile Pack", "specificMissiles");
+	settings.SetToolTip("chargeMissiles", "Split on picking up the Charge Missile Pack");
+	settings.Add("hjMissiles", false, "High-Jump Missile Pack", "specificMissiles");
+	settings.SetToolTip("hjMissiles", "Split on picking up the High-Jump Missile Pack");
+	settings.Add("waveMissiles", false, "Wave Missile Pack", "specificMissiles");
+	settings.SetToolTip("waveMissiles", "Split on picking up the Wave Missile Pack");
 	settings.Add("firstSuper", false, "First Supers", "ammoPickups");
 	settings.SetToolTip("firstSuper", "Split on the first Super Missile pickup");
 	settings.Add("allSupers", false, "All Super Missiles", "ammoPickups");
@@ -320,6 +330,20 @@ startup
 		{ "chargeBeam",		0x10}
 	};
 
+	vars.missileWatchKeys = new Dictionary<string, string> {
+		{ "alphaMissiles", "brinstarItems4" },
+		{ "chargeMissiles", "brinstarItems2" },
+		{ "hjMissiles", "norfairItems1" },
+		{ "waveMissiles", "norfairItems3" },
+	};
+
+	vars.missileMasks = new Dictionary<string, int> {
+		{ "alphaMissiles", 0x04 },
+		{ "chargeMissiles", 0x40 },
+		{ "hjMissiles", 0x80 },
+		{ "waveMissiles", 0x08 },
+	};
+
 	vars.etankWatchKeys = new Dictionary<string, string> {
 	    { "gauntletETank", "crateriaItems" },
 	    { "terminatorETank", "brinteriaItems" },
@@ -568,11 +592,17 @@ split
 	// Ammo pickup section
 	var firstMissile = settings["firstMissile"] && vars.watchers["maxMissiles"].Old == 0 && vars.watchers["maxMissiles"].Current == 5;
 	var allMissiles = settings["allMissiles"] && (vars.watchers["maxMissiles"].Old + 5) == (vars.watchers["maxMissiles"].Current);
+	var specificMissile = false;
+	foreach (string missile in vars.missileMasks.Keys) {
+			specificMissile |= settings[missile]
+					&& ((vars.watchers[vars.missileWatchKeys[missile]].Current & vars.missileMasks[missile]) != 0)
+					&& ((vars.watchers[vars.missileWatchKeys[missile]].Old & vars.missileMasks[missile]) == 0);
+	}
 	var firstSuper = settings["firstSuper"] && vars.watchers["maxSupers"].Old == 0 && vars.watchers["maxSupers"].Current == 5;
 	var allSupers = settings["allSupers"] && (vars.watchers["maxSupers"].Old + 5) == (vars.watchers["maxSupers"].Current);
 	var firstPowerBomb = settings["firstPowerBomb"] && vars.watchers["maxPowerBombs"].Old == 0 && vars.watchers["maxPowerBombs"].Current == 5;
 	var allPowerBombs = settings["allPowerBombs"] && (vars.watchers["maxPowerBombs"].Old + 5) == (vars.watchers["maxPowerBombs"].Current);
-	var pickup = firstMissile || allMissiles || firstSuper || allSupers || firstPowerBomb || allPowerBombs;
+	var pickup = firstMissile || allMissiles || specificMissile || firstSuper || allSupers || firstPowerBomb || allPowerBombs;
 
 	// Item unlock section
 	var varia = settings["variaSuit"] && (vars.watchers["unlockedEquips2"].Old & vars.unlockFlagEnum["variaSuit"]) == 0 && (vars.watchers["unlockedEquips2"].Current & vars.unlockFlagEnum["variaSuit"]) > 0;

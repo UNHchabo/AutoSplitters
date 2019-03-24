@@ -31,6 +31,12 @@ startup
 	settings.SetToolTip("hjMissiles", "Split on picking up the High-Jump Missile Pack");
 	settings.Add("waveMissiles", false, "Wave Missile Pack", "specificMissiles");
 	settings.SetToolTip("waveMissiles", "Split on picking up the Wave Missile Pack");
+	settings.Add("whseMissiles", false, "Warehouse Missile Pack", "specificMissiles");
+	settings.SetToolTip("whseMissiles", "Split on picking up the Warehouse Missile Pack");
+	settings.Add("mainStreetMissiles", false, "Main Street Missile Pack", "specificMissiles");
+	settings.SetToolTip("mainStreetMissiles", "Split on picking up the Main Street Missile Pack");
+	settings.Add("wsMainShaftMissiles", false, "Wrecked Ship Main Shaft Missile Pack", "specificMissiles");
+	settings.SetToolTip("wsMainShaftMissiles", "Split on picking up the Wrecked Ship Main Shaft Missile Pack");
 	settings.Add("firstSuper", false, "First Supers", "ammoPickups");
 	settings.SetToolTip("firstSuper", "Split on the first Super Missile pickup");
 	settings.Add("allSupers", false, "All Super Missiles", "ammoPickups");
@@ -335,6 +341,9 @@ startup
 		{ "chargeMissiles", "brinstarItems2" },
 		{ "hjMissiles", "norfairItems1" },
 		{ "waveMissiles", "norfairItems3" },
+		{ "whseMissiles", "brinstarItems5" },
+		{ "mainStreetMissiles", "maridiaItems1" },
+		{ "wsMainShaftMissiles", "wreckedShipItems" },
 	};
 
 	vars.missileMasks = new Dictionary<string, int> {
@@ -342,6 +351,9 @@ startup
 		{ "chargeMissiles", 0x40 },
 		{ "hjMissiles", 0x80 },
 		{ "waveMissiles", 0x08 },
+		{ "whseMissiles", 0x10 },
+		{ "mainStreetMissiles", 0x01 },
+		{ "wsMainShaftMissiles", 0x01 },
 	};
 
 	vars.etankWatchKeys = new Dictionary<string, string> {

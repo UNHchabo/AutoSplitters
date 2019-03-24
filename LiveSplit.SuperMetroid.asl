@@ -41,6 +41,18 @@ startup
 	settings.SetToolTip("firstSuper", "Split on the first Super Missile pickup");
 	settings.Add("allSupers", false, "All Super Missiles", "ammoPickups");
 	settings.SetToolTip("allSupers", "Split on each Super Missile upgrade");
+	settings.Add("specificSupers", false, "Specific Super Missile Packs", "ammoPickups");
+	settings.SetToolTip("ammoPickups", "Split on specific Super Missile Pack locations");
+	settings.Add("earlySupers", false, "Early Supers Missile Pack", "specificSupers");
+	settings.SetToolTip("earlySupers", "Split on picking up the Early Supers Missile Pack");
+	settings.Add("phantoonSupers", false, "Phantoon Super Missile Pack", "specificSupers");
+	settings.SetToolTip("phantoonSupers", "Split on picking up the Phantoon Super Missile Pack");
+	settings.Add("crabSupers", false, "Crab Super Missile Pack", "specificSupers");
+	settings.SetToolTip("crabSupers", "Split on picking up the Crab Super Missile Pack");
+	settings.Add("aqueductSupers", false, "Aqueduct Super Missile Pack", "specificSupers");
+	settings.SetToolTip("aqueductSupers", "Split on picking up the Aqueduct Super Missile Pack");
+	settings.Add("spoSpoSupers", false, "Spore Spawn Super Missile Pack", "specificSupers");
+	settings.SetToolTip("spoSpoSupers", "Split on picking up the Spore Spawn Super Missile Pack (NOTE: SSTRA splits when the dialogue box disappears, not on touch. Use Spore Spawn RTA Finish for SSTRA runs.)");
 	settings.Add("firstPowerBomb", true, "First Power Bomb", "ammoPickups");
 	settings.SetToolTip("firstPowerBomb", "Split on the first Power Bomb pickup");
 	settings.Add("allPowerBombs", false, "All Power Bombs", "ammoPickups");
@@ -356,6 +368,22 @@ startup
 		{ "wsMainShaftMissiles", 0x01 },
 	};
 
+	vars.superWatchKeys = new Dictionary<string, string> {
+		{ "earlySupers", "brinstarItems2" },
+		{ "phantoonSupers", "wreckedShipItems" },
+		{ "crabSupers", "maridiaItems1" },
+		{ "aqueductSupers", "maridiaItems2" },
+		{ "spoSpoSupers", "brinteriaItems" },
+	};
+
+	vars.superMasks = new Dictionary<string, int> {
+		{ "earlySupers", 0x01 },
+		{ "phantoonSupers", 0x20 },
+		{ "crabSupers", 0x02 },
+		{ "aqueductSupers", 0x20 },
+		{ "spoSpoSupers", 0x40 },
+	};	
+
 	vars.etankWatchKeys = new Dictionary<string, string> {
 	    { "gauntletETank", "crateriaItems" },
 	    { "terminatorETank", "brinteriaItems" },
@@ -612,9 +640,15 @@ split
 	}
 	var firstSuper = settings["firstSuper"] && vars.watchers["maxSupers"].Old == 0 && vars.watchers["maxSupers"].Current == 5;
 	var allSupers = settings["allSupers"] && (vars.watchers["maxSupers"].Old + 5) == (vars.watchers["maxSupers"].Current);
+	var specificSuper = false;
+	foreach (string super in vars.superMasks.Keys) {
+			specificSuper |= settings[super]
+					&& ((vars.watchers[vars.superWatchKeys[super]].Current & vars.superMasks[super]) != 0)
+					&& ((vars.watchers[vars.superWatchKeys[super]].Old & vars.superMasks[super]) == 0);
+	}
 	var firstPowerBomb = settings["firstPowerBomb"] && vars.watchers["maxPowerBombs"].Old == 0 && vars.watchers["maxPowerBombs"].Current == 5;
 	var allPowerBombs = settings["allPowerBombs"] && (vars.watchers["maxPowerBombs"].Old + 5) == (vars.watchers["maxPowerBombs"].Current);
-	var pickup = firstMissile || allMissiles || specificMissile || firstSuper || allSupers || firstPowerBomb || allPowerBombs;
+	var pickup = firstMissile || allMissiles || specificMissile || firstSuper || allSupers || specificSuper || firstPowerBomb || allPowerBombs;
 
 	// Item unlock section
 	var varia = settings["variaSuit"] && (vars.watchers["unlockedEquips2"].Old & vars.unlockFlagEnum["variaSuit"]) == 0 && (vars.watchers["unlockedEquips2"].Current & vars.unlockFlagEnum["variaSuit"]) > 0;

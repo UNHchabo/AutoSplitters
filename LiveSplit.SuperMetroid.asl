@@ -27,16 +27,16 @@ startup
 	settings.SetToolTip("alphaMissiles", "Split on picking up the Alpha Missile Pack");
 	settings.Add("chargeMissiles", false, "Charge Missile Pack", "specificMissiles");
 	settings.SetToolTip("chargeMissiles", "Split on picking up the Charge Missile Pack");
-	settings.Add("hjMissiles", false, "High-Jump Missile Pack", "specificMissiles");
-	settings.SetToolTip("hjMissiles", "Split on picking up the High-Jump Missile Pack");
+	settings.Add("warehouseMissiles", false, "Warehouse Missile Pack", "specificMissiles");
+	settings.SetToolTip("warehouseMissiles", "Split on picking up the Warehouse Missile Pack");
+	settings.Add("hiJumpMissiles", false, "Hi-Jump Missile Pack", "specificMissiles");
+	settings.SetToolTip("hiJumpMissiles", "Split on picking up the Hi-Jump Missile Pack");
 	settings.Add("waveMissiles", false, "Wave Missile Pack", "specificMissiles");
 	settings.SetToolTip("waveMissiles", "Split on picking up the Wave Missile Pack");
-	settings.Add("whseMissiles", false, "Warehouse Missile Pack", "specificMissiles");
-	settings.SetToolTip("whseMissiles", "Split on picking up the Warehouse Missile Pack");
+	settings.Add("wreckedShipMainShaftMissiles", false, "Wrecked Ship Main Shaft Missile Pack", "specificMissiles");
+	settings.SetToolTip("wreckedShipMainShaftMissiles", "Split on picking up the Wrecked Ship Main Shaft Missile Pack");
 	settings.Add("mainStreetMissiles", false, "Main Street Missile Pack", "specificMissiles");
 	settings.SetToolTip("mainStreetMissiles", "Split on picking up the Main Street Missile Pack");
-	settings.Add("wsMainShaftMissiles", false, "Wrecked Ship Main Shaft Missile Pack", "specificMissiles");
-	settings.SetToolTip("wsMainShaftMissiles", "Split on picking up the Wrecked Ship Main Shaft Missile Pack");
 	settings.Add("firstSuper", false, "First Supers", "ammoPickups");
 	settings.SetToolTip("firstSuper", "Split on the first Super Missile pickup");
 	settings.Add("allSupers", false, "All Super Missiles", "ammoPickups");
@@ -45,14 +45,14 @@ startup
 	settings.SetToolTip("ammoPickups", "Split on specific Super Missile Pack locations");
 	settings.Add("earlySupers", false, "Early Supers Missile Pack", "specificSupers");
 	settings.SetToolTip("earlySupers", "Split on picking up the Early Supers Missile Pack");
-	settings.Add("phantoonSupers", false, "Phantoon Super Missile Pack", "specificSupers");
-	settings.SetToolTip("phantoonSupers", "Split on picking up the Phantoon Super Missile Pack");
+	settings.Add("sporeSpawnSupers", false, "Spore Spawn Super Missile Pack", "specificSupers");
+	settings.SetToolTip("sporeSpawnSupers", "Split on picking up the Spore Spawn Super Missile Pack (NOTE: SSTRA splits when the dialogue box disappears, not on touch. Use Spore Spawn RTA Finish for SSTRA runs.)");
+	settings.Add("wreckedShipLeftSupers", false, "Phantoon Super Missile Pack", "specificSupers");
+	settings.SetToolTip("wreckedShipLeftSupers", "Split on picking up the Phantoon Super Missile Pack");
 	settings.Add("crabSupers", false, "Crab Super Missile Pack", "specificSupers");
 	settings.SetToolTip("crabSupers", "Split on picking up the Crab Super Missile Pack");
 	settings.Add("aqueductSupers", false, "Aqueduct Super Missile Pack", "specificSupers");
 	settings.SetToolTip("aqueductSupers", "Split on picking up the Aqueduct Super Missile Pack");
-	settings.Add("spoSpoSupers", false, "Spore Spawn Super Missile Pack", "specificSupers");
-	settings.SetToolTip("spoSpoSupers", "Split on picking up the Spore Spawn Super Missile Pack (NOTE: SSTRA splits when the dialogue box disappears, not on touch. Use Spore Spawn RTA Finish for SSTRA runs.)");
 	settings.Add("firstPowerBomb", true, "First Power Bomb", "ammoPickups");
 	settings.SetToolTip("firstPowerBomb", "Split on the first Power Bomb pickup");
 	settings.Add("allPowerBombs", false, "All Power Bombs", "ammoPickups");
@@ -349,39 +349,39 @@ startup
 	};
 
 	vars.missileWatchKeys = new Dictionary<string, string> {
-		{ "alphaMissiles", "brinstarItems4" },
 		{ "chargeMissiles", "brinstarItems2" },
-		{ "hjMissiles", "norfairItems1" },
+		{ "alphaMissiles", "brinstarItems4" },
+		{ "warehouseMissiles", "brinstarItems5" },
+		{ "hiJumpMissiles", "norfairItems1" },
 		{ "waveMissiles", "norfairItems3" },
-		{ "whseMissiles", "brinstarItems5" },
+		{ "wreckedShipMainShaftMissiles", "wreckedShipItems" },
 		{ "mainStreetMissiles", "maridiaItems1" },
-		{ "wsMainShaftMissiles", "wreckedShipItems" },
 	};
 
 	vars.missileMasks = new Dictionary<string, int> {
-		{ "alphaMissiles", 0x04 },
 		{ "chargeMissiles", 0x40 },
-		{ "hjMissiles", 0x80 },
+		{ "alphaMissiles", 0x04 },
+		{ "warehouseMissiles", 0x10 },
+		{ "hiJumpMissiles", 0x80 },
 		{ "waveMissiles", 0x08 },
-		{ "whseMissiles", 0x10 },
+		{ "wreckedShipMainShaftMissiles", 0x01 },
 		{ "mainStreetMissiles", 0x01 },
-		{ "wsMainShaftMissiles", 0x01 },
 	};
 
 	vars.superWatchKeys = new Dictionary<string, string> {
+		{ "sporeSpawnSupers", "brinteriaItems" },
 		{ "earlySupers", "brinstarItems2" },
-		{ "phantoonSupers", "wreckedShipItems" },
+		{ "wreckedShipLeftSupers", "wreckedShipItems" },
 		{ "crabSupers", "maridiaItems1" },
 		{ "aqueductSupers", "maridiaItems2" },
-		{ "spoSpoSupers", "brinteriaItems" },
 	};
 
 	vars.superMasks = new Dictionary<string, int> {
+		{ "sporeSpawnSupers", 0x40 },
 		{ "earlySupers", 0x01 },
-		{ "phantoonSupers", 0x20 },
+		{ "wreckedShipLeftSupers", 0x20 },
 		{ "crabSupers", 0x02 },
 		{ "aqueductSupers", 0x20 },
-		{ "spoSpoSupers", 0x40 },
 	};	
 
 	vars.etankWatchKeys = new Dictionary<string, string> {
@@ -778,6 +778,382 @@ split
 		vars.DebugOutput("Split due to mb2 defeat");
 	}
 	var mb3 = settings["mb3"] && inMotherBrainRoom && (vars.watchers["tourianBosses"].Old & vars.bossFlagEnum["motherBrain"]) == 0 && (vars.watchers["tourianBosses"].Current & vars.bossFlagEnum["motherBrain"]) > 0;
+	if(mb3){
+		vars.DebugOutput("Split due to mb3 defeat");
+	}
+	var bossDefeat = kraid || phantoon || draygon || ridley || mb1 || mb2 || mb3;
+
+	// Run-ending splits
+	var escape = settings["rtaFinish"] && (vars.watchers["eventFlags"].Current & vars.eventFlagEnum["zebesAblaze"]) > 0 && vars.watchers["samusPose"].Old != 0x9B && vars.watchers["samusPose"].Current == 0x9B && vars.watchers["poseDirection"].Old != 0 && vars.watchers["poseDirection"].Current == 0;
+
+	var takeoff = settings["igtFinish"] && vars.watchers["roomID"].Current == vars.roomIDEnum["landingSite"] && vars.watchers["gameState"].Old == vars.gameStateEnum["preEndCutscene"] && vars.watchers["gameState"].Current == vars.gameStateEnum["endCutscene"];
+
+	var sporeSpawnRTAFinish = false;
+	if(settings["sporeSpawnRTAFinish"]){
+		if(vars.pickedUpSporeSpawnSuper){
+			if(vars.watchers["igtFrames"].Old != vars.watchers["igtFrames"].Current){
+				sporeSpawnRTAFinish = true;
+				vars.pickedUpSporeSpawnSuper = false;
+			}
+		}
+		else {
+			vars.pickedUpSporeSpawnSuper = vars.watchers["roomID"].Current == vars.roomIDEnum["sporeSpawnSuper"] && (vars.watchers["maxSupers"].Old + 5) == (vars.watchers["maxSupers"].Current) && (vars.watchers["brinstarBosses"].Current & vars.bossFlagEnum["sporeSpawn"]) > 0;
+		}
+	}
+
+	var hundredMissileRTAFinish = false;
+	if(settings["hundredMissileRTAFinish"]){
+		if(vars.pickedUpHundredthMissile){
+			if(vars.watchers["igtFrames"].Old != vars.watchers["igtFrames"].Current){
+				hundredMissileRTAFinish = true;
+				vars.pickedUpHundredthMissile = false;
+			}
+		}
+		else{
+			vars.pickedUpHundredthMissile = vars.watchers["maxMissiles"].Old == 95 && vars.watchers["maxMissiles"].Current == 100;
+		}
+	}
+
+	var nonStandardCategoryFinish = sporeSpawnRTAFinish || hundredMissileRTAFinish;
+
+	if(pickup){
+		vars.DebugOutput("Split due to pickup");
+	}
+	if(unlock){
+		vars.DebugOutput("Split due to unlock");
+	}
+	if(beam){
+		vars.DebugOutput("Split due to beam upgrade");
+	}
+	if(energyUpgrade){
+		vars.DebugOutput("Split due to energy upgrade");
+	}
+	if(roomTransitions){
+		vars.DebugOutput("Split due to room transition");
+	}
+	if(minibossDefeat){
+		vars.DebugOutput("Split due to miniboss defeat");
+	}
+	// individual boss defeat conditions already covered above
+	if(escape){
+		vars.DebugOutput("Split due to escape");
+	}
+	if(takeoff){
+		vars.DebugOutput("Split due to takeoff");
+	}
+	if(nonStandardCategoryFinish){
+		vars.DebugOutput("Split due to non standard category finish");
+	}
+
+	return pickup || unlock || beam || energyUpgrade || roomTransitions || minibossDefeat || bossDefeat || escape || takeoff || nonStandardCategoryFinish;
+}
+
+gameTime
+{
+	var frames  = vars.watchers["igtFrames"].Current;
+	var seconds = vars.watchers["igtSeconds"].Current;
+	var minutes = vars.watchers["igtMinutes"].Current;
+	var hours   = vars.watchers["igtHours"].Current;
+
+	if(frames == 0 && vars.watchers["igtFrames"].Old == 49){
+		vars.frameRate = 50.0;
+	}
+
+	current.totalTime = (frames / vars.frameRate) + seconds + (60 * minutes) + (60 * 60 * hours);
+	return TimeSpan.FromSeconds(current.totalTime);
+}
+
+isLoading
+{
+	// From the AutoSplit documentation:
+	// "If you want the Game Time to not run in between the synchronization interval and only ever return
+	// the actual Game Time of the game, make sure to implement isLoading with a constant
+	// return value of true."
+	return true;
+}
+
+	if(mb3){
+		vars.DebugOutput("Split due to mb3 defeat");
+	}
+	var bossDefeat = kraid || phantoon || draygon || ridley || mb1 || mb2 || mb3;
+
+	// Run-ending splits
+	var escape = settings["rtaFinish"] && (vars.watchers["eventFlags"].Current & vars.eventFlagEnum["zebesAblaze"]) > 0 && vars.watchers["samusPose"].Old != 0x9B && vars.watchers["samusPose"].Current == 0x9B && vars.watchers["poseDirection"].Old != 0 && vars.watchers["poseDirection"].Current == 0;
+
+	var takeoff = settings["igtFinish"] && vars.watchers["roomID"].Current == vars.roomIDEnum["landingSite"] && vars.watchers["gameState"].Old == vars.gameStateEnum["preEndCutscene"] && vars.watchers["gameState"].Current == vars.gameStateEnum["endCutscene"];
+
+	var sporeSpawnRTAFinish = false;
+	if(settings["sporeSpawnRTAFinish"]){
+		if(vars.pickedUpSporeSpawnSuper){
+			if(vars.watchers["igtFrames"].Old != vars.watchers["igtFrames"].Current){
+				sporeSpawnRTAFinish = true;
+				vars.pickedUpSporeSpawnSuper = false;
+			}
+		}
+		else {
+			vars.pickedUpSporeSpawnSuper = vars.watchers["roomID"].Current == vars.roomIDEnum["sporeSpawnSuper"] && (vars.watchers["maxSupers"].Old + 5) == (vars.watchers["maxSupers"].Current) && (vars.watchers["brinstarBosses"].Current & vars.bossFlagEnum["sporeSpawn"]) > 0;
+		}
+	}
+
+	var hundredMissileRTAFinish = false;
+	if(settings["hundredMissileRTAFinish"]){
+		if(vars.pickedUpHundredthMissile){
+			if(vars.watchers["igtFrames"].Old != vars.watchers["igtFrames"].Current){
+				hundredMissileRTAFinish = true;
+				vars.pickedUpHundredthMissile = false;
+			}
+		}
+		else{
+			vars.pickedUpHundredthMissile = vars.watchers["maxMissiles"].Old == 95 && vars.watchers["maxMissiles"].Current == 100;
+		}
+	}
+
+	var nonStandardCategoryFinish = sporeSpawnRTAFinish || hundredMissileRTAFinish;
+
+	if(pickup){
+		vars.DebugOutput("Split due to pickup");
+	}
+	if(unlock){
+		vars.DebugOutput("Split due to unlock");
+	}
+	if(beam){
+		vars.DebugOutput("Split due to beam upgrade");
+	}
+	if(energyUpgrade){
+		vars.DebugOutput("Split due to energy upgrade");
+	}
+	if(roomTransitions){
+		vars.DebugOutput("Split due to room transition");
+	}
+	if(minibossDefeat){
+		vars.DebugOutput("Split due to miniboss defeat");
+	}
+	// individual boss defeat conditions already covered above
+	if(escape){
+		vars.DebugOutput("Split due to escape");
+	}
+	if(takeoff){
+		vars.DebugOutput("Split due to takeoff");
+	}
+	if(nonStandardCategoryFinish){
+		vars.DebugOutput("Split due to non standard category finish");
+	}
+
+	return pickup || unlock || beam || energyUpgrade || roomTransitions || minibossDefeat || bossDefeat || escape || takeoff || nonStandardCategoryFinish;
+}
+
+gameTime
+{
+	var frames  = vars.watchers["igtFrames"].Current;
+	var seconds = vars.watchers["igtSeconds"].Current;
+	var minutes = vars.watchers["igtMinutes"].Current;
+	var hours   = vars.watchers["igtHours"].Current;
+
+	if(frames == 0 && vars.watchers["igtFrames"].Old == 49){
+		vars.frameRate = 50.0;
+	}
+
+	current.totalTime = (frames / vars.frameRate) + seconds + (60 * minutes) + (60 * 60 * hours);
+	return TimeSpan.FromSeconds(current.totalTime);
+}
+
+isLoading
+{
+	// From the AutoSplit documentation:
+	// "If you want the Game Time to not run in between the synchronization interval and only ever return
+	// the actual Game Time of the game, make sure to implement isLoading with a constant
+	// return value of true."
+	return true;
+}
+
+	if(mb3){
+		vars.DebugOutput("Split due to mb3 defeat");
+	}
+	var bossDefeat = kraid || phantoon || draygon || ridley || mb1 || mb2 || mb3;
+
+	// Run-ending splits
+	var escape = settings["rtaFinish"] && (vars.watchers["eventFlags"].Current & vars.eventFlagEnum["zebesAblaze"]) > 0 && vars.watchers["samusPose"].Old != 0x9B && vars.watchers["samusPose"].Current == 0x9B && vars.watchers["poseDirection"].Old != 0 && vars.watchers["poseDirection"].Current == 0;
+
+	var takeoff = settings["igtFinish"] && vars.watchers["roomID"].Current == vars.roomIDEnum["landingSite"] && vars.watchers["gameState"].Old == vars.gameStateEnum["preEndCutscene"] && vars.watchers["gameState"].Current == vars.gameStateEnum["endCutscene"];
+
+	var sporeSpawnRTAFinish = false;
+	if(settings["sporeSpawnRTAFinish"]){
+		if(vars.pickedUpSporeSpawnSuper){
+			if(vars.watchers["igtFrames"].Old != vars.watchers["igtFrames"].Current){
+				sporeSpawnRTAFinish = true;
+				vars.pickedUpSporeSpawnSuper = false;
+			}
+		}
+		else {
+			vars.pickedUpSporeSpawnSuper = vars.watchers["roomID"].Current == vars.roomIDEnum["sporeSpawnSuper"] && (vars.watchers["maxSupers"].Old + 5) == (vars.watchers["maxSupers"].Current) && (vars.watchers["brinstarBosses"].Current & vars.bossFlagEnum["sporeSpawn"]) > 0;
+		}
+	}
+
+	var hundredMissileRTAFinish = false;
+	if(settings["hundredMissileRTAFinish"]){
+		if(vars.pickedUpHundredthMissile){
+			if(vars.watchers["igtFrames"].Old != vars.watchers["igtFrames"].Current){
+				hundredMissileRTAFinish = true;
+				vars.pickedUpHundredthMissile = false;
+			}
+		}
+		else{
+			vars.pickedUpHundredthMissile = vars.watchers["maxMissiles"].Old == 95 && vars.watchers["maxMissiles"].Current == 100;
+		}
+	}
+
+	var nonStandardCategoryFinish = sporeSpawnRTAFinish || hundredMissileRTAFinish;
+
+	if(pickup){
+		vars.DebugOutput("Split due to pickup");
+	}
+	if(unlock){
+		vars.DebugOutput("Split due to unlock");
+	}
+	if(beam){
+		vars.DebugOutput("Split due to beam upgrade");
+	}
+	if(energyUpgrade){
+		vars.DebugOutput("Split due to energy upgrade");
+	}
+	if(roomTransitions){
+		vars.DebugOutput("Split due to room transition");
+	}
+	if(minibossDefeat){
+		vars.DebugOutput("Split due to miniboss defeat");
+	}
+	// individual boss defeat conditions already covered above
+	if(escape){
+		vars.DebugOutput("Split due to escape");
+	}
+	if(takeoff){
+		vars.DebugOutput("Split due to takeoff");
+	}
+	if(nonStandardCategoryFinish){
+		vars.DebugOutput("Split due to non standard category finish");
+	}
+
+	return pickup || unlock || beam || energyUpgrade || roomTransitions || minibossDefeat || bossDefeat || escape || takeoff || nonStandardCategoryFinish;
+}
+
+gameTime
+{
+	var frames  = vars.watchers["igtFrames"].Current;
+	var seconds = vars.watchers["igtSeconds"].Current;
+	var minutes = vars.watchers["igtMinutes"].Current;
+	var hours   = vars.watchers["igtHours"].Current;
+
+	if(frames == 0 && vars.watchers["igtFrames"].Old == 49){
+		vars.frameRate = 50.0;
+	}
+
+	current.totalTime = (frames / vars.frameRate) + seconds + (60 * minutes) + (60 * 60 * hours);
+	return TimeSpan.FromSeconds(current.totalTime);
+}
+
+isLoading
+{
+	// From the AutoSplit documentation:
+	// "If you want the Game Time to not run in between the synchronization interval and only ever return
+	// the actual Game Time of the game, make sure to implement isLoading with a constant
+	// return value of true."
+	return true;
+}
+
+	if(mb3){
+		vars.DebugOutput("Split due to mb3 defeat");
+	}
+	var bossDefeat = kraid || phantoon || draygon || ridley || mb1 || mb2 || mb3;
+
+	// Run-ending splits
+	var escape = settings["rtaFinish"] && (vars.watchers["eventFlags"].Current & vars.eventFlagEnum["zebesAblaze"]) > 0 && vars.watchers["samusPose"].Old != 0x9B && vars.watchers["samusPose"].Current == 0x9B && vars.watchers["poseDirection"].Old != 0 && vars.watchers["poseDirection"].Current == 0;
+
+	var takeoff = settings["igtFinish"] && vars.watchers["roomID"].Current == vars.roomIDEnum["landingSite"] && vars.watchers["gameState"].Old == vars.gameStateEnum["preEndCutscene"] && vars.watchers["gameState"].Current == vars.gameStateEnum["endCutscene"];
+
+	var sporeSpawnRTAFinish = false;
+	if(settings["sporeSpawnRTAFinish"]){
+		if(vars.pickedUpSporeSpawnSuper){
+			if(vars.watchers["igtFrames"].Old != vars.watchers["igtFrames"].Current){
+				sporeSpawnRTAFinish = true;
+				vars.pickedUpSporeSpawnSuper = false;
+			}
+		}
+		else {
+			vars.pickedUpSporeSpawnSuper = vars.watchers["roomID"].Current == vars.roomIDEnum["sporeSpawnSuper"] && (vars.watchers["maxSupers"].Old + 5) == (vars.watchers["maxSupers"].Current) && (vars.watchers["brinstarBosses"].Current & vars.bossFlagEnum["sporeSpawn"]) > 0;
+		}
+	}
+
+	var hundredMissileRTAFinish = false;
+	if(settings["hundredMissileRTAFinish"]){
+		if(vars.pickedUpHundredthMissile){
+			if(vars.watchers["igtFrames"].Old != vars.watchers["igtFrames"].Current){
+				hundredMissileRTAFinish = true;
+				vars.pickedUpHundredthMissile = false;
+			}
+		}
+		else{
+			vars.pickedUpHundredthMissile = vars.watchers["maxMissiles"].Old == 95 && vars.watchers["maxMissiles"].Current == 100;
+		}
+	}
+
+	var nonStandardCategoryFinish = sporeSpawnRTAFinish || hundredMissileRTAFinish;
+
+	if(pickup){
+		vars.DebugOutput("Split due to pickup");
+	}
+	if(unlock){
+		vars.DebugOutput("Split due to unlock");
+	}
+	if(beam){
+		vars.DebugOutput("Split due to beam upgrade");
+	}
+	if(energyUpgrade){
+		vars.DebugOutput("Split due to energy upgrade");
+	}
+	if(roomTransitions){
+		vars.DebugOutput("Split due to room transition");
+	}
+	if(minibossDefeat){
+		vars.DebugOutput("Split due to miniboss defeat");
+	}
+	// individual boss defeat conditions already covered above
+	if(escape){
+		vars.DebugOutput("Split due to escape");
+	}
+	if(takeoff){
+		vars.DebugOutput("Split due to takeoff");
+	}
+	if(nonStandardCategoryFinish){
+		vars.DebugOutput("Split due to non standard category finish");
+	}
+
+	return pickup || unlock || beam || energyUpgrade || roomTransitions || minibossDefeat || bossDefeat || escape || takeoff || nonStandardCategoryFinish;
+}
+
+gameTime
+{
+	var frames  = vars.watchers["igtFrames"].Current;
+	var seconds = vars.watchers["igtSeconds"].Current;
+	var minutes = vars.watchers["igtMinutes"].Current;
+	var hours   = vars.watchers["igtHours"].Current;
+
+	if(frames == 0 && vars.watchers["igtFrames"].Old == 49){
+		vars.frameRate = 50.0;
+	}
+
+	current.totalTime = (frames / vars.frameRate) + seconds + (60 * minutes) + (60 * 60 * hours);
+	return TimeSpan.FromSeconds(current.totalTime);
+}
+
+isLoading
+{
+	// From the AutoSplit documentation:
+	// "If you want the Game Time to not run in between the synchronization interval and only ever return
+	// the actual Game Time of the game, make sure to implement isLoading with a constant
+	// return value of true."
+	return true;
+}
+
 	if(mb3){
 		vars.DebugOutput("Split due to mb3 defeat");
 	}

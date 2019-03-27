@@ -233,119 +233,119 @@ startup
     // https://wiki.supermetroid.run/List_of_RoomIDs
     vars.roomIDEnum = new Dictionary<string, int> {
         { "landingSite",            0x91F8 },
-        { "attic",                    0xCA52 },
-        { "metroidOne",                0xDAE1 },
-        { "metroidTwo",                0xDB31 },
-        { "metroidThree",            0xDB7D },
+        { "attic",                  0xCA52 },
+        { "metroidOne",             0xDAE1 },
+        { "metroidTwo",             0xDB31 },
+        { "metroidThree",           0xDB7D },
         { "metroidFour",            0xDBCD },
-        { "tourianHopper",            0xDC19 },
-        { "tourianEyeDoor",            0xDDC4 },
-        { "lowerNorfairSpringMaze",        0xB510 },
-        { "lowerNorfairFireflea",        0xB6EE },
-        { "redKiShaft",                0xB585 },
-        { "amphitheatre",            0xB4E5 },
-        { "wasteland",                0xB5D5 },
+        { "tourianHopper",          0xDC19 },
+        { "tourianEyeDoor",         0xDDC4 },
+        { "lowerNorfairSpringMaze", 0xB510 },
+        { "lowerNorfairFireflea",   0xB6EE },
+        { "redKiShaft",             0xB585 },
+        { "amphitheatre",           0xB4E5 },
+        { "wasteland",              0xB5D5 },
         { "pillars",                0xB457 },
-        { "writg",                    0xB4AD },
-        { "metalPirates",            0xB62B },
+        { "writg",                  0xB4AD },
+        { "metalPirates",           0xB62B },
         { "volcano",                0xAE32 },
         { "kronicBoost",            0xAE74 },
-        { "magdolliteTunnel",            0xAEB4 },
+        { "magdolliteTunnel",       0xAEB4 },
         { "spikyAcidSnakes",        0xAFFB },
-        { "westCactusAlley",            0xD9FE },
-        { "butterflyRoom",            0xD5EC },
-        { "warehouseEntrance",            0xA6A1 },
-        { "warehouseZeela",            0xA471 },
-        { "redTower",                0xA253 },
-        { "bat",                0xA3DD },
-        { "westOcean",                0x93FE },
-        { "elevatorToMaridia",        0x94CC },
-        { "elevatorToCaterpillar",    0x962A },
-        { "climb",                    0x96BA },
+        { "westCactusAlley",        0xD9FE },
+        { "butterflyRoom",          0xD5EC },
+        { "warehouseEntrance",      0xA6A1 },
+        { "warehouseZeela",         0xA471 },
+        { "redTower",               0xA253 },
+        { "bat",                    0xA3DD },
+        { "westOcean",              0x93FE },
+        { "elevatorToMaridia",      0x94CC },
+        { "elevatorToCaterpillar",  0x962A },
+        { "climb",                  0x96BA },
         { "elevatorToMorphBall",    0x97B5 },
-        { "bombTorizo",                0x9804 },
+        { "bombTorizo",             0x9804 },
         { "elevatorToGreenBrinstar",0x9938 },
-        { "greenBrinstarMainShaft",    0x9AD9 },
+        { "greenBrinstarMainShaft", 0x9AD9 },
         { "sporeSpawnSuper",        0x9B5B },
         { "sporeSpawnKeyhunter",    0x9D9C },
-        { "sporeSpawn",            0x9DC7 },
-        { "morphBall",            0x9E9F },
-        { "caterpillar",        0xA322 },
-        { "kraidEyeDoor",        0xA56B },
-        { "kraid",            0xA59F },
-        { "statuesHallway",        0xA5ED },
-        { "statues",            0xA66A },
-        { "tourianElevator",            0xDAAE },
-        { "businessCenter",            0xA7DE },
-        { "crocomireSpeedway",        0xA923 },
-        { "crocomire",                0xA98D },
-        { "singleChamber",             0xAD5E }, // Exit room from Lower Norfair, also on the path to Wave
-        { "lowerNorfairElevator",     0xAF3F },
-        { "acidStatue",                0xB1E5 },
-        { "mainHall",                 0xB236 }, // First room in Lower Norfair
-        { "goldenTorizo",            0xB283 },
-        { "ridley",                    0xB32E },
+        { "sporeSpawn",             0x9DC7 },
+        { "morphBall",              0x9E9F },
+        { "caterpillar",            0xA322 },
+        { "kraidEyeDoor",           0xA56B },
+        { "kraid",                  0xA59F },
+        { "statuesHallway",         0xA5ED },
+        { "statues",                0xA66A },
+        { "tourianElevator",        0xDAAE },
+        { "businessCenter",         0xA7DE },
+        { "crocomireSpeedway",      0xA923 },
+        { "crocomire",              0xA98D },
+        { "singleChamber",          0xAD5E }, // Exit room from Lower Norfair, also on the path to Wave
+        { "lowerNorfairElevator",   0xAF3F },
+        { "acidStatue",             0xB1E5 },
+        { "mainHall",               0xB236 }, // First room in Lower Norfair
+        { "goldenTorizo",           0xB283 },
+        { "ridley",                 0xB32E },
         { "lowerNorfairFarming",    0xB37A },
-        { "threeMusketeers",         0xB656 },
+        { "threeMusketeers",        0xB656 },
         { "screwAttack",            0xB6C1 },
         { "wreckedShipEntrance",    0xCA08 },
-        { "basement",                0xCC6F }, // Basement of Wrecked Ship
-        { "phantoon",                0xCD13 },
+        { "basement",               0xCC6F }, // Basement of Wrecked Ship
+        { "phantoon",               0xCD13 },
         { "glassTunnel",            0xCEFB },
         { "maridiaElevator",        0xD30B },
-        { "botwoonHallway",            0xD617 },
-        { "precious",                0xD78F },
+        { "botwoonHallway",         0xD617 },
+        { "precious",               0xD78F },
         { "botwoon",                0xD95E },
         { "draygon",                0xDA60 },
-        { "dustTorizo",                0xDC65 },
-        { "bigBoy",                    0xDCB1 },
+        { "dustTorizo",             0xDC65 },
+        { "bigBoy",                 0xDCB1 },
         { "motherBrain",            0xDD58 },
-        { "rinkaShaft",                0xDDF3 },
-        { "tourianEscape4",            0xDEDE },
-        { "ceresElevator",            0xDF45 },
-        { "flatRoom",                0xE06B }, // Placeholder name for the flat room in Ceres Station
+        { "rinkaShaft",             0xDDF3 },
+        { "tourianEscape4",         0xDEDE },
+        { "ceresElevator",          0xDF45 },
+        { "flatRoom",               0xE06B }, // Placeholder name for the flat room in Ceres Station
         { "ceresRidley",            0xE0B5 }
     };
 
     vars.mapInUseEnum = new Dictionary<string, int>{
-        { "crateria",    0x0 },
-        { "brinstar",    0x1 },
+        { "crateria",   0x0 },
+        { "brinstar",   0x1 },
         { "norfair",    0x2 },
         { "wreckedShip",0x3 },
         { "maridia",    0x4 },
         { "tourian",    0x5 },
-        { "ceres",    0x6 }
+        { "ceres",      0x6 }
     };
 
     vars.gameStateEnum = new Dictionary<string, int> {
-        { "normalGameplay",        0x8 },
-        { "doorTransition",        0xB },
-        { "startOfCeresCutscene",    0x20 },
-        { "preEndCutscene",        0x26 }, // briefly at this value during the black screen transition after the ship fades out
-        { "endCutscene",        0x27 }
+        { "normalGameplay",         0x8 },
+        { "doorTransition",         0xB },
+        { "startOfCeresCutscene",   0x20 },
+        { "preEndCutscene",         0x26 }, // briefly at this value during the black screen transition after the ship fades out
+        { "endCutscene",            0x27 }
     };
 
     vars.unlockFlagEnum = new Dictionary<string, int>{
         // First item byte
-        { "variaSuit",        0x1 },
-        { "springBall",        0x2 },
-        { "morphBall",        0x4 },
+        { "variaSuit",      0x1 },
+        { "springBall",     0x2 },
+        { "morphBall",      0x4 },
         { "screwAttack",    0x8 },
-        { "gravSuit",        0x20},
+        { "gravSuit",       0x20},
         // Second item byte
-        { "hiJump",        0x1 },
-        { "spaceJump",        0x2 },
-        { "bomb",        0x10},
-        { "speedBooster",    0x20},
+        { "hiJump",         0x1 },
+        { "spaceJump",      0x2 },
+        { "bomb",           0x10},
+        { "speedBooster",   0x20},
         { "grapple",        0x40},
-        { "xray",        0x80},
+        { "xray",           0x80},
         // Beams
-        { "wave",        0x1 },
-        { "ice",        0x2 },
-        { "spazer",        0x4 },
-        { "plasma",        0x8 },
+        { "wave",           0x1 },
+        { "ice",            0x2 },
+        { "spazer",         0x4 },
+        { "plasma",         0x8 },
         // Charge
-        { "chargeBeam",        0x10}
+        { "chargeBeam",     0x10}
     };
 
     vars.missileWatchKeys = new Dictionary<string, string> {
@@ -359,13 +359,13 @@ startup
     };
 
     vars.missileMasks = new Dictionary<string, int> {
-        { "chargeMissiles", 0x40 },
-        { "alphaMissiles", 0x04 },
-        { "warehouseMissiles", 0x10 },
-        { "hiJumpMissiles", 0x80 },
-        { "waveMissiles", 0x08 },
-        { "wreckedShipMainShaftMissiles", 0x01 },
-        { "mainStreetMissiles", 0x01 },
+        { "chargeMissiles",                 0x40 },
+        { "alphaMissiles",                  0x04 },
+        { "warehouseMissiles",              0x10 },
+        { "hiJumpMissiles",                 0x80 },
+        { "waveMissiles",                   0x08 },
+        { "wreckedShipMainShaftMissiles",   0x01 },
+        { "mainStreetMissiles",             0x01 },
     };
 
     vars.superWatchKeys = new Dictionary<string, string> {
@@ -377,11 +377,11 @@ startup
     };
 
     vars.superMasks = new Dictionary<string, int> {
-        { "sporeSpawnSupers", 0x40 },
-        { "earlySupers", 0x01 },
-        { "wreckedShipLeftSupers", 0x20 },
-        { "crabSupers", 0x02 },
-        { "aqueductSupers", 0x20 },
+        { "sporeSpawnSupers",       0x40 },
+        { "earlySupers",            0x01 },
+        { "wreckedShipLeftSupers",  0x20 },
+        { "crabSupers",             0x02 },
+        { "aqueductSupers",         0x20 },
     };    
 
     vars.etankWatchKeys = new Dictionary<string, string> {
@@ -402,45 +402,45 @@ startup
     };
 
     vars.etankMasks = new Dictionary<string, int> {
-        { "gauntletETank", 0x20 },
-        { "terminatorETank", 0x01 },
-        { "ceilingETank", 0x20 },
-        { "etecoonsETank", 0x40 },
-        { "waterwayETank", 0x02 },
-        { "waveGateETank", 0x08 },
-        { "kraidETank", 0x08 },
-        { "crocomireETank", 0x10 },
-        { "hiJumpETank", 0x01 },
-        { "ridleyETank", 0x40 },
-        { "firefleaETank", 0x01 },
-        { "wreckedShipETank", 0x10 },
-        { "tatoriETank", 0x04 },
-        { "botwoonETank", 0x01 },
+        { "gauntletETank",      0x20 },
+        { "terminatorETank",    0x01 },
+        { "ceilingETank",       0x20 },
+        { "etecoonsETank",      0x40 },
+        { "waterwayETank",      0x02 },
+        { "waveGateETank",      0x08 },
+        { "kraidETank",         0x08 },
+        { "crocomireETank",     0x10 },
+        { "hiJumpETank",        0x01 },
+        { "ridleyETank",        0x40 },
+        { "firefleaETank",      0x01 },
+        { "wreckedShipETank",   0x10 },
+        { "tatoriETank",        0x04 },
+        { "botwoonETank",       0x01 },
     };
 
     vars.motherBrainMaxHPEnum = new Dictionary<string, int>{
         { "phase1", 0xBB8 },    // 3000
-        { "phase2", 0x4650 },    // 18000
+        { "phase2", 0x4650 },   // 18000
         { "phase3", 0x8CA0 }    // 36000
     };
 
     vars.eventFlagEnum = new Dictionary<string, int>{
-        { "zebesAblaze", 0x40 },
-        { "tubeBroken", 0x8 }
+        { "zebesAblaze",    0x40 },
+        { "tubeBroken",     0x8 }
     };
 
     vars.bossFlagEnum = new Dictionary<string, int>{
         // Crateria
-        { "bombTorizo",        0x4 },
+        { "bombTorizo",     0x4 },
         // Brinstar
-        { "sporeSpawn",        0x2 },
-        { "kraid",        0x1 },
+        { "sporeSpawn",     0x2 },
+        { "kraid",          0x1 },
         // Norfair
-        { "ridley",        0x1 },
-        { "crocomire",        0x2 },
-        { "goldenTorizo",    0x4 },
+        { "ridley",         0x1 },
+        { "crocomire",      0x2 },
+        { "goldenTorizo",   0x4 },
         // Wrecked Ship
-        { "phantoon",        0x1 },
+        { "phantoon",       0x1 },
         // Maridia
         { "draygon",        0x1 },
         { "botwoon",        0x2 },
@@ -493,7 +493,7 @@ init
         }
     } else if (memory.ProcessName.ToLower().Contains("higan") || memory.ProcessName.ToLower().Contains("emuhawk")) {
         var versions = new Dictionary<int, long>{
-            { 12509184, 0x915304 },         // higan v102
+            { 12509184, 0x915304 },      // higan v102
             { 13062144, 0x937324 },      // higan v103
             { 15859712, 0x952144 },      // higan v104
             { 16756736, 0x94F144 },      // higan v105tr1

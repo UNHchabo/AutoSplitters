@@ -17,6 +17,8 @@ startup
 {
     settings.Add("kremcoins", true, "Kremcoins");
     settings.SetToolTip("kremcoins", "Split on acquiring a Kremcoin");
+    settings.Add("dkCoins", true, "DK Coins");
+    settings.SetToolTip("dkCoins", "Split on acquiring a DK Coin");
 
     vars.gameStateEnum = new Dictionary<string, int> {
         { "normalGameplay",         0x8 },
@@ -158,6 +160,7 @@ init
     {
         new MemoryWatcher<long>(memoryOffset + 0x00D5) { Name = "gametime" },
         new MemoryWatcher<byte>(memoryOffset + 0x08CC) { Name = "kremcoinCount" },
+        new MemoryWatcher<byte>(memoryOffset + 0x08CE) { Name = "dkCoinCount" },
     };
 }
 
@@ -188,12 +191,16 @@ split
 {
 
     var kremcoinPickup = settings["kremcoins"] && ((vars.watchers["kremcoinCount"].Old + 1) == vars.watchers["kremcoinCount"].Current);
+    var dkCoinPickup = settings["dkCoins"] && ((vars.watchers["dkCoinCount"].Old + 1) == vars.watchers["dkCoinCount"].Current);
 
     if(kremcoinPickup){
-        vars.DebugOutput("Split due to pickup");
+        vars.DebugOutput("Split due to Kremcoin pickup");
+    }
+    if(dkCoinPickup){
+        vars.DebugOutput("Split due to DK Coin pickup");
     }
 
-    return kremcoinPickup;
+    return kremcoinPickup || dkCoinPickup;
 }
 
 gameTime

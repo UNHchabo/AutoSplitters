@@ -17,7 +17,7 @@ startup
 {
     settings.Add("kremcoins", true, "Kremcoins");
     settings.SetToolTip("kremcoins", "Split on acquiring a Kremcoin");
-    settings.Add("dkCoins", true, "DK Coins");
+    settings.Add("dkCoins", false, "DK Coins");
     settings.SetToolTip("dkCoins", "Split on acquiring a DK Coin");
 
     vars.gameStateEnum = new Dictionary<string, int> {

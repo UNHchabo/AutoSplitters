@@ -133,7 +133,7 @@ init
     vars.watchers = new MemoryWatcherList
     {
         new MemoryWatcher<byte>(memoryOffset + 0x001C) { Name = "musicTrack" },
-        new MemoryWatcher<long>(memoryOffset + 0x00D5) { Name = "gametime" },
+        new MemoryWatcher<uint>(memoryOffset + 0x00D5) { Name = "gametime" },
         new MemoryWatcher<byte>(memoryOffset + 0x08CC) { Name = "kremcoinCount" },
         new MemoryWatcher<byte>(memoryOffset + 0x08CE) { Name = "dkCoinCount" },
     };

@@ -19,6 +19,8 @@ startup
     settings.SetToolTip("kremcoins", "Split on acquiring a Kremcoin");
     settings.Add("dkCoins", false, "DK Coins");
     settings.SetToolTip("dkCoins", "Split on acquiring a DK Coin");
+    settings.Add("levelEnd", false, "End of normal levels");
+    settings.SetToolTip("levelEnd", "Split on hitting the target at the end of non-boss levels");
 
     vars.musicEnum = new Dictionary<string, int> {
         { "startup",    0x0 },
@@ -136,6 +138,7 @@ init
         new MemoryWatcher<uint>(memoryOffset + 0x00D5) { Name = "gametime" },
         new MemoryWatcher<byte>(memoryOffset + 0x08CC) { Name = "kremcoinCount" },
         new MemoryWatcher<byte>(memoryOffset + 0x08CE) { Name = "dkCoinCount" },
+        new MemoryWatcher<byte>(memoryOffset + 0x0AF1) { Name = "stageStatus" },
     };
 }
 
@@ -164,14 +167,19 @@ split
     var kremcoinPickup = settings["kremcoins"] && ((vars.watchers["kremcoinCount"].Old + 1) == vars.watchers["kremcoinCount"].Current);
     var dkCoinPickup = settings["dkCoins"] && ((vars.watchers["dkCoinCount"].Old + 1) == vars.watchers["dkCoinCount"].Current);
 
+    var levelEnd = settings["levelEnd"] && vars.watchers["stageStatus"].Old == 0xA0 && vars.watchers["stageStatus"].Current != 0xA0;
+
     if(kremcoinPickup){
         vars.DebugOutput("Split due to Kremcoin pickup");
     }
     if(dkCoinPickup){
         vars.DebugOutput("Split due to DK Coin pickup");
     }
+    if(levelEnd){
+        vars.DebugOutput("Split due to non-boss level end");
+    }
 
-    return kremcoinPickup || dkCoinPickup;
+    return kremcoinPickup || dkCoinPickup || levelEnd;
 }
 
 gameTime

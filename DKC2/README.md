@@ -12,7 +12,7 @@ This script can be used with [LiveSplit](http://livesplit.github.io) for speedru
 After you select your splits, add a start time of 1.42 seconds, because the autostart event happens as the screen is finished fading to black, rather than the typical RTA start point when the screen starts fading.
 
 ## Split events
-As of today, the autosplitter supports splitting on the collection of Kremcoins and DK Coins. Splitting on the end of each stage is planned, but not currently implemented.
+As of today, the autosplitter supports splitting on the collection of Kremcoins, DK Coins, and on the end of each non-boss stage.
 
 ## Contact
 For bugs or feature requests, GitHub has a [built-in tracker for that](https://github.com/UNHchabo/AutoSplitters/issues).

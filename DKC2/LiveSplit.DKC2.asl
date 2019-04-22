@@ -20,39 +20,13 @@ startup
     settings.Add("dkCoins", false, "DK Coins");
     settings.SetToolTip("dkCoins", "Split on acquiring a DK Coin");
 
-    vars.gameStateEnum = new Dictionary<string, int> {
-        { "normalGameplay",         0x8 },
-        { "doorTransition",         0xB },
-        { "startOfCeresCutscene",   0x20 },
-        { "preEndCutscene",         0x26 }, // briefly at this value during the black screen transition after the ship fades out
-        { "endCutscene",            0x27 }
+    vars.musicEnum = new Dictionary<string, int> {
+        { "startup",    0x0 },
+        { "overworld",  0x1 },
+        { "rareLogo",   0x11 },
+        { "menu",       0x18 }
     };
 
-    vars.unlockFlagEnum = new Dictionary<string, int>{
-        // First item byte
-        { "variaSuit",      0x1 },
-        { "springBall",     0x2 },
-        { "morphBall",      0x4 },
-        { "screwAttack",    0x8 },
-        { "gravSuit",       0x20},
-        // Second item byte
-        { "hiJump",         0x1 },
-        { "spaceJump",      0x2 },
-        { "bomb",           0x10},
-        { "speedBooster",   0x20},
-        { "grapple",        0x40},
-        { "xray",           0x80},
-        // Beams
-        { "wave",           0x1 },
-        { "ice",            0x2 },
-        { "spazer",         0x4 },
-        { "plasma",         0x8 },
-        // Charge
-        { "chargeBeam",     0x10}
-    };
-
-    vars.pickedUpSporeSpawnSuper = false;
-    vars.pickedUpHundredthMissile = false;
     vars.frameRate = 60.0;
 
     Action<string> DebugOutput = (text) => {
@@ -158,6 +132,7 @@ init
     vars.DebugOutput("Found WRAM address: 0x" + memoryOffset.ToString("X8"));
     vars.watchers = new MemoryWatcherList
     {
+        new MemoryWatcher<byte>(memoryOffset + 0x001C) { Name = "musicTrack" },
         new MemoryWatcher<long>(memoryOffset + 0x00D5) { Name = "gametime" },
         new MemoryWatcher<byte>(memoryOffset + 0x08CC) { Name = "kremcoinCount" },
         new MemoryWatcher<byte>(memoryOffset + 0x08CE) { Name = "dkCoinCount" },
@@ -171,20 +146,16 @@ update
 
 start
 {
-    var normalStart   = vars.watchers["gameState"].Old == 2    && vars.watchers["gameState"].Current == 0x1F;
-    // Allow for a cutscene start, even though it's not normally used for speedrunning
-    var cutsceneEnded = vars.watchers["gameState"].Old == 0x1E && vars.watchers["gameState"].Current == 0x1F;
-    // Some categories start from Zebes, such as Spore Spawn RTA
-    var zebesStart    = vars.watchers["gameState"].Old == 5    && vars.watchers["gameState"].Current == 6;
-    if (normalStart || cutsceneEnded || zebesStart) {
+    var startGame = vars.watchers["musicTrack"].Old == vars.musicEnum["menu"] && vars.watchers["musicTrack"].Current == vars.musicEnum["overworld"];
+    if (startGame) {
         vars.DebugOutput("Timer started");
     }
-    return normalStart || cutsceneEnded || zebesStart;
+    return startGame;
 }
 
 reset
 {
-    return vars.watchers["roomID"].Old != 0 && vars.watchers["roomID"].Current == 0;
+    return vars.watchers["musicTrack"].Old == vars.musicEnum["startup"] && vars.watchers["musicTrack"].Current == vars.musicEnum["rareLogo"];
 }
 
 split

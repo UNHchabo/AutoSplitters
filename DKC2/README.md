@@ -1,4 +1,4 @@
-# LiveSplit.SuperMetroid
+# LiveSplit.DKC2
 
 This script can be used with [LiveSplit](http://livesplit.github.io) for speedrunning Donkey Kong Country 2.
 

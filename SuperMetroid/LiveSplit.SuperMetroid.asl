@@ -131,16 +131,26 @@ startup
     settings.SetToolTip("allSupers", "Split on each Super Missile upgrade");
     settings.Add("specificSupers", false, "Specific Super Missile Packs", "ammoPickups");
     settings.SetToolTip("specificSupers", "Split on specific Super Missile Pack locations");
-    settings.Add("earlySupers", false, "Early Supers Missile Pack", "specificSupers");
-    settings.SetToolTip("earlySupers", "Split on picking up the Early Supers Missile Pack");
+    settings.Add("climbSupers", false, "Crateria Super Missile Pack", "specificSupers");
+    settings.SetToolTip("climbSupers", "Split on picking up the Super Missile Pack in the Crateria Super Room");
     settings.Add("sporeSpawnSupers", false, "Spore Spawn Super Missile Pack", "specificSupers");
-    settings.SetToolTip("sporeSpawnSupers", "Split on picking up the Spore Spawn Super Missile Pack (NOTE: SSTRA splits when the dialogue box disappears, not on touch. Use Spore Spawn RTA Finish for SSTRA runs.)");
-    settings.Add("wreckedShipLeftSupers", false, "Phantoon Super Missile Pack", "specificSupers");
-    settings.SetToolTip("wreckedShipLeftSupers", "Split on picking up the Phantoon Super Missile Pack");
+    settings.SetToolTip("sporeSpawnSupers", "Split on picking up the Super Missile Pack in the Spore Spawn Super Room (NOTE: SSTRA splits when the dialogue box disappears, not on touch. Use Spore Spawn RTA Finish for SSTRA runs.)");
+    settings.Add("earlySupers", false, "Early Super Missile Pack", "specificSupers");
+    settings.SetToolTip("earlySupers", "Split on picking up the Super Missile Pack in the Early Supers Room");
+    settings.Add("etacoonSupers", false, "Etacoon Super Missile Pack", "specificSupers");
+    settings.SetToolTip("etacoonSupers", "Split on picking up the Super Missile Pack in the Etacoon Super Room");
+    settings.Add("goldTorizoSupers", false, "Golden Torizo Super Missile Pack", "specificSupers");
+    settings.SetToolTip("goldTorizoSupers", "Split on picking up the Super Missile Pack in the Golden Torizo's Room");
+    settings.Add("wreckedShipLeftSupers", false, "Wrecked Ship Left Super Missile Pack", "specificSupers");
+    settings.SetToolTip("wreckedShipLeftSupers", "Split on picking up the Super Missile Pack in the Wrecked Ship West Super Room");
+    settings.Add("wreckedShipRightSupers", false, "Wrecked Ship Right Super Missile Pack", "specificSupers");
+    settings.SetToolTip("wreckedShipRightSupers", "Split on picking up the Super Missile Pack in the Wrecked Ship East Super Room");
     settings.Add("crabSupers", false, "Crab Super Missile Pack", "specificSupers");
-    settings.SetToolTip("crabSupers", "Split on picking up the Crab Super Missile Pack");
+    settings.SetToolTip("crabSupers", "Split on picking up the Super Missile Pack in Main Street");
+    settings.Add("wateringHoleSupers", false, "Watering Hole Super Missile Pack", "specificSupers");
+    settings.SetToolTip("wateringHoleSupers", "Split on picking up the Super Missile Pack in Watering Hole");
     settings.Add("aqueductSupers", false, "Aqueduct Super Missile Pack", "specificSupers");
-    settings.SetToolTip("aqueductSupers", "Split on picking up the Aqueduct Super Missile Pack");
+    settings.SetToolTip("aqueductSupers", "Split on picking up the Super Missile Pack in Aqueduct");
     settings.Add("firstPowerBomb", true, "First Power Bomb", "ammoPickups");
     settings.SetToolTip("firstPowerBomb", "Split on the first Power Bomb pickup");
     settings.Add("allPowerBombs", false, "All Power Bombs", "ammoPickups");
@@ -494,22 +504,6 @@ startup
         { "chargeBeam",     0x10}
     };
 
-    vars.superWatchKeys = new Dictionary<string, string> {
-        { "sporeSpawnSupers", "brinteriaItems" },
-        { "earlySupers", "brinstarItems2" },
-        { "wreckedShipLeftSupers", "wreckedShipItems" },
-        { "crabSupers", "maridiaItems1" },
-        { "aqueductSupers", "maridiaItems2" },
-    };
-
-    vars.superMasks = new Dictionary<string, int> {
-        { "sporeSpawnSupers",       0x40 },
-        { "earlySupers",            0x01 },
-        { "wreckedShipLeftSupers",  0x20 },
-        { "crabSupers",             0x02 },
-        { "aqueductSupers",         0x20 },
-    };    
-
     vars.etankWatchKeys = new Dictionary<string, string> {
         { "gauntletETank", "crateriaItems" },
         { "terminatorETank", "brinteriaItems" },
@@ -806,15 +800,19 @@ split
     var preDraygonMissiles = settings["preDraygonMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["precious"] && (vars.watchers["maridiaItems2"].Old + 128) == (vars.watchers["maridiaItems2"].Current);
     var firstSuper = settings["firstSuper"] && vars.watchers["maxSupers"].Old == 0 && vars.watchers["maxSupers"].Current == 5;
     var allSupers = settings["allSupers"] && (vars.watchers["maxSupers"].Old + 5) == (vars.watchers["maxSupers"].Current);
-    var specificSuper = false;
-    foreach (string super in vars.superMasks.Keys) {
-            specificSuper |= settings[super]
-                    && ((vars.watchers[vars.superWatchKeys[super]].Current & vars.superMasks[super]) != 0)
-                    && ((vars.watchers[vars.superWatchKeys[super]].Old & vars.superMasks[super]) == 0);
-    }
+    var climbSupers = settings["climbSupers"] && vars.watchers["roomID"].Current == vars.roomIDEnum["crateriaSupersRoom"] && (vars.watchers["brinteriaItems"].Old + 8) == (vars.watchers["brinteriaItems"].Current);
+    var sporeSpawnSupers = settings["sporeSpawnSupers"] && vars.watchers["roomID"].Current == vars.roomIDEnum["sporeSpawnSuper"] && (vars.watchers["brinteriaItems"].Old + 64) == (vars.watchers["brinteriaItems"].Current);
+    var earlySupers = settings["earlySupers"] && vars.watchers["roomID"].Current == vars.roomIDEnum["earlySupers"] && (vars.watchers["brinstarItems2"].Old + 1) == (vars.watchers["brinstarItems2"].Current);
+    var etacoonSupers = settings["etacoonSupers"] && vars.watchers["roomID"].Current == vars.roomIDEnum["etacoonSuperRoom"] && (vars.watchers["brinstarItems3"].Old + 128) == (vars.watchers["brinstarItems3"].Current);
+    var goldTorizoSupers = settings["goldTorizoSupers"] && vars.watchers["roomID"].Current == vars.roomIDEnum["goldenTorizo"] && (vars.watchers["norfairItems3"].Old + 128) == (vars.watchers["norfairItems3"].Current);
+    var wreckedShipLeftSupers = settings["wreckedShipLeftSupers"] && vars.watchers["roomID"].Current == vars.roomIDEnum["wreckedShipLeftSuperRoom"] && (vars.watchers["wreckedShipItems"].Old + 32) == (vars.watchers["wreckedShipItems"].Current);
+    var wreckedShipRightSupers = settings["wreckedShipRightSupers"] && vars.watchers["roomID"].Current == vars.roomIDEnum["wreckedShipRightSuperRoom"] && (vars.watchers["wreckedShipItems"].Old + 64) == (vars.watchers["wreckedShipItems"].Current);
+    var crabSupers = settings["crabSupers"] && vars.watchers["roomID"].Current == vars.roomIDEnum["mainStreet"] && (vars.watchers["maridiaItems1"].Old + 2) == (vars.watchers["maridiaItems1"].Current);
+    var wateringHoleSupers = settings["wateringHoleSupers"] && vars.watchers["roomID"].Current == vars.roomIDEnum["wateringHole"] && (vars.watchers["maridiaItems1"].Old + 16) == (vars.watchers["maridiaItems1"].Current);
+    var aqueductSupers = settings["aqueductSupers"] && vars.watchers["roomID"].Current == vars.roomIDEnum["aqueduct"] && (vars.watchers["maridiaItems2"].Old + 32) == (vars.watchers["maridiaItems2"].Current);
     var firstPowerBomb = settings["firstPowerBomb"] && vars.watchers["maxPowerBombs"].Old == 0 && vars.watchers["maxPowerBombs"].Current == 5;
     var allPowerBombs = settings["allPowerBombs"] && (vars.watchers["maxPowerBombs"].Old + 5) == (vars.watchers["maxPowerBombs"].Current);
-    var pickup = firstMissile || allMissiles || oceanBottomMissiles || oceanTopMissiles ||  oceanMiddleMissiles || moatMissiles || oldTourianMissiles || gauntletRightMissiles || gauntletLeftMissiles || dentalPlan || earlySuperBridgeMissiles || greenBrinstarReserveMissiles || greenBrinstarExtraReserveMissiles || bigPinkTopMissiles || chargeMissiles || greenHillsMissiles || blueBrinstarETankMissiles || alphaMissiles || billyMaysMissiles || butWaitTheresMoreMissiles || redBrinstarMissiles || warehouseMissiles || cathedralMissiles || crumbleShaftMissiles || crocomireEscapeMissiles || hiJumpMissiles || postCrocomireMissiles || grappleMissiles || norfairReserveMissiles || greenBubblesMissiles || bubbleMountainMissiles || speedBoostMissiles || waveMissiles || goldTorizoMissiles || mickeyMouseMissiles || lowerNorfairSpringMazeMissiles || threeMusketeersMissiles || wreckedShipMainShaftMissiles || bowlingMissiles || atticMissiles || mainStreetMissiles || mamaTurtleMissiles || wateringHoleMissiles || beachMissiles || leftSandPitMissiles || rightSandPitMissiles || aqueductMissiles || preDraygonMissiles || firstSuper || allSupers || specificSuper || firstPowerBomb || allPowerBombs;
+    var pickup = firstMissile || allMissiles || oceanBottomMissiles || oceanTopMissiles ||  oceanMiddleMissiles || moatMissiles || oldTourianMissiles || gauntletRightMissiles || gauntletLeftMissiles || dentalPlan || earlySuperBridgeMissiles || greenBrinstarReserveMissiles || greenBrinstarExtraReserveMissiles || bigPinkTopMissiles || chargeMissiles || greenHillsMissiles || blueBrinstarETankMissiles || alphaMissiles || billyMaysMissiles || butWaitTheresMoreMissiles || redBrinstarMissiles || warehouseMissiles || cathedralMissiles || crumbleShaftMissiles || crocomireEscapeMissiles || hiJumpMissiles || postCrocomireMissiles || grappleMissiles || norfairReserveMissiles || greenBubblesMissiles || bubbleMountainMissiles || speedBoostMissiles || waveMissiles || goldTorizoMissiles || mickeyMouseMissiles || lowerNorfairSpringMazeMissiles || threeMusketeersMissiles || wreckedShipMainShaftMissiles || bowlingMissiles || atticMissiles || mainStreetMissiles || mamaTurtleMissiles || wateringHoleMissiles || beachMissiles || leftSandPitMissiles || rightSandPitMissiles || aqueductMissiles || preDraygonMissiles || firstSuper || allSupers || climbSupers || sporeSpawnSupers || earlySupers || etacoonSupers || goldTorizoSupers || wreckedShipLeftSupers || wreckedShipRightSupers || crabSupers || wateringHoleSupers || aqueductSupers || firstPowerBomb || allPowerBombs;
 
     // Item unlock section
     var varia = settings["variaSuit"] && (vars.watchers["unlockedEquips2"].Old & vars.unlockFlagEnum["variaSuit"]) == 0 && (vars.watchers["unlockedEquips2"].Current & vars.unlockFlagEnum["variaSuit"]) > 0;

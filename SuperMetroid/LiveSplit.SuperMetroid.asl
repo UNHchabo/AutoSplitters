@@ -22,27 +22,115 @@ startup
     settings.Add("allMissiles", false, "All Missiles", "ammoPickups");
     settings.SetToolTip("allMissiles", "Split on each Missile upgrade");
     settings.Add("specificMissiles", false, "Specific Missile Packs", "ammoPickups");
-    settings.SetToolTip("ammoPickups", "Split on specific Missile Pack locations");
-    settings.Add("alphaMissiles", false, "Alpha Missile Pack", "specificMissiles");
-    settings.SetToolTip("alphaMissiles", "Split on picking up the Alpha Missile Pack");
-    settings.Add("chargeMissiles", false, "Charge Missile Pack", "specificMissiles");
-    settings.SetToolTip("chargeMissiles", "Split on picking up the Charge Missile Pack");
-    settings.Add("warehouseMissiles", false, "Warehouse Missile Pack", "specificMissiles");
-    settings.SetToolTip("warehouseMissiles", "Split on picking up the Warehouse Missile Pack");
-    settings.Add("hiJumpMissiles", false, "Hi-Jump Missile Pack", "specificMissiles");
-    settings.SetToolTip("hiJumpMissiles", "Split on picking up the Hi-Jump Missile Pack");
-    settings.Add("waveMissiles", false, "Wave Missile Pack", "specificMissiles");
-    settings.SetToolTip("waveMissiles", "Split on picking up the Wave Missile Pack");
-    settings.Add("wreckedShipMainShaftMissiles", false, "Wrecked Ship Main Shaft Missile Pack", "specificMissiles");
-    settings.SetToolTip("wreckedShipMainShaftMissiles", "Split on picking up the Wrecked Ship Main Shaft Missile Pack");
-    settings.Add("mainStreetMissiles", false, "Main Street Missile Pack", "specificMissiles");
-    settings.SetToolTip("mainStreetMissiles", "Split on picking up the Main Street Missile Pack");
+    settings.SetToolTip("specificMissiles", "Split on specific Missile Pack locations");
+    settings.Add("crateriaMissiles", false, "Crateria Missile Packs", "specificMissiles");
+    settings.SetToolTip("crateriaMissiles", "Split on Crateria Missile Pack locations");
+    settings.Add("oceanBottomMissiles", false, "Ocean Bottom Missile Pack", "crateriaMissiles");
+    settings.SetToolTip("oceanBottomMissiles", "Split on picking up the Missile Pack located at the bottom left of the West Ocean");
+    settings.Add("oceanTopMissiles", false, "Ocean Top Missile Pack", "crateriaMissiles");
+    settings.SetToolTip("oceanTopMissiles", "Split on picking up the Missile Pack located in the ceiling tile in West Ocean");
+    settings.Add("oceanMiddleMissiles", false, "Ocean Middle Missile Pack", "crateriaMissiles");
+    settings.SetToolTip("oceanMiddleMissiles", "Split on picking up the Missile Pack located in the Morphball maze section of West Ocean");
+    settings.Add("moatMissiles", false, "Moat Missile Pack", "crateriaMissiles");
+    settings.SetToolTip("moatMissiles", "Split on picking up the Missile Pack in The Moat, also known as The Lake");
+    settings.Add("oldTourianMissiles", false, "Old Tourian Missile Pack", "crateriaMissiles");
+    settings.SetToolTip("oldTourianMissiles", "Split on picking up the Missile Pack in the Pit Room");
+    settings.Add("gauntletRightMissiles", false, "Gauntlet Right Missile Pack", "crateriaMissiles");
+    settings.SetToolTip("gauntletRightMissiles", "Split on picking up the right side Missile Pack at the end of Gauntlet(Green Pirates Shaft)");
+    settings.Add("gauntletLeftMissiles", false, "Gauntlet Left Missile Pack", "crateriaMissiles");
+    settings.SetToolTip("gauntletLeftMissiles", "Split on picking up the left side Missile Pack at the end of Gauntlet(Green Pirates Shaft)");
+    settings.Add("dentalPlan", false, "Dental Plan Missile Pack", "crateriaMissiles");
+    settings.SetToolTip("dentalPlan", "Split on picking up the Missile Pack located in The Final Missile");
+    settings.Add("brinstarMissiles", false, "Brinstar Missile Packs", "specificMissiles");
+    settings.SetToolTip("brinstarMissiles", "Split on Brinstar Missile Pack locations");
+    settings.Add("earlySuperBridgeMissiles", false, "Early Supers Under Bridge Missile Pack", "brinstarMissiles");
+    settings.SetToolTip("earlySuperBridgeMissiles", "Split on picking up the Missile Pack located below the crumble bridge in the Early Supers Room");
+    settings.Add("greenBrinstarReserveMissiles", false, "Brinstar Reserve Missile Pack", "brinstarMissiles");
+    settings.SetToolTip("greenBrinstarReserveMissiles", "Split on picking up the first Missile Pack behind the Brinstar Reserve Tank");
+    settings.Add("greenBrinstarExtraReserveMissiles", false, "Brinstar Reserve Missile Pack 2", "brinstarMissiles");
+    settings.SetToolTip("greenBrinstarExtraReserveMissiles", "Split on picking up the second Missile Pack behind the Brinstar Reserve Tank Room");
+    settings.Add("bigPinkTopMissiles", false, "Big Pink Top Missile Pack", "brinstarMissiles");
+    settings.SetToolTip("bigPinkTopMissiles", "Split on picking up the Missile Pack located left of center in Big Pink");
+    settings.Add("chargeMissiles", false, "Charge Missile Pack", "brinstarMissiles");
+    settings.SetToolTip("chargeMissiles", "Split on picking up the Missile Pack located at the bottom left of Big Pink");
+    settings.Add("greenHillsMissiles", false, "Green Hills Missile Pack", "brinstarMissiles");
+    settings.SetToolTip("greenHillsMissiles", "Split on picking up the Missile Pack in Green Hill Zone");
+    settings.Add("blueBrinstarETankMissiles", false, "Classic Brinstar East Missile Pack", "brinstarMissiles");
+    settings.SetToolTip("blueBrinstarETankMissiles", "Split on picking up the Missile Pack in the Blue Brinstar Energy Tank Room");
+    settings.Add("alphaMissiles", false, "Alpha Missile Pack", "brinstarMissiles");
+    settings.SetToolTip("alphaMissiles", "Split on picking up the first Missile Pack of the game(First Missile Room)");
+    settings.Add("billyMaysMissiles", false, "Billy Mays Missile Pack", "brinstarMissiles");
+    settings.SetToolTip("billyMaysMissiles", "Split on picking up the Missile Pack located on the pedestal in Billy Mays' Room");
+    settings.Add("butWaitTheresMoreMissiles", false, "But Wait... There's MORE! Missile Pack", "brinstarMissiles");
+    settings.SetToolTip("butWaitTheresMoreMissiles", "Split on picking up the Missile Pack located in the floor of Billy Mays' Room");
+    settings.Add("redBrinstarMissiles", false, "Red Brinstar Missile Pack", "brinstarMissiles");
+    settings.SetToolTip("redBrinstarMissiles", "Split on picking up the Missile Pack in the Alpha Power Bombs Room");
+    settings.Add("warehouseMissiles", false, "Warehouse Missile Pack", "brinstarMissiles");
+    settings.SetToolTip("warehouseMissiles", "Split on picking up the Missile Pack in the Warehouse Kihunter Room");
+    settings.Add("norfairMissiles", false, "Norfair Missile Packs", "specificMissiles");
+    settings.SetToolTip("norfairMissiles", "Split on Norfair Missile Pack locations");
+    settings.Add("cathedralMissiles", false, "Cathedral Missile Pack", "norfairMissiles");
+    settings.SetToolTip("cathedralMissiles", "Split on picking up the Missile Pack in Cathedral");
+    settings.Add("crumbleShaftMissiles", false, "Crumble Shaft Missile Pack", "norfairMissiles");
+    settings.SetToolTip("crumbleShaftMissiles", "Split on picking up the Missile Pack in Crumble Shaft");
+    settings.Add("crocomireEscapeMissiles", false, "Crocomire Escape Missile Pack", "norfairMissiles");
+    settings.SetToolTip("crocomireEscapeMissiles", "Split on picking up the Missile Pack in Crocomire Escape");
+    settings.Add("hiJumpMissiles", false, "Hi Jump Missile Pack", "norfairMissiles");
+    settings.SetToolTip("hiJumpMissiles", "Split on picking up the Missile Pack in the Hi Jump Energy Tank Room");
+    settings.Add("postCrocomireMissiles", false, "Post Crocomire Missile Pack", "norfairMissiles");
+    settings.SetToolTip("postCrocomireMissiles", "Split on picking up the Missile Pack in the Post Crocomire Missile Room, also known as Cosine Room");
+    settings.Add("grappleMissiles", false, "Grapple Missile Pack", "norfairMissiles");
+    settings.SetToolTip("grappleMissiles", "Split on picking up the Missile Pack in the Post Crocomire Jump Room");
+    settings.Add("norfairReserveMissiles", false, "Norfair Reserve Missile Pack", "norfairMissiles");
+    settings.SetToolTip("norfairReserveMissiles", "Split on picking up the Missile Pack in the Norfair Reserve Tank Room");
+    settings.Add("greenBubblesMissiles", false, "Green Bubbles Missile Pack", "norfairMissiles");
+    settings.SetToolTip("greenBubblesMissiles", "Split on picking up the Missile Pack in the Green Bubbles Missile Room");
+    settings.Add("bubbleMountainMissiles", false, "Bubble Mountain Missile Pack", "norfairMissiles");
+    settings.SetToolTip("bubbleMountainMissiles", "Split on picking up the Missile Pack in Bubble Mountain");
+    settings.Add("speedBoostMissiles", false, "Speed Booster Missile Pack", "norfairMissiles");
+    settings.SetToolTip("speedBoostMissiles", "Split on picking up the Missile Pack in Speed Booster Hall");
+    settings.Add("waveMissiles", false, "Wave Beam Missile Pack", "norfairMissiles");
+    settings.SetToolTip("waveMissiles", "Split on picking up the Wave Missile Pack in Double Chamber");
+    settings.Add("goldTorizoMissiles", false, "Golden Torizo Missile Pack", "norfairMissiles");
+    settings.SetToolTip("goldTorizoMissiles", "Split on picking up the Missile Pack in the Golden Torizo's Room");
+    settings.Add("mickeyMouseMissiles", false, "Mickey Mouse Missile Pack", "norfairMissiles");
+    settings.SetToolTip("mickeyMouseMissiles", "Split on picking up the Missile Pack in the Mickey Mouse Room");
+    settings.Add("lowerNorfairSpringMazeMissiles", false, "Lower Norfair Springball Maze Missile Pack", "norfairMissiles");
+    settings.SetToolTip("lowerNorfairSpringMazeMissiles", "Split on picking up the Missile Pack in the Lower Norfair Springball Maze Room");
+    settings.Add("threeMusketeersMissiles", false, "Three Musketeers Missile Pack", "norfairMissiles");
+    settings.SetToolTip("threeMusketeersMissiles", "Split on picking up the Missile Pack in the The Musketeers' Room");
+    settings.Add("wreckedShipMissiles", false, "Wrecked Ship Missile Packs", "specificMissiles");
+    settings.SetToolTip("wreckedShipMissiles", "Split on Wrecked Ship Missile Pack locations");
+    settings.Add("wreckedShipMainShaftMissiles", false, "Wrecked Ship Main Shaft Missile Pack", "wreckedShipMissiles");
+    settings.SetToolTip("wreckedShipMainShaftMissiles", "Split on picking up the Missile Pack in Wrecked Ship Main Shaft");
+    settings.Add("bowlingMissiles", false, "Bowling Alley Missile Pack", "wreckedShipMissiles");
+    settings.SetToolTip("bowlingMissiles", "Split on picking up the Missile Pack in Bowling Alley");
+    settings.Add("atticMissiles", false, "Attic Missile Pack", "wreckedShipMissiles");
+    settings.SetToolTip("atticMissiles", "Split on picking up the Missile Pack in the Wrecked Ship East Missile Room");
+    settings.Add("maridiaMissiles", false, "Maridia Missile Packs", "specificMissiles");
+    settings.SetToolTip("maridiaMissiles", "Split on Maridia Missile Pack locations");
+    settings.Add("mainStreetMissiles", false, "Main Street Missile Pack", "maridiaMissiles");
+    settings.SetToolTip("mainStreetMissiles", "Split on picking up the Missile Pack in Main Street");
+    settings.Add("mamaTurtleMissiles", false, "Mama Turtle Missile Pack", "maridiaMissiles");
+    settings.SetToolTip("mamaTurtleMissiles", "Split on picking up the Missile Pack in the Mama Turtle Room");
+    settings.Add("wateringHoleMissiles", false, "Watering Hole Missile Pack", "maridiaMissiles");
+    settings.SetToolTip("wateringHoleMissiles", "Split on picking up the Missile Pack in Watering Hole");
+    settings.Add("beachMissiles", false, "Beach Missile Pack", "maridiaMissiles");
+    settings.SetToolTip("beachMissiles", "Split on picking up the Missile Pack in the Pseudo Plasma Spark Room");
+    settings.Add("leftSandPitMissiles", false, "Left Sand Pit Missile Pack", "maridiaMissiles");
+    settings.SetToolTip("leftSandPitMissiles", "Split on picking up the Missile Pack in West Sand Hole");
+    settings.Add("rightSandPitMissiles", false, "Right Sand Pit Missile Pack", "maridiaMissiles");
+    settings.SetToolTip("rightSandPitMissiles", "Split on picking up the Missile Pack in East Sand Hole");
+    settings.Add("aqueductMissiles", false, "Aqueduct Missile Pack", "maridiaMissiles");
+    settings.SetToolTip("aqueductMissiles", "Split on picking up the Missile Pack in Aqueduct");
+    settings.Add("preDraygonMissiles", false, "Pre Draygon Missile Pack", "maridiaMissiles");
+    settings.SetToolTip("preDraygonMissiles", "Split on picking up the Missile Pack in The Precious Room");
     settings.Add("firstSuper", false, "First Supers", "ammoPickups");
     settings.SetToolTip("firstSuper", "Split on the first Super Missile pickup");
     settings.Add("allSupers", false, "All Super Missiles", "ammoPickups");
     settings.SetToolTip("allSupers", "Split on each Super Missile upgrade");
     settings.Add("specificSupers", false, "Specific Super Missile Packs", "ammoPickups");
-    settings.SetToolTip("ammoPickups", "Split on specific Super Missile Pack locations");
+    settings.SetToolTip("specificSupers", "Split on specific Super Missile Pack locations");
     settings.Add("earlySupers", false, "Early Supers Missile Pack", "specificSupers");
     settings.SetToolTip("earlySupers", "Split on picking up the Early Supers Missile Pack");
     settings.Add("sporeSpawnSupers", false, "Spore Spawn Super Missile Pack", "specificSupers");
@@ -96,7 +184,7 @@ startup
     settings.Add("reserveTanks", false, "All Reserve Tanks", "energyUpgrades");
     settings.SetToolTip("reserveTanks", "Split on picking up each Reserve Tank");
     settings.Add("specificETanks", false, "Specific Energy Tanks", "energyUpgrades");
-    settings.SetToolTip("energyUpgrades", "Split on specific Energy Tank locations");
+    settings.SetToolTip("specificETanks", "Split on specific Energy Tank locations");
     settings.Add("gauntletETank", false, "Gauntlet Energy Tank", "specificETanks");
     settings.SetToolTip("gauntletETank", "Split on picking up the Gauntlet Energy Tank");
     settings.Add("terminatorETank", false, "Terminator Energy Tank", "specificETanks");
@@ -163,6 +251,8 @@ startup
     settings.SetToolTip("tubeBroken", "Split on blowing up the tube to enter Maridia");
     settings.Add("cacExit", false, "Cacatack Alley Exit", "areaTransitions");
     settings.SetToolTip("cacExit", "Split on exiting West Cacattack Alley");
+    settings.Add("toilet", false, "Toilet Bowl", "areaTransitions");
+    settings.SetToolTip("toilet", "Split on entering Toilet Bowl from either direction");
     settings.Add("kronicBoost", false, "Kronic Boost Room", "areaTransitions");
     settings.SetToolTip("kronicBoost", "Split on entering Kronic Boost room");
     settings.Add("lowerNorfairEntrance", false, "Lower Norfair Entrance", "areaTransitions");
@@ -230,81 +320,137 @@ startup
     settings.SetToolTip("hundredMissileRTAFinish", "Split on the end of a 100 Missile RTA run, when the text box clears after collecting the hundredth missile");
 
     // RoomIDs compiled here:
-    // https://wiki.supermetroid.run/List_of_RoomIDs
+    // https://wiki.supermetroid.run/List_of_rooms_by_SMILE_ID
     vars.roomIDEnum = new Dictionary<string, int> {
-        { "landingSite",            0x91F8 },
-        { "westOcean",              0x93FE },
-        { "elevatorToMaridia",      0x94CC },
-        { "elevatorToCaterpillar",  0x962A },
-        { "climb",                  0x96BA },
-        { "elevatorToMorphBall",    0x97B5 },
-        { "bombTorizo",             0x9804 },
-        { "elevatorToGreenBrinstar",0x9938 },
-        { "greenBrinstarMainShaft", 0x9AD9 },
-        { "sporeSpawnSuper",        0x9B5B },
-        { "sporeSpawnKeyhunter",    0x9D9C },
-        { "sporeSpawn",             0x9DC7 },
-        { "morphBall",              0x9E9F },
-        { "redTower",               0xA253 },
-        { "caterpillar",            0xA322 },
-        { "bat",                    0xA3DD },
-        { "warehouseZeela",         0xA471 },
-        { "kraidEyeDoor",           0xA56B },
-        { "kraid",                  0xA59F },
-        { "statuesHallway",         0xA5ED },
-        { "statues",                0xA66A },
-        { "warehouseEntrance",      0xA6A1 },
-        { "businessCenter",         0xA7DE },
-        { "crocomireSpeedway",      0xA923 },
-        { "crocomire",              0xA98D },
-        { "singleChamber",          0xAD5E }, // Exit room from Lower Norfair, also on the path to Wave
-        { "volcano",                0xAE32 },
-        { "kronicBoost",            0xAE74 },
-        { "magdolliteTunnel",       0xAEB4 },
-        { "lowerNorfairElevator",   0xAF3F },
-        { "spikyAcidSnakes",        0xAFFB },
-        { "acidStatue",             0xB1E5 },
-        { "mainHall",               0xB236 }, // First room in Lower Norfair
-        { "goldenTorizo",           0xB283 },
-        { "ridley",                 0xB32E },
-        { "lowerNorfairFarming",    0xB37A },
-        { "pillars",                0xB457 },
-        { "writg",                  0xB4AD },
-        { "amphitheatre",           0xB4E5 },
-        { "lowerNorfairSpringMaze", 0xB510 },
-        { "redKiShaft",             0xB585 },
-        { "wasteland",              0xB5D5 },
-        { "metalPirates",           0xB62B },
-        { "threeMusketeers",        0xB656 },
-        { "screwAttack",            0xB6C1 },
-        { "lowerNorfairFireflea",   0xB6EE },
-        { "wreckedShipEntrance",    0xCA08 },
-        { "attic",                  0xCA52 },
-        { "basement",               0xCC6F }, // Basement of Wrecked Ship
-        { "phantoon",               0xCD13 },
-        { "glassTunnel",            0xCEFB },
-        { "maridiaElevator",        0xD30B },
-        { "butterflyRoom",          0xD5EC },
-        { "botwoonHallway",         0xD617 },
-        { "precious",               0xD78F },
-        { "botwoon",                0xD95E },
-        { "westCactusAlley",        0xD9FE },
-        { "draygon",                0xDA60 },
-        { "tourianElevator",        0xDAAE },
-        { "metroidOne",             0xDAE1 },
-        { "metroidTwo",             0xDB31 },
-        { "metroidThree",           0xDB7D },
-        { "metroidFour",            0xDBCD },
-        { "dustTorizo",             0xDC65 },
-        { "tourianHopper",          0xDC19 },
-        { "tourianEyeDoor",         0xDDC4 },
-        { "bigBoy",                 0xDCB1 },
-        { "motherBrain",            0xDD58 },
-        { "rinkaShaft",             0xDDF3 },
-        { "tourianEscape4",         0xDEDE },
-        { "ceresElevator",          0xDF45 },
-        { "flatRoom",               0xE06B }, // Placeholder name for the flat room in Ceres Station
-        { "ceresRidley",            0xE0B5 }
+        { "landingSite",                    0x91F8 },
+        { "crateriaPowerBombRoom",          0x93AA },
+        { "westOcean",                      0x93FE },
+        { "elevatorToMaridia",              0x94CC },
+        { "crateriaMoat",                   0x95FF },
+        { "elevatorToCaterpillar",          0x962A },
+        { "gauntletETankRoom",              0x965B },
+        { "climb",                          0x96BA },
+        { "pitRoom",                        0x975C },
+        { "elevatorToMorphBall",            0x97B5 },
+        { "bombTorizo",                     0x9804 },
+        { "terminator",                     0x990D },
+        { "elevatorToGreenBrinstar",        0x9938 },
+        { "greenPirateShaft",               0x99BD },
+        { "crateriaSupersRoom",             0x99F9 },
+        { "theFinalMissile",                0x9A90 },
+        { "greenBrinstarMainShaft",         0x9AD9 },
+        { "sporeSpawnSuper",                0x9B5B },
+        { "earlySupers",                    0x9BC8 },
+        { "brinstarReserveRoom",            0x9C07 },
+        { "bigPink",                        0x9D19 },
+        { "sporeSpawnKeyhunter",            0x9D9C },
+        { "sporeSpawn",                     0x9DC7 },
+        { "pinkBrinstarPowerBombRoom",      0x9E11 },
+        { "greenHills",                     0x9E52 },
+        { "morphBall",                      0x9E9F },
+        { "blueBrinstarETankRoom",          0x9F64 },
+        { "etacoonETankRoom",               0xA011 },
+        { "etacoonSuperRoom",               0xA051 },
+        { "waterway",                       0xA0D2 },
+        { "alphaMissileRoom",               0xA107 },
+        { "hopperETankRoom",                0xA15B },
+        { "billyMays",                      0xA1D8 },
+        { "redTower",                       0xA253 },
+        { "caterpillar",                    0xA322 },
+        { "betaPowerBombRoom",              0xA37C },
+        { "alphaPowerBombsRoom",            0xA3AE },
+        { "bat",                            0xA3DD },
+        { "warehouseETankRoom",             0xA4B1 },
+        { "warehouseZeela",                 0xA471 },
+        { "warehouseKiHunters",             0xA4DA },
+        { "kraidEyeDoor",                   0xA56B },
+        { "kraid",                          0xA59F },
+        { "statuesHallway",                 0xA5ED },
+        { "statues",                        0xA66A },
+        { "warehouseEntrance",              0xA6A1 },
+        { "cathedral",                      0xA788 },
+        { "businessCenter",                 0xA7DE },
+        { "crumbleShaft",                   0xA8F8 },
+        { "crocomireSpeedway",              0xA923 },
+        { "crocomire",                      0xA98D },
+        { "crocomireEscape",                0xAA0E },
+        { "hiJumpShaft",                    0xAA41 },
+        { "postCrocomirePowerBombRoom",     0xAADE },
+        { "cosineRoom",                     0xAB3B },
+        { "preGrapple",                     0xAB8F },
+        { "norfairReserveRoom",             0xAC5A },
+        { "greenBubblesRoom",               0xAC83 },
+        { "bubbleMountain",                 0xACB3 },
+        { "speedBoostHall",                 0xACF0 },
+        { "singleChamber",                  0xAD5E }, // Exit room from Lower Norfair, also on the path to Wave
+        { "doubleChamber",                  0xADAD },
+        { "volcano",                        0xAE32 },
+        { "kronicBoost",                    0xAE74 },
+        { "magdolliteTunnel",               0xAEB4 },
+        { "lowerNorfairElevator",           0xAF3F },
+        { "spikyAcidSnakes",                0xAFFB },
+        { "acidStatue",                     0xB1E5 },
+        { "mainHall",                       0xB236 }, // First room in Lower Norfair
+        { "goldenTorizo",                   0xB283 },
+        { "ridley",                         0xB32E },
+        { "lowerNorfairFarming",            0xB37A },
+        { "mickeyMouse",                    0xB40A },
+        { "pillars",                        0xB457 },
+        { "writg",                          0xB4AD },
+        { "amphitheatre",                   0xB4E5 },
+        { "lowerNorfairSpringMaze",         0xB510 },
+        { "lowerNorfairEscapePowerBombRoom",0xB55A },
+        { "redKiShaft",                     0xB585 },
+        { "wasteland",                      0xB5D5 },
+        { "metalPirates",                   0xB62B },
+        { "threeMusketeers",                0xB656 },
+        { "ridleyETankRoom",                0xB698 },
+        { "screwAttack",                    0xB6C1 },
+        { "lowerNorfairFireflea",           0xB6EE },
+        { "bowling",                        0xC98E },
+        { "wreckedShipEntrance",            0xCA08 },
+        { "attic",                          0xCA52 },
+        { "atticWorkerRobotRoom",           0xCAAE },
+        { "wreckedShipMainShaft",           0xCAF6 },
+        { "wreckedShipETankRoom",           0xCC27 },
+        { "basement",                       0xCC6F }, // Basement of Wrecked Ship
+        { "phantoon",                       0xCD13 },
+        { "wreckedShipLeftSuperRoom",       0xCDA8 },
+        { "wreckedShipRightSuperRoom",      0xCDF1 },
+        { "glassTunnel",                    0xCEFB },
+        { "mainStreet",                     0xCFC9 },
+        { "mamaTurtle",                     0xD055 },
+        { "wateringHole",                   0xD13B },
+        { "beach",                          0xD1DD },
+        { "maridiaElevator",                0xD30B },
+        { "plasmaSpark",                    0xD340 },
+        { "toiletBowl",                     0xD408 },
+        { "oasis",                          0xD48E },
+        { "leftSandPit",                    0xD4EF },
+        { "rightSandPit",                   0xD51E },
+        { "aqueduct",                       0xD5A7 },
+        { "butterflyRoom",                  0xD5EC },
+        { "botwoonHallway",                 0xD617 },
+        { "precious",                       0xD78F },
+        { "botwoonETankRoom",               0xD7E4 },
+        { "botwoon",                        0xD95E },
+        { "westCactusAlley",                0xD9FE },
+        { "draygon",                        0xDA60 },
+        { "tourianElevator",                0xDAAE },
+        { "metroidOne",                     0xDAE1 },
+        { "metroidTwo",                     0xDB31 },
+        { "metroidThree",                   0xDB7D },
+        { "metroidFour",                    0xDBCD },
+        { "dustTorizo",                     0xDC65 },
+        { "tourianHopper",                  0xDC19 },
+        { "tourianEyeDoor",                 0xDDC4 },
+        { "bigBoy",                         0xDCB1 },
+        { "motherBrain",                    0xDD58 },
+        { "rinkaShaft",                     0xDDF3 },
+        { "tourianEscape4",                 0xDEDE },
+        { "ceresElevator",                  0xDF45 },
+        { "flatRoom",                       0xE06B }, // Placeholder name for the flat room in Ceres Station
+        { "ceresRidley",                    0xE0B5 }
     };
 
     vars.mapInUseEnum = new Dictionary<string, int>{
@@ -346,26 +492,6 @@ startup
         { "plasma",         0x8 },
         // Charge
         { "chargeBeam",     0x10}
-    };
-
-    vars.missileWatchKeys = new Dictionary<string, string> {
-        { "chargeMissiles", "brinstarItems2" },
-        { "alphaMissiles", "brinstarItems4" },
-        { "warehouseMissiles", "brinstarItems5" },
-        { "hiJumpMissiles", "norfairItems1" },
-        { "waveMissiles", "norfairItems3" },
-        { "wreckedShipMainShaftMissiles", "wreckedShipItems" },
-        { "mainStreetMissiles", "maridiaItems1" },
-    };
-
-    vars.missileMasks = new Dictionary<string, int> {
-        { "chargeMissiles",                 0x40 },
-        { "alphaMissiles",                  0x04 },
-        { "warehouseMissiles",              0x10 },
-        { "hiJumpMissiles",                 0x80 },
-        { "waveMissiles",                   0x08 },
-        { "wreckedShipMainShaftMissiles",   0x01 },
-        { "mainStreetMissiles",             0x01 },
     };
 
     vars.superWatchKeys = new Dictionary<string, string> {
@@ -632,12 +758,52 @@ split
     // Ammo pickup section
     var firstMissile = settings["firstMissile"] && vars.watchers["maxMissiles"].Old == 0 && vars.watchers["maxMissiles"].Current == 5;
     var allMissiles = settings["allMissiles"] && (vars.watchers["maxMissiles"].Old + 5) == (vars.watchers["maxMissiles"].Current);
-    var specificMissile = false;
-    foreach (string missile in vars.missileMasks.Keys) {
-            specificMissile |= settings[missile]
-                    && ((vars.watchers[vars.missileWatchKeys[missile]].Current & vars.missileMasks[missile]) != 0)
-                    && ((vars.watchers[vars.missileWatchKeys[missile]].Old & vars.missileMasks[missile]) == 0);
-    }
+    var oceanBottomMissiles = settings["oceanBottomMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["westOcean"] && (vars.watchers["crateriaItems"].Old + 2) == (vars.watchers["crateriaItems"].Current);
+    var oceanTopMissiles = settings["oceanTopMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["westOcean"] && (vars.watchers["crateriaItems"].Old + 4) == (vars.watchers["crateriaItems"].Current);
+    var oceanMiddleMissiles = settings["oceanMiddleMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["westOcean"] && (vars.watchers["crateriaItems"].Old + 8) == (vars.watchers["crateriaItems"].Current);
+    var moatMissiles = settings["moatMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["crateriaMoat"] && (vars.watchers["crateriaItems"].Old + 16) == (vars.watchers["crateriaItems"].Current);
+    var oldTourianMissiles = settings["oldTourianMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["pitRoom"] && (vars.watchers["crateriaItems"].Old + 64) == (vars.watchers["crateriaItems"].Current);
+    var gauntletRightMissiles = settings["gauntletRightMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["greenPirateShaft"] && (vars.watchers["brinteriaItems"].Old + 2) == (vars.watchers["brinteriaItems"].Current);
+    var gauntletLeftMissiles = settings["gauntletLeftMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["greenPirateShaft"] && (vars.watchers["brinteriaItems"].Old + 4) == (vars.watchers["brinteriaItems"].Current);
+    var dentalPlan = settings["dentalPlan"] && vars.watchers["roomID"].Current == vars.roomIDEnum["theFinalMissile"] && (vars.watchers["brinteriaItems"].Old + 16) == (vars.watchers["brinteriaItems"].Current);
+    var earlySuperBridgeMissiles = settings["earlySuperBridgeMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["earlySupers"] && (vars.watchers["brinteriaItems"].Old + 128) == (vars.watchers["brinteriaItems"].Current);
+    var greenBrinstarReserveMissiles = settings["greenBrinstarReserveMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["brinstarReserveRoom"] && (vars.watchers["brinstarItems2"].Old + 8) == (vars.watchers["brinstarItems2"].Current);
+    var greenBrinstarExtraReserveMissiles = settings["greenBrinstarExtraReserveMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["brinstarReserveRoom"] && (vars.watchers["brinstarItems2"].Old + 4) == (vars.watchers["brinstarItems2"].Current);
+    var bigPinkTopMissiles = settings["bigPinkTopMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["bigPink"] && (vars.watchers["brinstarItems2"].Old + 32) == (vars.watchers["brinstarItems2"].Current);
+    var chargeMissiles = settings["chargeMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["bigPink"] && (vars.watchers["brinstarItems2"].Old + 64) == (vars.watchers["brinstarItems2"].Current);
+    var greenHillsMissiles = settings["greenHillsMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["greenHills"] && (vars.watchers["brinstarItems3"].Old + 2) == (vars.watchers["brinstarItems3"].Current);
+    var blueBrinstarETankMissiles = settings["blueBrinstarETankMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["blueBrinstarETankRoom"] && (vars.watchers["brinstarItems3"].Old + 16) == (vars.watchers["brinstarItems3"].Current);
+    var alphaMissiles = settings["alphaMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["alphaMissileRoom"] && (vars.watchers["brinstarItems4"].Old + 4) == (vars.watchers["brinstarItems4"].Current);
+    var billyMaysMissiles = settings["billyMaysMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["billyMays"] && (vars.watchers["brinstarItems4"].Old + 16) == (vars.watchers["brinstarItems4"].Current);
+    var butWaitTheresMoreMissiles = settings["butWaitTheresMoreMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["billyMays"] && (vars.watchers["brinstarItems4"].Old + 32) == (vars.watchers["brinstarItems4"].Current);
+    var redBrinstarMissiles = settings["redBrinstarMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["alphaPowerBombsRoom"] && (vars.watchers["brinstarItems5"].Old + 2) == (vars.watchers["brinstarItems5"].Current);
+    var warehouseMissiles = settings["warehouseMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["warehouseKiHunters"] && (vars.watchers["brinstarItems5"].Old + 16) == (vars.watchers["brinstarItems5"].Current);
+    var cathedralMissiles = settings["cathedralMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["cathedral"] && (vars.watchers["norfairItems1"].Old + 2) == (vars.watchers["norfairItems1"].Current);
+    var crumbleShaftMissiles = settings["crumbleShaftMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["crumbleShaft"] && (vars.watchers["norfairItems1"].Old + 8) == (vars.watchers["norfairItems1"].Current);
+    var crocomireEscapeMissiles = settings["crocomireEscapeMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["crocomireEscape"] && (vars.watchers["norfairItems1"].Old + 64) == (vars.watchers["norfairItems1"].Current);
+    var hiJumpMissiles = settings["hiJumpMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["hiJumpShaft"] && (vars.watchers["norfairItems1"].Old + 128) == (vars.watchers["norfairItems1"].Current);
+    var postCrocomireMissiles = settings["postCrocomireMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["cosineRoom"] && (vars.watchers["norfairItems2"].Old + 4) == (vars.watchers["norfairItems2"].Current);
+    var grappleMissiles = settings["grappleMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["preGrapple"] && (vars.watchers["norfairItems2"].Old + 8) == (vars.watchers["norfairItems2"].Current);
+    var norfairReserveMissiles = settings["norfairReserveMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["norfairReserveRoom"] && (vars.watchers["norfairItems2"].Old + 64) == (vars.watchers["norfairItems2"].Current);
+    var greenBubblesMissiles = settings["greenBubblesMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["greenBubblesRoom"] && (vars.watchers["norfairItems2"].Old + 128) == (vars.watchers["norfairItems2"].Current);
+    var bubbleMountainMissiles = settings["bubbleMountainMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["bubbleMountain"] && (vars.watchers["norfairItems3"].Old + 1) == (vars.watchers["norfairItems3"].Current);
+    var speedBoostMissiles = settings["speedBoostMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["speedBoostHall"] && (vars.watchers["norfairItems3"].Old + 2) == (vars.watchers["norfairItems3"].Current);
+    var waveMissiles = settings["waveMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["doubleChamber"] && (vars.watchers["norfairItems3"].Old + 8) == (vars.watchers["norfairItems3"].Current);
+    var goldTorizoMissiles = settings["goldTorizoMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["goldenTorizo"] && (vars.watchers["norfairItems3"].Old + 64) == (vars.watchers["norfairItems3"].Current);
+    var mickeyMouseMissiles = settings["mickeyMouseMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["mickeyMouse"] && (vars.watchers["norfairItems4"].Old + 2) == (vars.watchers["norfairItems4"].Current);
+    var lowerNorfairSpringMazeMissiles = settings["lowerNorfairSpringMazeMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["lowerNorfairSpringMaze"] && (vars.watchers["norfairItems4"].Old + 4) == (vars.watchers["norfairItems4"].Current);
+    var threeMusketeersMissiles = settings["threeMusketeersMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["threeMusketeers"] && (vars.watchers["norfairItems4"].Old + 32) == (vars.watchers["norfairItems4"].Current);
+    var wreckedShipMainShaftMissiles = settings["wreckedShipMainShaftMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["wreckedShipMainShaft"] && (vars.watchers["wreckedShipItems"].Old + 1) == (vars.watchers["wreckedShipItems"].Current);
+    var bowlingMissiles = settings["bowlingMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["bowling"] && (vars.watchers["wreckedShipItems"].Old + 4) == (vars.watchers["wreckedShipItems"].Current);
+    var atticMissiles = settings["atticMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["atticWorkerRobotRoom"] && (vars.watchers["wreckedShipItems"].Old + 8) == (vars.watchers["wreckedShipItems"].Current);
+    var mainStreetMissiles = settings["mainStreetMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["mainStreet"] && (vars.watchers["maridiaItems1"].Old + 1) == (vars.watchers["maridiaItems1"].Current);
+    var mamaTurtleMissiles = settings["mamaTurtleMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["mamaTurtle"] && (vars.watchers["maridiaItems1"].Old + 8) == (vars.watchers["maridiaItems1"].Current);
+    var wateringHoleMissiles = settings["wateringHoleMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["wateringHole"] && (vars.watchers["maridiaItems1"].Old + 32) == (vars.watchers["maridiaItems1"].Current);
+    var beachMissiles = settings["beachMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["beach"] && (vars.watchers["maridiaItems1"].Old + 64) == (vars.watchers["maridiaItems1"].Current);
+    var leftSandPitMissiles = settings["leftSandPitMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["leftSandPit"] && (vars.watchers["maridiaItems2"].Old + 1) == (vars.watchers["maridiaItems2"].Current);
+    var rightSandPitMissiles = settings["rightSandPitMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["rightSandPit"] && (vars.watchers["maridiaItems2"].Old + 4) == (vars.watchers["maridiaItems2"].Current);
+    var aqueductMissiles = settings["aqueductMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["aqueduct"] && (vars.watchers["maridiaItems2"].Old + 16) == (vars.watchers["maridiaItems2"].Current);
+    var preDraygonMissiles = settings["preDraygonMissiles"] && vars.watchers["roomID"].Current == vars.roomIDEnum["precious"] && (vars.watchers["maridiaItems2"].Old + 128) == (vars.watchers["maridiaItems2"].Current);
     var firstSuper = settings["firstSuper"] && vars.watchers["maxSupers"].Old == 0 && vars.watchers["maxSupers"].Current == 5;
     var allSupers = settings["allSupers"] && (vars.watchers["maxSupers"].Old + 5) == (vars.watchers["maxSupers"].Current);
     var specificSuper = false;
@@ -648,7 +814,7 @@ split
     }
     var firstPowerBomb = settings["firstPowerBomb"] && vars.watchers["maxPowerBombs"].Old == 0 && vars.watchers["maxPowerBombs"].Current == 5;
     var allPowerBombs = settings["allPowerBombs"] && (vars.watchers["maxPowerBombs"].Old + 5) == (vars.watchers["maxPowerBombs"].Current);
-    var pickup = firstMissile || allMissiles || specificMissile || firstSuper || allSupers || specificSuper || firstPowerBomb || allPowerBombs;
+    var pickup = firstMissile || allMissiles || oceanBottomMissiles || oceanTopMissiles ||  oceanMiddleMissiles || moatMissiles || oldTourianMissiles || gauntletRightMissiles || gauntletLeftMissiles || dentalPlan || earlySuperBridgeMissiles || greenBrinstarReserveMissiles || greenBrinstarExtraReserveMissiles || bigPinkTopMissiles || chargeMissiles || greenHillsMissiles || blueBrinstarETankMissiles || alphaMissiles || billyMaysMissiles || butWaitTheresMoreMissiles || redBrinstarMissiles || warehouseMissiles || cathedralMissiles || crumbleShaftMissiles || crocomireEscapeMissiles || hiJumpMissiles || postCrocomireMissiles || grappleMissiles || norfairReserveMissiles || greenBubblesMissiles || bubbleMountainMissiles || speedBoostMissiles || waveMissiles || goldTorizoMissiles || mickeyMouseMissiles || lowerNorfairSpringMazeMissiles || threeMusketeersMissiles || wreckedShipMainShaftMissiles || bowlingMissiles || atticMissiles || mainStreetMissiles || mamaTurtleMissiles || wateringHoleMissiles || beachMissiles || leftSandPitMissiles || rightSandPitMissiles || aqueductMissiles || preDraygonMissiles || firstSuper || allSupers || specificSuper || firstPowerBomb || allPowerBombs;
 
     // Item unlock section
     var varia = settings["variaSuit"] && (vars.watchers["unlockedEquips2"].Old & vars.unlockFlagEnum["variaSuit"]) == 0 && (vars.watchers["unlockedEquips2"].Current & vars.unlockFlagEnum["variaSuit"]) > 0;
@@ -726,6 +892,7 @@ split
     var atticExit = settings["atticExit"] && vars.watchers["roomID"].Old == vars.roomIDEnum["attic"] && vars.watchers["roomID"].Current == vars.roomIDEnum["westOcean"];
     var tubeBroken = settings["tubeBroken"] && vars.watchers["roomID"].Current == vars.roomIDEnum["glassTunnel"] && (vars.watchers["eventFlags"].Old & vars.eventFlagEnum["tubeBroken"]) == 0 && (vars.watchers["eventFlags"].Current & vars.eventFlagEnum["tubeBroken"]) > 0;
     var cacExit = settings["cacExit"] && vars.watchers["roomID"].Old == vars.roomIDEnum["westCactusAlley"] && vars.watchers["roomID"].Current == vars.roomIDEnum["butterflyRoom"];
+    var toilet = settings["toilet"] && vars.watchers["roomID"].Old == vars.roomIDEnum["plasmaSpark"] && vars.watchers["roomID"].Current == vars.roomIDEnum["toiletBowl"] || vars.watchers["roomID"].Old == vars.roomIDEnum["oasis"] && vars.watchers["roomID"].Current == vars.roomIDEnum["toiletBowl"];;
     var kronicBoost = settings["kronicBoost"] && (vars.watchers["roomID"].Old == vars.roomIDEnum["magdolliteTunnel"] && vars.watchers["roomID"].Current == vars.roomIDEnum["kronicBoost"] || vars.watchers["roomID"].Old == vars.roomIDEnum["spikyAcidSnakes"] && vars.watchers["roomID"].Current == vars.roomIDEnum["kronicBoost"] || vars.watchers["roomID"].Old == vars.roomIDEnum["volcano"] && vars.watchers["roomID"].Current == vars.roomIDEnum["kronicBoost"]);
     var lowerNorfairEntrance = settings["lowerNorfairEntrance"] && vars.watchers["roomID"].Old == vars.roomIDEnum["lowerNorfairElevator"] && vars.watchers["roomID"].Current == vars.roomIDEnum["mainHall"];
     var writg = settings["writg"] && vars.watchers["roomID"].Old == vars.roomIDEnum["pillars"] && vars.watchers["roomID"].Current == vars.roomIDEnum["writg"];
@@ -739,7 +906,7 @@ split
     var metroids = settings["metroids"] && (vars.watchers["roomID"].Old == vars.roomIDEnum["metroidOne"] && vars.watchers["roomID"].Current == vars.roomIDEnum["metroidTwo"] || vars.watchers["roomID"].Old == vars.roomIDEnum["metroidTwo"] && vars.watchers["roomID"].Current == vars.roomIDEnum["metroidThree"] || vars.watchers["roomID"].Old == vars.roomIDEnum["metroidThree"] && vars.watchers["roomID"].Current == vars.roomIDEnum["metroidFour"] || vars.watchers["roomID"].Old == vars.roomIDEnum["metroidFour"] && vars.watchers["roomID"].Current == vars.roomIDEnum["tourianHopper"]);
     var babyMetroidRoom = settings["babyMetroidRoom"] && vars.watchers["roomID"].Old == vars.roomIDEnum["dustTorizo"] && vars.watchers["roomID"].Current == vars.roomIDEnum["bigBoy"];
     var escapeClimb = settings["escapeClimb"] && vars.watchers["roomID"].Old == vars.roomIDEnum["tourianEscape4"] && vars.watchers["roomID"].Current == vars.roomIDEnum["climb"];
-    var roomTransitions = miniBossRooms || bossRooms || elevatorTransitions || ceresEscape || wreckedShipEntrance|| redTowerBottomEntrance || kraidsLair || atticExit || tubeBroken || cacExit || kronicBoost || lowerNorfairEntrance || writg || redKiShaft || metalPirates || lowerNorfairSpringMaze || lowerNorfairExit || tourianEntrance || goldenFour || metroids || babyMetroidRoom || escapeClimb;
+    var roomTransitions = miniBossRooms || bossRooms || elevatorTransitions || ceresEscape || wreckedShipEntrance|| redTowerBottomEntrance || kraidsLair || atticExit || tubeBroken || cacExit || toilet || kronicBoost || lowerNorfairEntrance || writg || redKiShaft || metalPirates || lowerNorfairSpringMaze || lowerNorfairExit || tourianEntrance || goldenFour || metroids || babyMetroidRoom || escapeClimb;
 
     // Minibosses
     var ceresRidley = settings["ceresRidley"] && (vars.watchers["ceresBosses"].Old & vars.bossFlagEnum["ceresRidley"]) == 0 && (vars.watchers["ceresBosses"].Current & vars.bossFlagEnum["ceresRidley"]) > 0 && vars.watchers["roomID"].Current == vars.roomIDEnum["ceresRidley"];

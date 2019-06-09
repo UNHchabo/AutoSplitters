@@ -155,6 +155,28 @@ startup
     settings.SetToolTip("firstPowerBomb", "Split on the first Power Bomb pickup");
     settings.Add("allPowerBombs", false, "All Power Bombs", "ammoPickups");
     settings.SetToolTip("allPowerBombs", "Split on each Power Bomb upgrade");
+    settings.Add("specificBombs", false, "Specific Power Bomb Packs", "ammoPickups");
+    settings.SetToolTip("specificBombs", "Split on specific Power Bomb Pack locations");
+    settings.Add("landingSiteBombs", false, "Crateria Power Bomb Pack", "specificBombs");
+    settings.SetToolTip("landingSiteBombs", "Split on picking up the Power Bomb Pack in the Crateria Power Bomb Room");
+    settings.Add("etacoonBombs", false, "Etacoon Power Bomb Pack", "specificBombs");
+    settings.SetToolTip("etacoonBombs", "Split on picking up the Power Bomb Pack in the Etacoon Room section of Green Brinstar Main Shaft");
+    settings.Add("pinkBrinstarBombs", false, "Pink Brinstar Power Bomb Pack", "specificBombs");
+    settings.SetToolTip("pinkBrinstarBombs", "Split on picking up the Power Bomb Pack in the Pink Brinstar Power Bomb Room");
+    settings.Add("blueBrinstarBombs", false, "Classic Brinstar Power Bomb Pack", "specificBombs");
+    settings.SetToolTip("blueBrinstarBombs", "Split on picking up the Power Bomb Pack in the Morph Ball Room");
+    settings.Add("alphaBombs", false, "Alpha Power Bomb Pack", "specificBombs");
+    settings.SetToolTip("alphaBombs", "Split on picking up the Power Bomb Pack in the Alpha Power Bomb Room");
+    settings.Add("betaBombs", false, "Beta Power Bomb Pack", "specificBombs");
+    settings.SetToolTip("betaBombs", "Split on picking up the Power Bomb Pack in the Beta Power Bomb Room");
+    settings.Add("crocomireBombs", false, "Crocomire Power Bomb Pack", "specificBombs");
+    settings.SetToolTip("crocomireBombs", "Split on picking up the Power Bomb Pack in the Post Crocomire Power Bomb Room");
+    settings.Add("lowerNorfairEscapeBombs", false, "Lower Norfair Escape Power Bomb Pack", "specificBombs");
+    settings.SetToolTip("lowerNorfairEscapeBombs", "Split on picking up the Power Bomb Pack in the Lower Norfair Escape Power Bomb Room");
+    settings.Add("shameBombs", false, "Power Bombs of Shame Pack", "specificBombs");
+    settings.SetToolTip("shameBombs", "Split on picking up the Power Bomb Pack in Wasteland");
+    settings.Add("rightSandPitBombs", false, "Maridia Power Bomb Pack", "specificBombs");
+    settings.SetToolTip("rightSandPitBombs", "Split on picking up the Power Bomb Pack in East Sand Hall");
 
     settings.Add("suitUpgrades", true, "Suit Pickups");
     settings.SetToolTip("suitUpgrades", "Split on Varia and Gravity pickups");
@@ -812,7 +834,17 @@ split
     var aqueductSupers = settings["aqueductSupers"] && vars.watchers["roomID"].Current == vars.roomIDEnum["aqueduct"] && (vars.watchers["maridiaItems2"].Old + 32) == (vars.watchers["maridiaItems2"].Current);
     var firstPowerBomb = settings["firstPowerBomb"] && vars.watchers["maxPowerBombs"].Old == 0 && vars.watchers["maxPowerBombs"].Current == 5;
     var allPowerBombs = settings["allPowerBombs"] && (vars.watchers["maxPowerBombs"].Old + 5) == (vars.watchers["maxPowerBombs"].Current);
-    var pickup = firstMissile || allMissiles || oceanBottomMissiles || oceanTopMissiles ||  oceanMiddleMissiles || moatMissiles || oldTourianMissiles || gauntletRightMissiles || gauntletLeftMissiles || dentalPlan || earlySuperBridgeMissiles || greenBrinstarReserveMissiles || greenBrinstarExtraReserveMissiles || bigPinkTopMissiles || chargeMissiles || greenHillsMissiles || blueBrinstarETankMissiles || alphaMissiles || billyMaysMissiles || butWaitTheresMoreMissiles || redBrinstarMissiles || warehouseMissiles || cathedralMissiles || crumbleShaftMissiles || crocomireEscapeMissiles || hiJumpMissiles || postCrocomireMissiles || grappleMissiles || norfairReserveMissiles || greenBubblesMissiles || bubbleMountainMissiles || speedBoostMissiles || waveMissiles || goldTorizoMissiles || mickeyMouseMissiles || lowerNorfairSpringMazeMissiles || threeMusketeersMissiles || wreckedShipMainShaftMissiles || bowlingMissiles || atticMissiles || mainStreetMissiles || mamaTurtleMissiles || wateringHoleMissiles || beachMissiles || leftSandPitMissiles || rightSandPitMissiles || aqueductMissiles || preDraygonMissiles || firstSuper || allSupers || climbSupers || sporeSpawnSupers || earlySupers || etacoonSupers || goldTorizoSupers || wreckedShipLeftSupers || wreckedShipRightSupers || crabSupers || wateringHoleSupers || aqueductSupers || firstPowerBomb || allPowerBombs;
+    var landingSiteBombs = settings["landingSiteBombs"] && vars.watchers["roomID"].Current == vars.roomIDEnum["crateriaPowerBombRoom"] && (vars.watchers["crateriaItems"].Old + 1) == (vars.watchers["crateriaItems"].Current);
+    var etacoonBombs = settings["etacoonBombs"] && vars.watchers["roomID"].Current == vars.roomIDEnum["greenBrinstarMainShaft"] && (vars.watchers["brinteriaItems"].Old + 32) == (vars.watchers["brinteriaItems"].Current);
+    var pinkBrinstarBombs = settings["pinkBrinstarBombs"] && vars.watchers["roomID"].Current == vars.roomIDEnum["pinkBrinstarPowerBombRoom"] && (vars.watchers["brinstarItems3"].Old + 1) == (vars.watchers["brinstarItems3"].Current);
+    var blueBrinstarBombs = settings["blueBrinstarBombs"] && vars.watchers["roomID"].Current == vars.roomIDEnum["morphBall"] && (vars.watchers["brinstarItems3"].Old + 8) == (vars.watchers["brinstarItems3"].Current);
+    var alphaBombs = settings["alphaBombs"] && vars.watchers["roomID"].Current == vars.roomIDEnum["alphaPowerBombsRoom"] && (vars.watchers["brinstarItems5"].Old + 1) == (vars.watchers["brinstarItems5"].Current);
+    var betaBombs = settings["betaBombs"] && vars.watchers["roomID"].Current == vars.roomIDEnum["betaPowerBombRoom"] && (vars.watchers["brinstarItems4"].Old + 128) == (vars.watchers["brinstarItems4"].Current);
+    var crocomireBombs = settings["crocomireBombs"] && vars.watchers["roomID"].Current == vars.roomIDEnum["postCrocomirePowerBombRoom"] && (vars.watchers["norfairItems2"].Old + 2) == (vars.watchers["norfairItems2"].Current);
+    var lowerNorfairEscapeBombs = settings["lowerNorfairEscapeBombs"] && vars.watchers["roomID"].Current == vars.roomIDEnum["lowerNorfairEscapePowerBombRoom"] && (vars.watchers["norfairItems4"].Old + 8) == (vars.watchers["norfairItems4"].Current);
+    var shameBombs = settings["shameBombs"] && vars.watchers["roomID"].Current == vars.roomIDEnum["wasteland"] && (vars.watchers["norfairItems4"].Old + 16) == (vars.watchers["norfairItems4"].Current);
+    var rightSandPitBombs = settings["rightSandPitBombs"] && vars.watchers["roomID"].Current == vars.roomIDEnum["rightSandPit"] && (vars.watchers["maridiaItems2"].Old + 8) == (vars.watchers["maridiaItems2"].Current);
+    var pickup = firstMissile || allMissiles || oceanBottomMissiles || oceanTopMissiles ||  oceanMiddleMissiles || moatMissiles || oldTourianMissiles || gauntletRightMissiles || gauntletLeftMissiles || dentalPlan || earlySuperBridgeMissiles || greenBrinstarReserveMissiles || greenBrinstarExtraReserveMissiles || bigPinkTopMissiles || chargeMissiles || greenHillsMissiles || blueBrinstarETankMissiles || alphaMissiles || billyMaysMissiles || butWaitTheresMoreMissiles || redBrinstarMissiles || warehouseMissiles || cathedralMissiles || crumbleShaftMissiles || crocomireEscapeMissiles || hiJumpMissiles || postCrocomireMissiles || grappleMissiles || norfairReserveMissiles || greenBubblesMissiles || bubbleMountainMissiles || speedBoostMissiles || waveMissiles || goldTorizoMissiles || mickeyMouseMissiles || lowerNorfairSpringMazeMissiles || threeMusketeersMissiles || wreckedShipMainShaftMissiles || bowlingMissiles || atticMissiles || mainStreetMissiles || mamaTurtleMissiles || wateringHoleMissiles || beachMissiles || leftSandPitMissiles || rightSandPitMissiles || aqueductMissiles || preDraygonMissiles || firstSuper || allSupers || climbSupers || sporeSpawnSupers || earlySupers || etacoonSupers || goldTorizoSupers || wreckedShipLeftSupers || wreckedShipRightSupers || crabSupers || wateringHoleSupers || aqueductSupers || firstPowerBomb || allPowerBombs || landingSiteBombs || etacoonBombs || pinkBrinstarBombs || blueBrinstarBombs || alphaBombs || betaBombs || crocomireBombs || lowerNorfairEscapeBombs || shameBombs || rightSandPitBombs;
 
     // Item unlock section
     var varia = settings["variaSuit"] && (vars.watchers["unlockedEquips2"].Old & vars.unlockFlagEnum["variaSuit"]) == 0 && (vars.watchers["unlockedEquips2"].Current & vars.unlockFlagEnum["variaSuit"]) > 0;

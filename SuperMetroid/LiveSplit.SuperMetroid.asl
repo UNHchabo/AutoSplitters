@@ -213,38 +213,48 @@ startup
     settings.SetToolTip("firstETank", "Split on picking up the first Energy Tank");
     settings.Add("allETanks", false, "All Energy Tanks", "energyUpgrades");
     settings.SetToolTip("allETanks", "Split on picking up each Energy Tank");
-    settings.Add("reserveTanks", false, "All Reserve Tanks", "energyUpgrades");
-    settings.SetToolTip("reserveTanks", "Split on picking up each Reserve Tank");
     settings.Add("specificETanks", false, "Specific Energy Tanks", "energyUpgrades");
     settings.SetToolTip("specificETanks", "Split on specific Energy Tank locations");
     settings.Add("gauntletETank", false, "Gauntlet Energy Tank", "specificETanks");
-    settings.SetToolTip("gauntletETank", "Split on picking up the Gauntlet Energy Tank");
+    settings.SetToolTip("gauntletETank", "Split on picking up the Energy Tank in the Gauntlet Energy Tank Room");
     settings.Add("terminatorETank", false, "Terminator Energy Tank", "specificETanks");
-    settings.SetToolTip("terminatorETank", "Split on picking up the terminator Energy Tank");
-    settings.Add("ceilingETank", false, "Brinstar Ceiling Energy Tank", "specificETanks");
-    settings.SetToolTip("ceilingETank", "Split on picking up the Brinstar ceiling Energy Tank");
-    settings.Add("etecoonsETank", false, "Etecoons Energy Tank", "specificETanks");
-    settings.SetToolTip("etecoonsETank", "Split on picking up the troll etecoons Energy Tank");
+    settings.SetToolTip("terminatorETank", "Split on picking up the Energy Tank in the Terminator Room");
+    settings.Add("ceilingETank", false, "Classic Brinstar Energy Tank", "specificETanks");
+    settings.SetToolTip("ceilingETank", "Split on picking up the Energy Tank in the Blue Brinstar Energy Tank Room");
+    settings.Add("etecoonsETank", false, "Etacoon Energy Tank", "specificETanks");
+    settings.SetToolTip("etecoonsETank", "Split on picking up the Energy Tank in the Etacoon Energy Tank Room");
     settings.Add("waterwayETank", false, "Waterway Energy Tank", "specificETanks");
-    settings.SetToolTip("waterwayETank", "Split on picking up the waterway Energy Tank");
-    settings.Add("waveGateETank", false, "Brinstar Gate Energy Tank", "specificETanks");
-    settings.SetToolTip("waveGateETank", "Split on picking up the Brinstar wave gate Energy Tank");
-    settings.Add("kraidETank", false, "Kraid Energy Tank", "specificETanks");
-    settings.SetToolTip("kraidETank", "Split on picking up the Kraid Energy Tank");
+    settings.SetToolTip("waterwayETank", "Split on picking up the Energy Tank in Waterway");
+    settings.Add("waveGateETank", false, "Pink Brinstar Wave Gate Energy Tank", "specificETanks");
+    settings.SetToolTip("waveGateETank", "Split on picking up the Energy Tank in the Hopper Energy Tank Room");
+    settings.Add("kraidETank", false, "Warehouse Energy Tank", "specificETanks");
+    settings.SetToolTip("kraidETank", "Split on picking up the Kraid Energy Tank in the Warehouse Energy Tank Room");
     settings.Add("crocomireETank", false, "Crocomire Energy Tank", "specificETanks");
-    settings.SetToolTip("crocomireETank", "Split on picking up the Crocomire Energy Tank");
-    settings.Add("hiJumpETank", false, "Hi-Jump Boots Energy Tank", "specificETanks");
-    settings.SetToolTip("hiJumpETank", "Split on picking up the Hi-Jump Energy Tank");
+    settings.SetToolTip("crocomireETank", "Split on picking up the Energy Tank in Crocomire's Room");
+    settings.Add("hiJumpETank", false, "Hi Jump Energy Tank", "specificETanks");
+    settings.SetToolTip("hiJumpETank", "Split on picking up the Energy Tank in the Hi Jump Energy Tank Room");
     settings.Add("ridleyETank", false, "Ridley Energy Tank", "specificETanks");
-    settings.SetToolTip("ridleyETank", "Split on picking up the post-Ridley Energy Tank");
-    settings.Add("firefleaETank", false, "Firefleas Energy Tank", "specificETanks");
-    settings.SetToolTip("firefleaETank", "Split on picking up the fireflea Energy Tank");
+    settings.SetToolTip("ridleyETank", "Split on picking up the Energy Tank in the Ridley Tank Room");
+    settings.Add("firefleaETank", false, "Fireflea Energy Tank", "specificETanks");
+    settings.SetToolTip("firefleaETank", "Split on picking up the Energy Tank in the Lower Norfair Fireflea Room");
     settings.Add("wreckedShipETank", false, "Wrecked Ship Energy Tank", "specificETanks");
-    settings.SetToolTip("wreckedShipETank", "Split on picking up the Wrecked Ship Energy Tank");
+    settings.SetToolTip("wreckedShipETank", "Split on picking up the Energy Tank in the Wrecked Ship Energy Tank Room");
     settings.Add("tatoriETank", false, "Mama Turtle Energy Tank", "specificETanks");
-    settings.SetToolTip("tatoriETank", "Split on picking up the Mama Turtle Energy Tank");
+    settings.SetToolTip("tatoriETank", "Split on picking up the Energy Tank in the Mama Turtle Room");
     settings.Add("botwoonETank", false, "Botwoon Energy Tank", "specificETanks");
-    settings.SetToolTip("botwoonETank", "Split on picking up the Botwoon Energy Tank");
+    settings.SetToolTip("botwoonETank", "Split on picking up the Energy Tank in the Botwoon Energy Tank Room");
+    settings.Add("reserveTanks", false, "All Reserve Tanks", "energyUpgrades");
+    settings.SetToolTip("reserveTanks", "Split on picking up each Reserve Tank");
+    settings.Add("specificRTanks", false, "Specific Reserve Tanks", "energyUpgrades");
+    settings.SetToolTip("specificRTanks", "Split on specific Reserve Tank locations");
+    settings.Add("brinstarReserve", false, "Brinstar Reserve Tank", "specificRTanks");
+    settings.SetToolTip("brinstarReserve", "Split on picking up the Reserve Tank in the Brinstar Reserve Tank Room");
+    settings.Add("norfairReserve", false, "Norfair Reserve Tank", "specificRTanks");
+    settings.SetToolTip("norfairReserve", "Split on picking up the Reserve Tank in the Norfair Reserve Tank Room");
+    settings.Add("wreckedShipReserve", false, "Wrecked Ship Reserve Tank", "specificRTanks");
+    settings.SetToolTip("wreckedShipReserve", "Split on picking up the Reserve Tank in Bowling Alley");
+    settings.Add("maridiaReserve", false, "Maridia Reserve Tank", "specificRTanks");
+    settings.SetToolTip("maridiaReserve", "Split on picking up the Reserve Tank in West Sand Hole");
 
     settings.Add("miscUpgrades", false, "Misc Upgrades");
     settings.SetToolTip("miscUpgrades", "Split on the miscellaneous upgrades");
@@ -277,6 +287,8 @@ startup
     settings.SetToolTip("redTowerBottomEntrance", "Split on entering Red Tower from Skree Boost room");
     settings.Add("kraidsLair", false, "Kraid's Lair", "areaTransitions");
     settings.SetToolTip("kraidsLair", "Split on entering Kraid's Lair");
+    settings.Add("risingTideEntrance", false, "Rising Tide Entrance", "areaTransitions");
+    settings.SetToolTip("risingTideEntrance", "Split on entering Rising Tide from Cathedral");
     settings.Add("atticExit", false, "Attic Exit", "areaTransitions");
     settings.SetToolTip("atticExit", "Split on exiting Attic");
     settings.Add("tubeBroken", false, "Tube Broken", "areaTransitions");
@@ -420,6 +432,7 @@ startup
         { "kronicBoost",                    0xAE74 },
         { "magdolliteTunnel",               0xAEB4 },
         { "lowerNorfairElevator",           0xAF3F },
+        { "risingTide",                     0xAFA3 },
         { "spikyAcidSnakes",                0xAFFB },
         { "acidStatue",                     0xB1E5 },
         { "mainHall",                       0xB236 }, // First room in Lower Norfair
@@ -524,40 +537,6 @@ startup
         { "plasma",         0x8 },
         // Charge
         { "chargeBeam",     0x10}
-    };
-
-    vars.etankWatchKeys = new Dictionary<string, string> {
-        { "gauntletETank", "crateriaItems" },
-        { "terminatorETank", "brinteriaItems" },
-        { "ceilingETank", "brinstarItems3" },
-        { "etecoonsETank", "brinstarItems3" },
-        { "waterwayETank", "brinstarItems4" },
-        { "waveGateETank", "brinstarItems4" },
-        { "kraidETank", "brinstarItems5" },
-        { "crocomireETank", "norfairItems1" },
-        { "hiJumpETank", "norfairItems2" },
-        { "ridleyETank", "norfairItems4" },
-        { "firefleaETank", "norfairItems5" },
-        { "wreckedShipETank", "wreckedShipItems" },
-        { "tatoriETank", "maridiaItems1" },
-        { "botwoonETank", "maridiaItems3" },
-    };
-
-    vars.etankMasks = new Dictionary<string, int> {
-        { "gauntletETank",      0x20 },
-        { "terminatorETank",    0x01 },
-        { "ceilingETank",       0x20 },
-        { "etecoonsETank",      0x40 },
-        { "waterwayETank",      0x02 },
-        { "waveGateETank",      0x08 },
-        { "kraidETank",         0x08 },
-        { "crocomireETank",     0x10 },
-        { "hiJumpETank",        0x01 },
-        { "ridleyETank",        0x40 },
-        { "firefleaETank",      0x01 },
-        { "wreckedShipETank",   0x10 },
-        { "tatoriETank",        0x04 },
-        { "botwoonETank",       0x01 },
     };
 
     vars.motherBrainMaxHPEnum = new Dictionary<string, int>{
@@ -872,14 +851,26 @@ split
     // E-tanks and reserve tanks
     var firstETank = settings["firstETank"] && vars.watchers["maxEnergy"].Old == 99 && vars.watchers["maxEnergy"].Current == 199;
     var allETanks = settings["allETanks"] && (vars.watchers["maxEnergy"].Old + 100) == (vars.watchers["maxEnergy"].Current);
+    var gauntletETank = settings["gauntletETank"] && vars.watchers["roomID"].Current == vars.roomIDEnum["gauntletETankRoom"] && (vars.watchers["crateriaItems"].Old + 32) == (vars.watchers["crateriaItems"].Current);
+    var terminatorETank = settings["terminatorETank"] && vars.watchers["roomID"].Current == vars.roomIDEnum["terminator"] && (vars.watchers["brinteriaItems"].Old + 1) == (vars.watchers["brinteriaItems"].Current);
+    var ceilingETank = settings["ceilingETank"] && vars.watchers["roomID"].Current == vars.roomIDEnum["blueBrinstarETankRoom"] && (vars.watchers["brinstarItems3"].Old + 32) == (vars.watchers["brinstarItems3"].Current);
+    var etecoonsETank = settings["etecoonsETank"] && vars.watchers["roomID"].Current == vars.roomIDEnum["etacoonETankRoom"] && (vars.watchers["brinstarItems3"].Old + 64) == (vars.watchers["brinstarItems3"].Current);
+    var waterwayETank = settings["waterwayETank"] && vars.watchers["roomID"].Current == vars.roomIDEnum["waterway"] && (vars.watchers["brinstarItems4"].Old + 2) == (vars.watchers["brinstarItems4"].Current);
+    var waveGateETank = settings["waveGateETank"] && vars.watchers["roomID"].Current == vars.roomIDEnum["hopperETankRoom"] && (vars.watchers["brinstarItems4"].Old + 8) == (vars.watchers["brinstarItems4"].Current);
+    var kraidETank = settings["kraidETank"] && vars.watchers["roomID"].Current == vars.roomIDEnum["warehouseETankRoom"] && (vars.watchers["brinstarItems5"].Old + 8) == (vars.watchers["brinstarItems5"].Current);
+    var crocomireETank = settings["crocomireETank"] && vars.watchers["roomID"].Current == vars.roomIDEnum["crocomire"] && (vars.watchers["norfairItems1"].Old + 16) == (vars.watchers["norfairItems1"].Current);
+    var hiJumpETank = settings["hiJumpETank"] && vars.watchers["roomID"].Current == vars.roomIDEnum["hiJumpShaft"] && (vars.watchers["norfairItems2"].Old + 1) == (vars.watchers["norfairItems2"].Current);
+    var ridleyETank = settings["ridleyETank"] && vars.watchers["roomID"].Current == vars.roomIDEnum["ridleyETankRoom"] && (vars.watchers["norfairItems4"].Old + 64) == (vars.watchers["norfairItems4"].Current);
+    var firefleaETank = settings["firefleaETank"] && vars.watchers["roomID"].Current == vars.roomIDEnum["lowerNorfairFireflea"] && (vars.watchers["norfairItems5"].Old + 1) == (vars.watchers["norfairItems5"].Current);
+    var wreckedShipETank = settings["wreckedShipETank"] && vars.watchers["roomID"].Current == vars.roomIDEnum["wreckedShipETankRoom"] && (vars.watchers["wreckedShipItems"].Old + 16) == (vars.watchers["wreckedShipItems"].Current);
+    var tatoriETank = settings["tatoriETank"] && vars.watchers["roomID"].Current == vars.roomIDEnum["mamaTurtle"] && (vars.watchers["maridiaItems1"].Old + 4) == (vars.watchers["maridiaItems1"].Current);
+    var botwoonETank = settings["botwoonETank"] && vars.watchers["roomID"].Current == vars.roomIDEnum["botwoonETankRoom"] && (vars.watchers["maridiaItems3"].Old + 1) == (vars.watchers["maridiaItems3"].Current);
     var reserveTanks = settings["reserveTanks"] && (vars.watchers["maxReserve"].Old + 100) == (vars.watchers["maxReserve"].Current);
-    var specificTank = false;
-    foreach (string etank in vars.etankMasks.Keys) {
-            specificTank |= settings[etank]
-                    && ((vars.watchers[vars.etankWatchKeys[etank]].Current & vars.etankMasks[etank]) != 0)
-                    && ((vars.watchers[vars.etankWatchKeys[etank]].Old & vars.etankMasks[etank]) == 0);
-    }
-    var energyUpgrade = firstETank || allETanks || reserveTanks || specificTank;
+    var brinstarReserve = settings["brinstarReserve"] && vars.watchers["roomID"].Current == vars.roomIDEnum["brinstarReserveRoom"] && (vars.watchers["brinstarItems2"].Old + 2) == (vars.watchers["brinstarItems2"].Current);
+    var norfairReserve = settings["norfairReserve"] && vars.watchers["roomID"].Current == vars.roomIDEnum["norfairReserveRoom"] && (vars.watchers["norfairItems2"].Old + 32) == (vars.watchers["norfairItems2"].Current);
+    var wreckedShipReserve = settings["wreckedShipReserve"] && vars.watchers["roomID"].Current == vars.roomIDEnum["bowling"] && (vars.watchers["wreckedShipItems"].Old + 2) == (vars.watchers["wreckedShipItems"].Current);
+    var maridiaReserve = settings["maridiaReserve"] && vars.watchers["roomID"].Current == vars.roomIDEnum["leftSandPit"] && (vars.watchers["maridiaItems2"].Old + 2) == (vars.watchers["maridiaItems2"].Current);
+    var energyUpgrade = firstETank || allETanks || gauntletETank || terminatorETank || ceilingETank || etecoonsETank || waterwayETank || waveGateETank || kraidETank || crocomireETank || hiJumpETank || ridleyETank || firefleaETank || wreckedShipETank || tatoriETank || botwoonETank || reserveTanks || brinstarReserve || norfairReserve || wreckedShipReserve || maridiaReserve;
     
     // Miniboss room transitions
     var miniBossRooms = false;
@@ -920,6 +911,7 @@ split
     var wreckedShipEntrance = settings["wreckedShipEntrance"] && vars.watchers["roomID"].Old == vars.roomIDEnum["westOcean"] && vars.watchers["roomID"].Current == vars.roomIDEnum["wreckedShipEntrance"];
     var redTowerBottomEntrance = settings["redTowerBottomEntrance"] && vars.watchers["roomID"].Old == vars.roomIDEnum["bat"] && vars.watchers["roomID"].Current == vars.roomIDEnum["redTower"];
     var kraidsLair = settings["kraidsLair"] && vars.watchers["roomID"].Old == vars.roomIDEnum["warehouseEntrance"] && vars.watchers["roomID"].Current == vars.roomIDEnum["warehouseZeela"];
+    var risingTideEntrance = settings["risingTideEntrance"] && vars.watchers["roomID"].Old == vars.roomIDEnum["cathedral"] && vars.watchers["roomID"].Current == vars.roomIDEnum["risingTide"];
     var atticExit = settings["atticExit"] && vars.watchers["roomID"].Old == vars.roomIDEnum["attic"] && vars.watchers["roomID"].Current == vars.roomIDEnum["westOcean"];
     var tubeBroken = settings["tubeBroken"] && vars.watchers["roomID"].Current == vars.roomIDEnum["glassTunnel"] && (vars.watchers["eventFlags"].Old & vars.eventFlagEnum["tubeBroken"]) == 0 && (vars.watchers["eventFlags"].Current & vars.eventFlagEnum["tubeBroken"]) > 0;
     var cacExit = settings["cacExit"] && vars.watchers["roomID"].Old == vars.roomIDEnum["westCactusAlley"] && vars.watchers["roomID"].Current == vars.roomIDEnum["butterflyRoom"];
@@ -937,7 +929,7 @@ split
     var metroids = settings["metroids"] && (vars.watchers["roomID"].Old == vars.roomIDEnum["metroidOne"] && vars.watchers["roomID"].Current == vars.roomIDEnum["metroidTwo"] || vars.watchers["roomID"].Old == vars.roomIDEnum["metroidTwo"] && vars.watchers["roomID"].Current == vars.roomIDEnum["metroidThree"] || vars.watchers["roomID"].Old == vars.roomIDEnum["metroidThree"] && vars.watchers["roomID"].Current == vars.roomIDEnum["metroidFour"] || vars.watchers["roomID"].Old == vars.roomIDEnum["metroidFour"] && vars.watchers["roomID"].Current == vars.roomIDEnum["tourianHopper"]);
     var babyMetroidRoom = settings["babyMetroidRoom"] && vars.watchers["roomID"].Old == vars.roomIDEnum["dustTorizo"] && vars.watchers["roomID"].Current == vars.roomIDEnum["bigBoy"];
     var escapeClimb = settings["escapeClimb"] && vars.watchers["roomID"].Old == vars.roomIDEnum["tourianEscape4"] && vars.watchers["roomID"].Current == vars.roomIDEnum["climb"];
-    var roomTransitions = miniBossRooms || bossRooms || elevatorTransitions || ceresEscape || wreckedShipEntrance|| redTowerBottomEntrance || kraidsLair || atticExit || tubeBroken || cacExit || toilet || kronicBoost || lowerNorfairEntrance || writg || redKiShaft || metalPirates || lowerNorfairSpringMaze || lowerNorfairExit || tourianEntrance || goldenFour || metroids || babyMetroidRoom || escapeClimb;
+    var roomTransitions = miniBossRooms || bossRooms || elevatorTransitions || ceresEscape || wreckedShipEntrance|| redTowerBottomEntrance || kraidsLair || risingTideEntrance || atticExit || tubeBroken || cacExit || toilet || kronicBoost || lowerNorfairEntrance || writg || redKiShaft || metalPirates || lowerNorfairSpringMaze || lowerNorfairExit || tourianEntrance || goldenFour || metroids || babyMetroidRoom || escapeClimb;
 
     // Minibosses
     var ceresRidley = settings["ceresRidley"] && (vars.watchers["ceresBosses"].Old & vars.bossFlagEnum["ceresRidley"]) == 0 && (vars.watchers["ceresBosses"].Current & vars.bossFlagEnum["ceresRidley"]) > 0 && vars.watchers["roomID"].Current == vars.roomIDEnum["ceresRidley"];

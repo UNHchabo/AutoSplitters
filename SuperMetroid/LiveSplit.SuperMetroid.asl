@@ -400,10 +400,12 @@ startup
         { "hopperETankRoom",                0xA15B },
         { "billyMays",                      0xA1D8 },
         { "redTower",                       0xA253 },
+        { "xRay",                           0xA2CE },
         { "caterpillar",                    0xA322 },
         { "betaPowerBombRoom",              0xA37C },
         { "alphaPowerBombsRoom",            0xA3AE },
         { "bat",                            0xA3DD },
+        { "spazer",                         0xA447 },
         { "warehouseETankRoom",             0xA4B1 },
         { "warehouseZeela",                 0xA471 },
         { "warehouseKiHunters",             0xA4DA },
@@ -412,22 +414,28 @@ startup
         { "statuesHallway",                 0xA5ED },
         { "statues",                        0xA66A },
         { "warehouseEntrance",              0xA6A1 },
+        { "varia",                          0xA6E2 },
         { "cathedral",                      0xA788 },
         { "businessCenter",                 0xA7DE },
+        { "iceBeam",                        0xA890 },
         { "crumbleShaft",                   0xA8F8 },
         { "crocomireSpeedway",              0xA923 },
         { "crocomire",                      0xA98D },
+        { "hiJump",                         0xA9E5 },
         { "crocomireEscape",                0xAA0E },
         { "hiJumpShaft",                    0xAA41 },
         { "postCrocomirePowerBombRoom",     0xAADE },
         { "cosineRoom",                     0xAB3B },
         { "preGrapple",                     0xAB8F },
+        { "grapple",                        0xAC2B },
         { "norfairReserveRoom",             0xAC5A },
         { "greenBubblesRoom",               0xAC83 },
         { "bubbleMountain",                 0xACB3 },
         { "speedBoostHall",                 0xACF0 },
+        { "speedBooster",                   0xAD1B },
         { "singleChamber",                  0xAD5E }, // Exit room from Lower Norfair, also on the path to Wave
         { "doubleChamber",                  0xADAD },
+        { "waveBeam",                       0xADDE },
         { "volcano",                        0xAE32 },
         { "kronicBoost",                    0xAE74 },
         { "magdolliteTunnel",               0xAEB4 },
@@ -462,11 +470,13 @@ startup
         { "phantoon",                       0xCD13 },
         { "wreckedShipLeftSuperRoom",       0xCDA8 },
         { "wreckedShipRightSuperRoom",      0xCDF1 },
+        { "gravity",                        0xCE40 },
         { "glassTunnel",                    0xCEFB },
         { "mainStreet",                     0xCFC9 },
         { "mamaTurtle",                     0xD055 },
         { "wateringHole",                   0xD13B },
         { "beach",                          0xD1DD },
+        { "plasmaBeam",                     0xD2AA },
         { "maridiaElevator",                0xD30B },
         { "plasmaSpark",                    0xD340 },
         { "toiletBowl",                     0xD408 },
@@ -476,9 +486,11 @@ startup
         { "aqueduct",                       0xD5A7 },
         { "butterflyRoom",                  0xD5EC },
         { "botwoonHallway",                 0xD617 },
+        { "springBall",                     0xD6D0 },
         { "precious",                       0xD78F },
         { "botwoonETankRoom",               0xD7E4 },
         { "botwoon",                        0xD95E },
+        { "spaceJump",                      0xD9AA },
         { "westCactusAlley",                0xD9FE },
         { "draygon",                        0xDA60 },
         { "tourianElevator",                0xDAAE },
@@ -827,25 +839,25 @@ split
     var pickup = firstMissile || allMissiles || oceanBottomMissiles || oceanTopMissiles ||  oceanMiddleMissiles || moatMissiles || oldTourianMissiles || gauntletRightMissiles || gauntletLeftMissiles || dentalPlan || earlySuperBridgeMissiles || greenBrinstarReserveMissiles || greenBrinstarExtraReserveMissiles || bigPinkTopMissiles || chargeMissiles || greenHillsMissiles || blueBrinstarETankMissiles || alphaMissiles || billyMaysMissiles || butWaitTheresMoreMissiles || redBrinstarMissiles || warehouseMissiles || cathedralMissiles || crumbleShaftMissiles || crocomireEscapeMissiles || hiJumpMissiles || postCrocomireMissiles || grappleMissiles || norfairReserveMissiles || greenBubblesMissiles || bubbleMountainMissiles || speedBoostMissiles || waveMissiles || goldTorizoMissiles || mickeyMouseMissiles || lowerNorfairSpringMazeMissiles || threeMusketeersMissiles || wreckedShipMainShaftMissiles || bowlingMissiles || atticMissiles || mainStreetMissiles || mamaTurtleMissiles || wateringHoleMissiles || beachMissiles || leftSandPitMissiles || rightSandPitMissiles || aqueductMissiles || preDraygonMissiles || firstSuper || allSupers || climbSupers || sporeSpawnSupers || earlySupers || etacoonSupers || goldTorizoSupers || wreckedShipLeftSupers || wreckedShipRightSupers || crabSupers || wateringHoleSupers || aqueductSupers || firstPowerBomb || allPowerBombs || landingSiteBombs || etacoonBombs || pinkBrinstarBombs || blueBrinstarBombs || alphaBombs || betaBombs || crocomireBombs || lowerNorfairEscapeBombs || shameBombs || rightSandPitBombs;
 
     // Item unlock section
-    var varia = settings["variaSuit"] && (vars.watchers["unlockedEquips2"].Old & vars.unlockFlagEnum["variaSuit"]) == 0 && (vars.watchers["unlockedEquips2"].Current & vars.unlockFlagEnum["variaSuit"]) > 0;
-    var springBall = settings["springBall"] && (vars.watchers["unlockedEquips2"].Old & vars.unlockFlagEnum["springBall"]) == 0 && (vars.watchers["unlockedEquips2"].Current & vars.unlockFlagEnum["springBall"]) > 0;
-    var morphBall = settings["morphBall"] && (vars.watchers["unlockedEquips2"].Old & vars.unlockFlagEnum["morphBall"]) == 0 && (vars.watchers["unlockedEquips2"].Current & vars.unlockFlagEnum["morphBall"]) > 0;
-    var screwAttack = settings["screwAttack"] && (vars.watchers["unlockedEquips2"].Old & vars.unlockFlagEnum["screwAttack"]) == 0 && (vars.watchers["unlockedEquips2"].Current & vars.unlockFlagEnum["screwAttack"]) > 0;
-    var gravSuit = settings["gravSuit"] && (vars.watchers["unlockedEquips2"].Old & vars.unlockFlagEnum["gravSuit"]) == 0 && (vars.watchers["unlockedEquips2"].Current & vars.unlockFlagEnum["gravSuit"]) > 0;
-    var hiJump = settings["hiJump"] && (vars.watchers["unlockedEquips"].Old & vars.unlockFlagEnum["hiJump"]) == 0 && (vars.watchers["unlockedEquips"].Current & vars.unlockFlagEnum["hiJump"]) > 0;
-    var spaceJump = settings["spaceJump"] && (vars.watchers["unlockedEquips"].Old & vars.unlockFlagEnum["spaceJump"]) == 0 && (vars.watchers["unlockedEquips"].Current & vars.unlockFlagEnum["spaceJump"]) > 0;
-    var bomb = settings["bomb"] && (vars.watchers["unlockedEquips"].Old & vars.unlockFlagEnum["bomb"]) == 0 && (vars.watchers["unlockedEquips"].Current & vars.unlockFlagEnum["bomb"]) > 0;
-    var speedBooster = settings["speedBooster"] && (vars.watchers["unlockedEquips"].Old & vars.unlockFlagEnum["speedBooster"]) == 0 && (vars.watchers["unlockedEquips"].Current & vars.unlockFlagEnum["speedBooster"]) > 0;
-    var grapple = settings["grapple"] && (vars.watchers["unlockedEquips"].Old & vars.unlockFlagEnum["grapple"]) == 0 && (vars.watchers["unlockedEquips"].Current & vars.unlockFlagEnum["grapple"]) > 0;
-    var xray = settings["xray"] && (vars.watchers["unlockedEquips"].Old & vars.unlockFlagEnum["xray"]) == 0 && (vars.watchers["unlockedEquips"].Current & vars.unlockFlagEnum["xray"]) > 0;
+    var varia = settings["variaSuit"] && vars.watchers["roomID"].Current == vars.roomIDEnum["varia"] && (vars.watchers["unlockedEquips2"].Old & vars.unlockFlagEnum["variaSuit"]) == 0 && (vars.watchers["unlockedEquips2"].Current & vars.unlockFlagEnum["variaSuit"]) > 0;
+    var springBall = settings["springBall"] && vars.watchers["roomID"].Current == vars.roomIDEnum["springBall"] && (vars.watchers["unlockedEquips2"].Old & vars.unlockFlagEnum["springBall"]) == 0 && (vars.watchers["unlockedEquips2"].Current & vars.unlockFlagEnum["springBall"]) > 0;
+    var morphBall = settings["morphBall"] && vars.watchers["roomID"].Current == vars.roomIDEnum["morph"] && (vars.watchers["unlockedEquips2"].Old & vars.unlockFlagEnum["morphBall"]) == 0 && (vars.watchers["unlockedEquips2"].Current & vars.unlockFlagEnum["morphBall"]) > 0;
+    var screwAttack = settings["screwAttack"] && vars.watchers["roomID"].Current == vars.roomIDEnum["screwAttack"] && (vars.watchers["unlockedEquips2"].Old & vars.unlockFlagEnum["screwAttack"]) == 0 && (vars.watchers["unlockedEquips2"].Current & vars.unlockFlagEnum["screwAttack"]) > 0;
+    var gravSuit = settings["gravSuit"] && vars.watchers["roomID"].Current == vars.roomIDEnum["gravity"] && (vars.watchers["unlockedEquips2"].Old & vars.unlockFlagEnum["gravSuit"]) == 0 && (vars.watchers["unlockedEquips2"].Current & vars.unlockFlagEnum["gravSuit"]) > 0;
+    var hiJump = settings["hiJump"] && vars.watchers["roomID"].Current == vars.roomIDEnum["hiJump"] && (vars.watchers["unlockedEquips"].Old & vars.unlockFlagEnum["hiJump"]) == 0 && (vars.watchers["unlockedEquips"].Current & vars.unlockFlagEnum["hiJump"]) > 0;
+    var spaceJump = settings["spaceJump"] && vars.watchers["roomID"].Current == vars.roomIDEnum["spaceJump"] && (vars.watchers["unlockedEquips"].Old & vars.unlockFlagEnum["spaceJump"]) == 0 && (vars.watchers["unlockedEquips"].Current & vars.unlockFlagEnum["spaceJump"]) > 0;
+    var bomb = settings["bomb"] && vars.watchers["roomID"].Current == vars.roomIDEnum["bombTorizo"] && (vars.watchers["unlockedEquips"].Old & vars.unlockFlagEnum["bomb"]) == 0 && (vars.watchers["unlockedEquips"].Current & vars.unlockFlagEnum["bomb"]) > 0;
+    var speedBooster = settings["speedBooster"] && vars.watchers["roomID"].Current == vars.roomIDEnum["speedBooster"] && (vars.watchers["unlockedEquips"].Old & vars.unlockFlagEnum["speedBooster"]) == 0 && (vars.watchers["unlockedEquips"].Current & vars.unlockFlagEnum["speedBooster"]) > 0;
+    var grapple = settings["grapple"] && vars.watchers["roomID"].Current == vars.roomIDEnum["grapple"] && (vars.watchers["unlockedEquips"].Old & vars.unlockFlagEnum["grapple"]) == 0 && (vars.watchers["unlockedEquips"].Current & vars.unlockFlagEnum["grapple"]) > 0;
+    var xray = settings["xray"] && vars.watchers["roomID"].Current == vars.roomIDEnum["xRay"] && (vars.watchers["unlockedEquips"].Old & vars.unlockFlagEnum["xray"]) == 0 && (vars.watchers["unlockedEquips"].Current & vars.unlockFlagEnum["xray"]) > 0;
     var unlock = varia || springBall || morphBall || screwAttack || gravSuit || hiJump || spaceJump || bomb || speedBooster || grapple || xray;
 
     // Beam unlock section
-    var wave = settings["wave"] && (vars.watchers["unlockedBeams"].Old & vars.unlockFlagEnum["wave"]) == 0 && (vars.watchers["unlockedBeams"].Current & vars.unlockFlagEnum["wave"]) > 0;
-    var ice = settings["ice"] && (vars.watchers["unlockedBeams"].Old & vars.unlockFlagEnum["ice"]) == 0 && (vars.watchers["unlockedBeams"].Current & vars.unlockFlagEnum["ice"]) > 0;
-    var spazer = settings["spazer"] && (vars.watchers["unlockedBeams"].Old & vars.unlockFlagEnum["spazer"]) == 0 && (vars.watchers["unlockedBeams"].Current & vars.unlockFlagEnum["spazer"]) > 0;
-    var plasma = settings["plasma"] && (vars.watchers["unlockedBeams"].Old & vars.unlockFlagEnum["plasma"]) == 0 && (vars.watchers["unlockedBeams"].Current & vars.unlockFlagEnum["plasma"]) > 0;
-    var chargeBeam = settings["chargeBeam"] && (vars.watchers["unlockedCharge"].Old & vars.unlockFlagEnum["chargeBeam"]) == 0 && (vars.watchers["unlockedCharge"].Current & vars.unlockFlagEnum["chargeBeam"]) > 0;
+    var wave = settings["wave"] && vars.watchers["roomID"].Current == vars.roomIDEnum["waveBeam"] && (vars.watchers["unlockedBeams"].Old & vars.unlockFlagEnum["wave"]) == 0 && (vars.watchers["unlockedBeams"].Current & vars.unlockFlagEnum["wave"]) > 0;
+    var ice = settings["ice"] && vars.watchers["roomID"].Current == vars.roomIDEnum["iceBeam"] && (vars.watchers["unlockedBeams"].Old & vars.unlockFlagEnum["ice"]) == 0 && (vars.watchers["unlockedBeams"].Current & vars.unlockFlagEnum["ice"]) > 0;
+    var spazer = settings["spazer"] && vars.watchers["roomID"].Current == vars.roomIDEnum["spazer"] && (vars.watchers["unlockedBeams"].Old & vars.unlockFlagEnum["spazer"]) == 0 && (vars.watchers["unlockedBeams"].Current & vars.unlockFlagEnum["spazer"]) > 0;
+    var plasma = settings["plasma"] && vars.watchers["roomID"].Current == vars.roomIDEnum["plasmaBeam"] && (vars.watchers["unlockedBeams"].Old & vars.unlockFlagEnum["plasma"]) == 0 && (vars.watchers["unlockedBeams"].Current & vars.unlockFlagEnum["plasma"]) > 0;
+    var chargeBeam = settings["chargeBeam"] && vars.watchers["roomID"].Current == vars.roomIDEnum["bigPink"] && (vars.watchers["unlockedCharge"].Old & vars.unlockFlagEnum["chargeBeam"]) == 0 && (vars.watchers["unlockedCharge"].Current & vars.unlockFlagEnum["chargeBeam"]) > 0;
     var beam = wave || ice || spazer || plasma || chargeBeam;
 
     // E-tanks and reserve tanks
@@ -953,7 +965,7 @@ split
     if(draygon){
         vars.DebugOutput("Split due to draygon defeat");
     }
-    var ridley = settings["ridley"] && (vars.watchers["norfairBosses"].Old & vars.bossFlagEnum["ridley"]) == 0 && (vars.watchers["norfairBosses"].Current & vars.bossFlagEnum["ridley"]) > 0;
+    var ridley = settings["ridley"] && (vars.watchers["norfairBosses"].Old & vars.bossFlagEnum["ridley"]) == 0 && (vars.watchers["norfairBosses"].Current & vars.bossFlagEnum["ridley"]) > 0 && vars.watchers["roomID"].Current == vars.roomIDEnum["ridley"];
     if(ridley){
         vars.DebugOutput("Split due to ridley defeat");
     }

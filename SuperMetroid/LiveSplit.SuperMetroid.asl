@@ -485,6 +485,7 @@ init
             { 9048064, 0x1405ACC58 }, // snes9x 1.57 (x64)
             { 7000064, 0x7A7EE4 },    // snes9x 1.58
             { 9060352, 0x1405AE848 }, // snes9x 1.58 (x64)
+            { 12836864, 0x1408D8BE8 } // snes9x 1.60 (x64)
         };
 
         long pointerAddr;

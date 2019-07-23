@@ -8,6 +8,7 @@
 // https://retroachievements.org/Game/466
 
 state("higan"){}
+state("bsnes"){}
 state("snes9x"){}
 state("snes9x-x64"){}
 state("emuhawk"){}
@@ -72,7 +73,7 @@ init
         if (versions.TryGetValue(modules.First().ModuleMemorySize, out pointerAddr)) {
             memoryOffset = memory.ReadPointer((IntPtr)pointerAddr);
         }
-    } else if (memory.ProcessName.ToLower().Contains("higan") || memory.ProcessName.ToLower().Contains("emuhawk")) {
+    } else if (memory.ProcessName.ToLower().Contains("higan") || memory.ProcessName.ToLower().Contains("bsnes") || memory.ProcessName.ToLower().Contains("emuhawk")) {
         var versions = new Dictionary<int, long>{
             { 12509184, 0x915304 },      // higan v102
             { 13062144, 0x937324 },      // higan v103

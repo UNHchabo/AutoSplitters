@@ -12,6 +12,8 @@ This script can be used with [LiveSplit](http://livesplit.github.io) for speedru
 ## Setup
 After you select your splits, add a start time of 1.42 seconds, because the autostart event happens as the screen is finished fading to black, rather than the typical RTA start point when the screen starts fading.
 
+I recommend binding easily-accessible keys to the "Undo Split" and "Skip Split" functions, in case you need to deviate from your normal route, or encounter a bug.
+
 ## Split events
 As of today, the autosplitter supports splitting on the collection of Kremcoins, DK Coins, and on the end of each non-boss stage.
 

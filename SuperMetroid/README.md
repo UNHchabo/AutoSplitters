@@ -21,6 +21,8 @@ Due to the way that the autosplitters work in LiveSplit, any setting that's chos
 
 If you're playing a category that might reset to a save, you'll likely want to disable the "reset" option.
 
+I recommend binding easily-accessible keys to the "Undo Split" and "Skip Split" functions, in case you skip an item or grab an extra item, or encounter a bug.
+
 ## Split events
 This script supports splitting on a wide range of events, so it basically splits as often as you'd like. By default the following events will cause a split:
 - First Power Bomb pickup

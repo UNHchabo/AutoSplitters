@@ -714,10 +714,9 @@ init
         new MemoryWatcher<byte>(memoryOffset + 0x09DC) { Name = "igtSeconds" },
         new MemoryWatcher<byte>(memoryOffset + 0x09DE) { Name = "igtMinutes" },
         new MemoryWatcher<byte>(memoryOffset + 0x09E0) { Name = "igtHours" },
-        new MemoryWatcher<byte>(memoryOffset + 0x0A1C) { Name = "samusPose" },
-        new MemoryWatcher<byte>(memoryOffset + 0x0A1E) { Name = "poseDirection" },
         new MemoryWatcher<byte>(memoryOffset + 0x0A28) { Name = "playerState" },
         new MemoryWatcher<ushort>(memoryOffset + 0x0F8C) { Name = "enemyHP" },
+        new MemoryWatcher<ushort>(memoryOffset + 0x0FB2) { Name = "shipAI" },
         new MemoryWatcher<ushort>(memoryOffset + 0x0FCC) { Name = "motherBrainHP" },
         new MemoryWatcher<byte>(memoryOffset + 0xD821) { Name = "eventFlags" },
         new MemoryWatcher<byte>(memoryOffset + 0xD828) { Name = "crateriaBosses" },
@@ -993,7 +992,7 @@ split
     var bossDefeat = kraid || phantoon || draygon || ridley || mb1 || mb2 || mb3;
 
     // Run-ending splits
-    var escape = settings["rtaFinish"] && (vars.watchers["eventFlags"].Current & vars.eventFlagEnum["zebesAblaze"]) > 0 && vars.watchers["samusPose"].Old != 0x9B && vars.watchers["samusPose"].Current == 0x9B && vars.watchers["poseDirection"].Old != 0 && vars.watchers["poseDirection"].Current == 0;
+    var escape = settings["rtaFinish"] && (vars.watchers["eventFlags"].Current & vars.eventFlagEnum["zebesAblaze"]) > 0 && vars.watchers["shipAI"].Old != 0xaa4f && vars.watchers["shipAI"].Current == 0xaa4f;
 
     var takeoff = settings["igtFinish"] && vars.watchers["roomID"].Current == vars.roomIDEnum["landingSite"] && vars.watchers["gameState"].Old == vars.gameStateEnum["preEndCutscene"] && vars.watchers["gameState"].Current == vars.gameStateEnum["endCutscene"];
 

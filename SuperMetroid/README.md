@@ -4,7 +4,7 @@ This script can be used with [LiveSplit](http://livesplit.github.io) for speedru
 
 ## Supported emulators:
 - higan v102 through v106
-- bsnes v107 through v108, and v110 through v112
+- bsnes v107 through v112
 - Snes9x 1.53 through 1.60 (win32 or win32-x64)
 - RetroArch 1.7.5 (x86-64) (with Snes9x or higan cores)
 - BizHawk 2.3 through 2.3.2 (with bsnes core)

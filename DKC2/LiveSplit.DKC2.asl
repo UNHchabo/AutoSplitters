@@ -86,6 +86,7 @@ init
             { 10096640, 0x72BECC },      // bsnes v107
             { 10338304, 0x762F2C },      // bsnes v107.1
             { 47230976, 0x765F2C },      // bsnes v107.2/107.3
+            { 142282752, 0xA65464 },     // bsnes v108
             { 131543040, 0xA9BD5C },     // bsnes v110
             { 51924992, 0xA9DD5C },      // bsnes v111
             { 52056064, 0xAAED7C },      // bsnes v112

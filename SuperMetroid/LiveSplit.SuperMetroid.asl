@@ -13,6 +13,7 @@ state("snes9x"){}
 state("snes9x-x64"){}
 state("emuhawk"){}
 state("retroarch"){}
+state("lsnes-bsnes"){}
 
 startup
 {
@@ -630,6 +631,14 @@ init
         long pointerAddr;
         if (versions.TryGetValue(modules.First().ModuleMemorySize, out pointerAddr)) {
             memoryOffset = memory.ReadPointer((IntPtr)pointerAddr);
+        }
+    } else if (memory.ProcessName.ToLower().Contains("lsnes-bsnes")) {
+        var versions = new Dictionary<int, long>{
+            { 35414016, 0x023A1BF0 },    // rr2-B23
+        };
+        long wramAddr;
+        if (versions.TryGetValue(modules.First().ModuleMemorySize, out wramAddr)) {
+            memoryOffset = (IntPtr)wramAddr;
         }
     } else if (memory.ProcessName.ToLower().Contains("higan") || memory.ProcessName.ToLower().Contains("bsnes") || memory.ProcessName.ToLower().Contains("emuhawk")) {
         var versions = new Dictionary<int, long>{

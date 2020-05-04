@@ -98,7 +98,7 @@ init
             // Unfortunately v113/114 cannot be supported with this style
             // of check because their size matches v115, with a different offset
             //{ 52477952, 0xB15D7C },      // bsnes v113/114
-            { 52477952, 0xB16D7C ],      // bsnes v115
+            { 52477952, 0xB16D7C },      // bsnes v115
             { 7061504,  0x36F11500240 }, // BizHawk 2.3
             { 7249920,  0x36F11500240 }, // BizHawk 2.3.1
             { 6938624,  0x36F11500240 }, // BizHawk 2.3.2

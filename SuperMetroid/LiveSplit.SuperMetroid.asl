@@ -632,15 +632,7 @@ init
         if (versions.TryGetValue(modules.First().ModuleMemorySize, out pointerAddr)) {
             memoryOffset = memory.ReadPointer((IntPtr)pointerAddr);
         }
-    } else if (memory.ProcessName.ToLower().Contains("lsnes-bsnes")) {
-        var versions = new Dictionary<int, long>{
-            { 35414016, 0x023A1BF0 },    // rr2-B23
-        };
-        long wramAddr;
-        if (versions.TryGetValue(modules.First().ModuleMemorySize, out wramAddr)) {
-            memoryOffset = (IntPtr)wramAddr;
-        }
-    } else if (memory.ProcessName.ToLower().Contains("higan") || memory.ProcessName.ToLower().Contains("bsnes") || memory.ProcessName.ToLower().Contains("emuhawk")) {
+    } else if (memory.ProcessName.ToLower().Contains("higan") || memory.ProcessName.ToLower().Contains("bsnes") || memory.ProcessName.ToLower().Contains("emuhawk") || memory.ProcessName.ToLower().Contains("lsnes-bsnes")) {
         var versions = new Dictionary<int, long>{
             { 12509184, 0x915304 },      // higan v102
             { 13062144, 0x937324 },      // higan v103
@@ -667,6 +659,7 @@ init
             { 7061504,  0x36F11500240 }, // BizHawk 2.3
             { 7249920,  0x36F11500240 }, // BizHawk 2.3.1
             { 6938624,  0x36F11500240 }, // BizHawk 2.3.2
+            { 35414016, 0x023A1BF0 },    // lsnes rr2-B23
         };
 
         long wramAddr;

@@ -99,8 +99,8 @@ startup
     settings.SetToolTip("ceresRidley", "Split on starting the Ceres Escape");
     settings.Add("bombTorizo", false, "Bomb Torizo", "miniBosses");
     settings.SetToolTip("bombTorizo", "Split on Bomb Torizo's drops appearing");
-    settings.Add("sporeSpawn", false, "Spore Spawn", "miniBosses");
-    settings.SetToolTip("sporeSpawn", "Split on the last hit to Spore Spawn");
+    settings.Add("brinstarMiniboss", false, "Brinstar Miniboss", "miniBosses");
+    settings.SetToolTip("brinstarMiniboss", "Split on beating the Brinstar Miniboss (Spore Spawn in vanilla)");
     settings.Add("crocomire", false, "Crocomire", "miniBosses");
     settings.SetToolTip("crocomire", "Split on Crocomire's drops appearing");
     settings.Add("botwoon", false, "Botwoon", "miniBosses");
@@ -118,10 +118,6 @@ startup
     settings.SetToolTip("draygon", "Split on Draygon's drops appearing");
     settings.Add("ridley", true, "Ridley", "bosses");
     settings.SetToolTip("ridley", "Split on Ridley's drops appearing");
-    settings.Add("mb1", false, "Mother Brain 1", "bosses");
-    settings.SetToolTip("mb1", "Split on Mother Brain's head hitting the ground at the end of the first phase");
-    settings.Add("mb2", true, "Mother Brain 2", "bosses");
-    settings.SetToolTip("mb2", "Split on the Baby Metroid detaching from Mother Brain's head");
     settings.Add("mb3", false, "Mother Brain 3", "bosses");
     settings.SetToolTip("mb3", "Split on the start of the Zebes Escape");
 
@@ -330,24 +326,9 @@ startup
     };
 
     vars.bossFlagEnum = new Dictionary<string, int>{
-        // Crateria
-        { "bombTorizo",     0x4 },
-        // Brinstar
-        { "sporeSpawn",     0x2 },
-        { "kraid",          0x1 },
-        // Norfair
-        { "ridley",         0x1 },
-        { "crocomire",      0x2 },
-        { "goldenTorizo",   0x4 },
-        // Wrecked Ship
-        { "phantoon",       0x1 },
-        // Maridia
-        { "draygon",        0x1 },
-        { "botwoon",        0x2 },
-        // Tourian
-        { "motherBrain",    0x2 },
-        // Ceres
-        { "ceresRidley",    0x1 }
+        { "torizo",         0x4 },
+        { "miniboss",       0x2 },
+        { "boss",           0x1 },
     };
 
     vars.pickedUpSporeSpawnSuper = false;
@@ -594,14 +575,29 @@ split
     var ceresEscape = settings["ceresEscape"] && vars.watchers["roomID"].Current == vars.roomIDEnum["ceresElevator"] && vars.watchers["gameState"].Old == vars.gameStateEnum["normalGameplay"] && vars.watchers["gameState"].Current == vars.gameStateEnum["startOfCeresCutscene"];
     var tubeBroken = settings["tubeBroken"] && vars.watchers["roomID"].Current == vars.roomIDEnum["glassTunnel"] && (vars.watchers["eventFlags"].Old & vars.eventFlagEnum["tubeBroken"]) == 0 && (vars.watchers["eventFlags"].Current & vars.eventFlagEnum["tubeBroken"]) > 0;
     var roomTransitions = mapTransitions || ceresEscape || tubeBroken;
+    if(roomTransitions){
+        if(mapTransitions){
+            vars.DebugOutput("Map transition");
+        }
+        if(ceresEscape){
+            vars.DebugOutput("Ceres Escape");
+        }
+        if(tubeBroken){
+            vars.DebugOutput("Tube Broken");
+        }
+    }
+
+    // Torizos
+    var crateriaTorizo = settings["crateriaTorizo"] && (vars.watchers["crateriaBosses"].Old & vars.bossFlagEnum["torizo"]) == 0 && (vars.watchers["crateriaBosses"].Current & vars.bossFlagEnum["torizo"]) > 0;
+    var brinstarTorizo = settings["brinstarTorizo"] && (vars.watchers["brinstarBosses"].Old & vars.bossFlagEnum["torizo"]) == 0 && (vars.watchers["brinstarBosses"].Current & vars.bossFlagEnum["torizo"]) > 0;
+    var maridiaTorizo = settings["maridiaTorizo"] && (vars.watchers["maridiaBosses"].Old & vars.bossFlagEnum["torizo"]) == 0 && (vars.watchers["brinstarBosses"].Current & vars.bossFlagEnum["torizo"]) > 0;
+    var norfairTorizo = settings["norfairTorizo"] && (vars.watchers["norfairBosses"].Old & vars.bossFlagEnum["torizo"]) == 0 && (vars.watchers["norfairBosses"].Current & vars.bossFlagEnum["torizo"]) > 0;
 
     // Minibosses
-    var ceresRidley = settings["ceresRidley"] && (vars.watchers["ceresBosses"].Old & vars.bossFlagEnum["ceresRidley"]) == 0 && (vars.watchers["ceresBosses"].Current & vars.bossFlagEnum["ceresRidley"]) > 0;
-    var bombTorizo = settings["bombTorizo"] && (vars.watchers["crateriaBosses"].Old & vars.bossFlagEnum["bombTorizo"]) == 0 && (vars.watchers["crateriaBosses"].Current & vars.bossFlagEnum["bombTorizo"]) > 0;
-    var sporeSpawn = settings["sporeSpawn"] && (vars.watchers["brinstarBosses"].Old & vars.bossFlagEnum["sporeSpawn"]) == 0 && (vars.watchers["brinstarBosses"].Current & vars.bossFlagEnum["sporeSpawn"]) > 0;
-    var crocomire = settings["crocomire"] && (vars.watchers["norfairBosses"].Old & vars.bossFlagEnum["crocomire"]) == 0 && (vars.watchers["norfairBosses"].Current & vars.bossFlagEnum["crocomire"]) > 0;
-    var botwoon = settings["botwoon"] && (vars.watchers["maridiaBosses"].Old & vars.bossFlagEnum["botwoon"]) == 0 && (vars.watchers["maridiaBosses"].Current & vars.bossFlagEnum["botwoon"]) > 0;
-    var goldenTorizo = settings["goldenTorizo"] && (vars.watchers["norfairBosses"].Old & vars.bossFlagEnum["goldenTorizo"]) == 0 && (vars.watchers["norfairBosses"].Current & vars.bossFlagEnum["goldenTorizo"]) > 0;
+    var ceresRidley = settings["ceresRidley"] && (vars.watchers["ceresBosses"].Old & vars.bossFlagEnum["miniboss"]) == 0 && (vars.watchers["ceresBosses"].Current & vars.bossFlagEnum["miniboss"]) > 0;
+    var brinstarMiniboss = settings["brinstarMiniboss"] && (vars.watchers["brinstarBosses"].Old & vars.bossFlagEnum["miniboss"]) == 0 && (vars.watchers["brinstarBosses"].Current & vars.bossFlagEnum["miniboss"]) > 0;
+    var norfairMiniboss = settings["norfairMiniboss"] && (vars.watchers["norfairBosses"].Old & vars.bossFlagEnum["miniboss"]) == 0 && (vars.watchers["norfairBosses"].Current & vars.bossFlagEnum["miniboss"]) > 0;
+    var maridiaMiniboss = settings["maridiaMiniboss"] && (vars.watchers["maridiaBosses"].Old & vars.bossFlagEnum["miniboss"]) == 0 && (vars.watchers["maridiaBosses"].Current & vars.bossFlagEnum["miniboss"]) > 0;
     var minibossDefeat = ceresRidley || bombTorizo || sporeSpawn || crocomire || botwoon || goldenTorizo;
 
     // Bosses
@@ -621,19 +617,12 @@ split
     if(ridley){
         vars.DebugOutput("Split due to ridley defeat");
     }
-    // Mother Brain phases
-    var inMotherBrainRoom = vars.watchers["roomID"].Current == vars.roomIDEnum["motherBrain"];
-    var mb1 = settings["mb1"] && inMotherBrainRoom && vars.watchers["gameState"].Current == vars.gameStateEnum["normalGameplay"] && vars.watchers["motherBrainHP"].Old == 0 && vars.watchers["motherBrainHP"].Current == (vars.motherBrainMaxHPEnum["phase2"]);
-    if(mb1){
-        vars.DebugOutput("Split due to mb1 defeat");
-    }
-    var mb2 = settings["mb2"] && inMotherBrainRoom && vars.watchers["gameState"].Current == vars.gameStateEnum["normalGameplay"] && vars.watchers["motherBrainHP"].Old == 0 && vars.watchers["motherBrainHP"].Current == (vars.motherBrainMaxHPEnum["phase3"]);
-    if(mb2){
-        vars.DebugOutput("Split due to mb2 defeat");
-    }
-    var mb3 = settings["mb3"] && inMotherBrainRoom && (vars.watchers["tourianBosses"].Old & vars.bossFlagEnum["motherBrain"]) == 0 && (vars.watchers["tourianBosses"].Current & vars.bossFlagEnum["motherBrain"]) > 0;
+    var mb3 = settings["mb3"] && (vars.watchers["tourianBosses"].Old & vars.bossFlagEnum["motherBrain"]) == 0 && (vars.watchers["tourianBosses"].Current & vars.bossFlagEnum["motherBrain"]) > 0;
     if(mb3){
         vars.DebugOutput("Split due to mb3 defeat");
+    }
+    if(vars.watchers["tourianBosses"].Old != vars.watchers["tourianBosses"].Current){
+        vars.DebugOutput("Tourian Boss flags were: " + vars.watchers["tourianBosses"].Old + " Now they are " + vars.watchers["tourianBosses"].Current);
     }
     var bossDefeat = kraid || phantoon || draygon || ridley || mb1 || mb2 || mb3;
 

@@ -390,6 +390,7 @@ init
             { 23142400, 0xBC7CC8 },      // higan v108
             { 23166976, 0xBCECC8 },      // higan v109
             { 23224320, 0xBDBCC8 },      // higan v110
+            { 23781376, 0xBB0CC8 },      // higan v110 (x64)
             { 10096640, 0x72BECC },      // bsnes v107
             { 10338304, 0x762F2C },      // bsnes v107.1
             { 47230976, 0x765F2C },      // bsnes v107.2/107.3

@@ -659,6 +659,7 @@ init
             // Unfortunately v113/114 cannot be supported with this style
             // of check because their size matches v115, with a different offset
             //{ 52477952, 0xB15D7C },      // bsnes v113/114
+            // This is the official release of v115, the Nightly releases report as v115 but won't work with this
             { 52477952, 0xB16D7C },      // bsnes v115
             { 7061504,  0x36F11500240 }, // BizHawk 2.3
             { 7249920,  0x36F11500240 }, // BizHawk 2.3.1

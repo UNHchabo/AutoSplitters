@@ -367,6 +367,21 @@ startup
     settings.Add("hundredMissileRTAFinish", false, "100 Missile RTA Finish");
     settings.SetToolTip("hundredMissileRTAFinish", "Split on the end of a 100 Missile RTA run, when the text box clears after collecting the hundredth missile");
 
+    settings.Add("killSamusRTA", true, "Kill Samus RTA");
+    settings.SetToolTip("killSamusRTA", "Ceres Splits for Kill Samus RTA");
+    settings.Add("exitCeresElevatorRoom", false, "Exit Ceres elevator room", "killSamusRTA");
+    settings.SetToolTip("exitCeresElevatorRoom", "When you exit Ceres elevator room towards Ridley");
+    settings.Add("exitFallingTileRoom", false, "Exit Ceres falling tile room", "killSamusRTA");
+    settings.SetToolTip("exitFallingTileRoom", "When you exit the Ceres falling tile room towards Ridley");
+    settings.Add("exitMagnetStairs", false, "Exit Ceres magnet stairs room", "killSamusRTA");
+    settings.SetToolTip("exitMagnetStairs", "When you exit the Ceres magnet stairs room towards Ridley");
+    settings.Add("exitDeadScientist", false, "Exit Ceres dead scientist room", "killSamusRTA");
+    settings.SetToolTip("exitDeadScientist", "When you exit the Ceres Dead Scientist room towards Ridley");
+    settings.Add("enterCeresRidley", false, "Enter Ceres Ridley", "killSamusRTA");
+    settings.SetToolTip("enterCeresRidley", "When you enter the Ceres Ridley room");
+    settings.Add("samusDead", false, "Samus Dead", "killSamusRTA");
+    settings.SetToolTip("samusDead", "When samus's HP reaches 0");
+
     // RoomIDs compiled here:
     // https://wiki.supermetroid.run/List_of_rooms_by_SMILE_ID
     vars.roomIDEnum = new Dictionary<string, int> {
@@ -511,7 +526,10 @@ startup
         { "rinkaShaft",                     0xDDF3 },
         { "tourianEscape4",                 0xDEDE },
         { "ceresElevator",                  0xDF45 },
-        { "flatRoom",                       0xE06B }, // Placeholder name for the flat room in Ceres Station
+        { "ceresFallingTile",               0xDF8D },
+        { "ceresMagnetStairs",              0xDFD7 },
+        { "ceresDeadScientist",             0xE021 },
+        { "ceresFlatRoom",                  0xE06B }, // Placeholder name for the flat room in Ceres Station
         { "ceresRidley",                    0xE0B5 }
     };
 
@@ -702,6 +720,21 @@ init
                 }
             }
         }
+        
+        // Special case snes9x_libretro.dll for retroarch 1.8.0
+        if ( modules.First().ModuleMemorySize == 21106688 )
+        {
+            var snes9xLibretroModule = modules.FirstOrDefault(m => m.ModuleName.ToLower() == "snes9x_libretro.dll");
+            if (snes9xLibretroModule != null) {
+                var versions = new Dictionary<int, int>{
+                    { 3657728, 0x2C9B08 }, // Snes9x Famicom (snes9x_libretro.dll)
+                };
+                int wramPtrOffset;
+                if (versions.TryGetValue(snes9xLibretroModule.ModuleMemorySize, out wramPtrOffset)) {
+                    memoryOffset = memory.ReadPointer(snes9xLibretroModule.BaseAddress + wramPtrOffset);
+                }
+            }
+        }
     }
 
     if (memoryOffset == IntPtr.Zero) {
@@ -765,6 +798,7 @@ init
         new MemoryWatcher<byte>(memoryOffset + 0xD881) { Name = "maridiaItems1" },
         new MemoryWatcher<byte>(memoryOffset + 0xD882) { Name = "maridiaItems2" },
         new MemoryWatcher<byte>(memoryOffset + 0xD883) { Name = "maridiaItems3" },
+        new MemoryWatcher<ushort>(memoryOffset + 0x09C2) { Name = "samusHealth" },
     };
 }
 
@@ -917,7 +951,7 @@ split
     // Miniboss room transitions
     var miniBossRooms = false;
     if(settings["miniBossRooms"]){
-        var ceresRidleyRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["flatRoom"] && vars.watchers["roomID"].Current == vars.roomIDEnum["ceresRidley"];
+        var ceresRidleyRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["ceresFlatRoom"] && vars.watchers["roomID"].Current == vars.roomIDEnum["ceresRidley"];
         var sporeSpawnRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["sporeSpawnKeyhunter"] && vars.watchers["roomID"].Current == vars.roomIDEnum["sporeSpawn"];
         var crocomireRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["crocomireSpeedway"] && vars.watchers["roomID"].Current == vars.roomIDEnum["crocomire"];
         var botwoonRoom = vars.watchers["roomID"].Old == vars.roomIDEnum["botwoonHallway"] && vars.watchers["roomID"].Current == vars.roomIDEnum["botwoon"];
@@ -1077,8 +1111,16 @@ split
     if(nonStandardCategoryFinish){
         vars.DebugOutput("Split due to non standard category finish");
     }
+    
+    var isSamusDead = settings["samusDead"] && vars.watchers["samusHealth"].Current == 0;
+    var isExitElevatorRoom = settings["exitCeresElevatorRoom"] && vars.watchers["roomID"].Old == vars.roomIDEnum["ceresElevator"] && vars.watchers["roomID"].Current == vars.roomIDEnum["ceresFallingTile"];
+    var isExitFallingTileRoom = settings["exitFallingTileRoom"] && vars.watchers["roomID"].Old == vars.roomIDEnum["ceresFallingTile"] && vars.watchers["roomID"].Current == vars.roomIDEnum["ceresMagnetStairs"];
+    var isExitMagnetStairsRoom = settings["exitMagnetStairs"] && vars.watchers["roomID"].Old == vars.roomIDEnum["ceresMagnetStairs"] && vars.watchers["roomID"].Current == vars.roomIDEnum["ceresDeadScientist"];
+    var isExitDeadScientistRoom = settings["exitDeadScientist"] && vars.watchers["roomID"].Old == vars.roomIDEnum["ceresDeadScientist"] && vars.watchers["roomID"].Current == vars.roomIDEnum["ceresFlatRoom"];
+    var isEnterCeresRidley = settings["enterCeresRidley"] && vars.watchers["roomID"].Old == vars.roomIDEnum["ceresFlatRoom"] && vars.watchers["roomID"].Current == vars.roomIDEnum["ceresRidley"];
+    var isKillSamusSplit = isExitElevatorRoom || isExitFallingTileRoom || isExitMagnetStairsRoom || isExitDeadScientistRoom || isEnterCeresRidley;
 
-    return pickup || unlock || beam || energyUpgrade || roomTransitions || minibossDefeat || bossDefeat || escape || takeoff || nonStandardCategoryFinish;
+    return pickup || unlock || beam || energyUpgrade || roomTransitions || minibossDefeat || bossDefeat || escape || takeoff || nonStandardCategoryFinish || isKillSamusSplit;
 }
 
 gameTime

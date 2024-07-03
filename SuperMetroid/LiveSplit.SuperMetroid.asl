@@ -605,7 +605,7 @@ init
     if (memory.ProcessName.ToLower().Contains("snes9x")) {
         // TODO: These should probably be module-relative offsets too. Then
         // some of this codepath can be unified with the RA stuff below.
-        var versions = new Dictionary<int, long>{
+        var legacyVersions = new Dictionary<int, long>{
             { 10330112, 0x789414 },   // snes9x 1.52-rr
             { 7729152, 0x890EE4 },    // snes9x 1.54-rr
             { 5914624, 0x6EFBA4 },    // snes9x 1.53
@@ -632,8 +632,19 @@ init
         };
 
         long pointerAddr;
-        if (versions.TryGetValue(modules.First().ModuleMemorySize, out pointerAddr)) {
+        if (legacyVersions.TryGetValue(modules.First().ModuleMemorySize, out pointerAddr)) {
             memoryOffset = memory.ReadPointer((IntPtr)pointerAddr);
+        }
+        else {
+            // Module-relative addresses
+            var versions = new Dictionary<int, int>{
+                { 10399744, 0x587494 }, // snes9x 1.62.3
+                { 15474688, 0xA32314 }, // snes9x 1.62.3 (x64)
+            };
+            int wramAddr;
+            if (versions.TryGetValue(modules.First().ModuleMemorySize, out wramAddr)) {
+                memoryOffset = modules.First().BaseAddress + wramAddr;
+            }
         }
     } else if (memory.ProcessName.ToLower().Contains("higan") || memory.ProcessName.ToLower().Contains("bsnes") || memory.ProcessName.ToLower().Contains("emuhawk") || memory.ProcessName.ToLower().Contains("lsnes-bsnes")) {
         var versions = new Dictionary<int, long>{
